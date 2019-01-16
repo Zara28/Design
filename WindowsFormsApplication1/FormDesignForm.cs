@@ -29,5 +29,18 @@ namespace WindowsFormsApplication1
 
             DesignClass.FORM_BACKGROUND_IMG = pictureBox1.Image;
         }
+
+        private void FormDesignForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            ColorDialog MyDialog = new ColorDialog();
+            MyDialog.ShowDialog();
+
+            DesignClass.LABEL_TEXT_COLOR = MyDialog.Color;
+        }
     }
 }

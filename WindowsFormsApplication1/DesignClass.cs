@@ -30,5 +30,21 @@ namespace WindowsFormsApplication1
         public static Color BUTTON_TEXT_COLOR;
 
         #endregion
+
+        #region ect
+
+        /// <summary>
+        /// Расстояние между картинками
+        /// </summary>
+        public static int LENGTH;
+
+        public static Color LABEL_TEXT_COLOR;
+
+        #endregion
+        public static Color PANEL_COLOR;
+        public static Image PANEL_BACKGROUND_IMG;
+        public static bool PROZRACHNOST;
+
+
     }
 }
