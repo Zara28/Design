@@ -35,10 +35,12 @@ namespace WindowsFormsApplication1
                     ((Button)ctr).BackgroundImageLayout = ImageLayout.Stretch;
                     ((Button)ctr).ForeColor = DesignClass.BUTTON_TEXT_COLOR;
                 }
-                else
+                else if (ctr.GetType().ToString() == "System.Windows.Forms.Panel")
                 {
-                    pic(ctr);
+                    ((Panel)ctr).BackColor = DesignClass.PANEL_COLOR;
                 }
+
+                pic(ctr);
             }
         }
     

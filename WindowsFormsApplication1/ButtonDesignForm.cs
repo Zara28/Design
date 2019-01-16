@@ -25,6 +25,7 @@ namespace WindowsFormsApplication1
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             DesignClass.BUTTON_BACKGROUND_IMG = ((PictureBox)sender).BackgroundImage;
+            DesignClass.BUTTON_BACKGROUND_IMG_ADRESS = ((PictureBox)sender).Tag.ToString();
             Form1.pic(this);
         }
 

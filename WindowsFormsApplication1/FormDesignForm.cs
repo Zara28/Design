@@ -28,6 +28,59 @@ namespace WindowsFormsApplication1
             }
 
             DesignClass.FORM_BACKGROUND_IMG = pictureBox1.Image;
+            this.BackgroundImage = pictureBox1.Image;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(((Button)sender).Name.ToString());
+
+
+            if (sender.Equals(button2))
+            {
+                this.BackgroundImageLayout = ImageLayout.Tile;
+
+            }
+            else if (sender.Equals(button3))
+            {
+                this.BackgroundImageLayout = ImageLayout.Zoom;
+            }
+            else if (sender.Equals(button4))
+            {
+                this.BackgroundImageLayout = ImageLayout.Stretch;
+            }
+            else if (sender.Equals(button5))
+            {
+                this.BackgroundImageLayout = ImageLayout.Center;
+            }
+            else if (sender.Equals(button6))
+            {
+                this.BackgroundImageLayout = ImageLayout.None;
+            }
+
+            this.BackgroundImage = pictureBox1.Image;
+            //DesignClass.nomer_konfig_image
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            colorButton.Visible = !colorButton.Visible;
+            DesignClass.PANEL_COLOR = Color.Transparent;
+        }
+
+        private void color_Click(object sender, EventArgs e)
+        {
+            ColorDialog MyDialog = new ColorDialog();
+            MyDialog.ShowDialog();
+            DesignClass.PANEL_COLOR = MyDialog.Color;
+        }
+
+        private void color_form_Click(object sender, EventArgs e)
+        {
+            ColorDialog MyDialog = new ColorDialog();
+            MyDialog.ShowDialog();
+            DesignClass.FORM_COLOR = MyDialog.Color;
+            this.BackColor = DesignClass.FORM_COLOR;
         }
     }
 }
