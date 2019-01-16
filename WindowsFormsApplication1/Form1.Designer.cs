@@ -87,20 +87,21 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(-1, 176);
+            this.button6.Location = new System.Drawing.Point(35, 167);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
+            this.button6.Size = new System.Drawing.Size(104, 23);
             this.button6.TabIndex = 1;
-            this.button6.Text = "button6";
+            this.button6.Text = "Дизайн формы";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button5
             // 
             this.button5.Location = new System.Drawing.Point(35, 21);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.Size = new System.Drawing.Size(104, 70);
             this.button5.TabIndex = 0;
-            this.button5.Text = "button5";
+            this.button5.Text = "Дизайн кнопок";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
@@ -116,6 +117,7 @@
             this.Controls.Add(this.button1);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
