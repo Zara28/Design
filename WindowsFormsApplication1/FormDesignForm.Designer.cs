@@ -28,11 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.CursorComboBox = new System.Windows.Forms.ComboBox();
+            this.cursorsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cursorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cursorsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cursorBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -46,9 +52,9 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(13, 40);
+            this.pictureBox1.Location = new System.Drawing.Point(13, 29);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(259, 101);
+            this.pictureBox1.Size = new System.Drawing.Size(259, 85);
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
@@ -69,11 +75,38 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // CursorComboBox
+            // 
+            this.CursorComboBox.Cursor = System.Windows.Forms.Cursors.SizeAll;
+            this.CursorComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CursorComboBox.FormattingEnabled = true;
+            this.CursorComboBox.Items.AddRange(new object[] {
+            "прго",
+            "апр",
+            "апр",
+            "апр",
+            "ап",
+            "рар"});
+            this.CursorComboBox.Location = new System.Drawing.Point(12, 120);
+            this.CursorComboBox.Name = "CursorComboBox";
+            this.CursorComboBox.Size = new System.Drawing.Size(260, 21);
+            this.CursorComboBox.TabIndex = 4;
+            this.CursorComboBox.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // cursorsBindingSource
+            // 
+            this.cursorsBindingSource.DataSource = typeof(System.Windows.Forms.Cursors);
+            // 
+            // cursorBindingSource
+            // 
+            this.cursorBindingSource.DataSource = typeof(System.Windows.Forms.Cursor);
+            // 
             // FormDesignForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 199);
+            this.Controls.Add(this.CursorComboBox);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.pictureBox1);
@@ -81,6 +114,8 @@
             this.Name = "FormDesignForm";
             this.Text = "Дизайн формы";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cursorsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cursorBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -92,5 +127,8 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ComboBox CursorComboBox;
+        private System.Windows.Forms.BindingSource cursorsBindingSource;
+        private System.Windows.Forms.BindingSource cursorBindingSource;
     }
 }
