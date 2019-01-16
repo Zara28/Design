@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
 {
@@ -15,6 +16,8 @@ namespace WindowsFormsApplication1
         /// Фоновая картинка формы
         /// </summary>
         public static Image FORM_BACKGROUND_IMG;
+
+        public static Cursor FORM_CURSOR;
 
         #endregion
 
@@ -30,21 +33,5 @@ namespace WindowsFormsApplication1
         public static Color BUTTON_TEXT_COLOR;
 
         #endregion
-
-        #region ect
-
-        /// <summary>
-        /// Расстояние между картинками
-        /// </summary>
-        public static int LENGTH;
-
-        public static Color LABEL_TEXT_COLOR;
-
-        #endregion
-        public static Color PANEL_COLOR;
-        public static Image PANEL_BACKGROUND_IMG;
-        public static bool PROZRACHNOST;
-
-
     }
 }

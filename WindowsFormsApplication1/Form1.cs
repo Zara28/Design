@@ -23,6 +23,7 @@ namespace WindowsFormsApplication1
             //Фон формы FIXME!!!
             if (c.GetType().ToString().Contains("WindowsFormsApplication1"))
             {
+                c.Cursor = DesignClass.FORM_CURSOR;
                 c.BackgroundImage = DesignClass.FORM_BACKGROUND_IMG;
             }
 
