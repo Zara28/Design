@@ -14,7 +14,6 @@ C:\Users\student.ATIAM\Downloads\Вебинары\Design\WindowsFormsApplication
 C:\Users\student.ATIAM\Downloads\Вебинары\Design\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
 C:\Users\student.ATIAM\Downloads\Вебинары\Design\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
 C:\Users\student.ATIAM\Downloads\Вебинары\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csprojResolveAssemblyReference.cache
-C:\Users\student.ATIAM\Downloads\Вебинары\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form1.resources
 C:\Users\student.ATIAM\Downloads\Вебинары\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ButtonDesignForm.resources
 C:\Users\student.ATIAM\Downloads\Вебинары\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
 C:\Users\student.ATIAM\Downloads\Вебинары\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache
@@ -30,3 +29,6 @@ C:\Users\student.ATIAM\Downloads\Вебинары\1\Design\WindowsFormsApplicati
 C:\Users\student.ATIAM\Downloads\Вебинары\1\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.FormDesignForm.resources
 C:\Users\student.ATIAM\Downloads\Вебинары\1\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
 C:\Users\student.ATIAM\Downloads\Вебинары\1\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache
+C:\Users\student.ATIAM\Downloads\Вебинары\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.MainForm.resources
+C:\Users\student.ATIAM\Downloads\Вебинары\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.PanelForm.resources
+C:\Users\student.ATIAM\Downloads\Вебинары\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.PicForm.resources

@@ -46,9 +46,9 @@ namespace WindowsFormsApplication1
                     {
                         ((Panel)ctr).BackgroundImage = DesignClass.PANEL_BACKGROUND_IMG;
                         ((Panel)ctr).BackColor = DesignClass.PANEL_COLOR;
-                        if (DesignClass.PROZRACHNOST)
+                        if (DesignClass.PANEL_TRANSPARENCY)
                         {
-                            ((Panel)ctr).ForeColor = Color.Transparent;
+                            ((Panel)ctr).BackColor = Color.Transparent;
                         }
                     }
                     catch (Exception)

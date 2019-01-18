@@ -28,7 +28,7 @@ namespace WindowsFormsApplication1
 
         private void button2_Click(object sender, EventArgs e)
         {
-            DesignClass.PROZRACHNOST = true;
+            DesignClass.PANEL_TRANSPARENCY = true;
 
             this.Close();
         }
