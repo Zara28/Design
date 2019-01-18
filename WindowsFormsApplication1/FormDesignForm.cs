@@ -77,5 +77,39 @@ namespace WindowsFormsApplication1
 
             MainForm.pic(this);
         }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            if (sender.Equals(button7))
+            {
+                this.BackgroundImageLayout = ImageLayout.Tile;
+            }
+            else if (sender.Equals(button3))
+            {
+                this.BackgroundImageLayout = ImageLayout.Zoom;
+            }
+            else if (sender.Equals(button4))
+            {
+                this.BackgroundImageLayout = ImageLayout.Stretch;
+            }
+            else if (sender.Equals(button5))
+            {
+                this.BackgroundImageLayout = ImageLayout.Center;
+            }
+            else if (sender.Equals(button6))
+            {
+                this.BackgroundImageLayout = ImageLayout.None;
+            }
+
+            this.BackgroundImage = pictureBox1.Image;
+        }
+
+        private void color_form_Click(object sender, EventArgs e)
+        {
+            ColorDialog MyDialog = new ColorDialog();
+            MyDialog.ShowDialog();
+            DesignClass.FORM_COLOR = MyDialog.Color;
+            this.BackColor = DesignClass.FORM_COLOR;
+        }
     }
 }
