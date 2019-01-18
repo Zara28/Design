@@ -32,7 +32,7 @@ namespace WindowsFormsApplication1
 
         private void FormDesignForm_Load(object sender, EventArgs e)
         {
-
+            MainForm.pic(this);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -41,6 +41,41 @@ namespace WindowsFormsApplication1
             MyDialog.ShowDialog();
 
             DesignClass.LABEL_TEXT_COLOR = MyDialog.Color;
+            MainForm.pic(this);
+        }
+
+        private void CursorComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (CursorComboBox.SelectedIndex == 0)
+            {
+                DesignClass.FORM_CURSOR = Cursors.Cross;
+            }
+            else if (CursorComboBox.SelectedIndex == 1)
+            {
+                DesignClass.FORM_CURSOR = Cursors.Help;
+            }
+            else if (CursorComboBox.SelectedIndex == 2)
+            {
+                DesignClass.FORM_CURSOR = Cursors.No;
+            }
+            else if (CursorComboBox.SelectedIndex == 3)
+            {
+                DesignClass.FORM_CURSOR = Cursors.NoMoveVert;
+            }
+            else if (CursorComboBox.SelectedIndex == 4)
+            {
+                DesignClass.FORM_CURSOR = Cursors.SizeNWSE;
+            }
+            else if (CursorComboBox.SelectedIndex == 5)
+            {
+                DesignClass.FORM_CURSOR = Cursors.VSplit;
+            }
+            else if (CursorComboBox.SelectedIndex == 6)
+            {
+                DesignClass.FORM_CURSOR = Cursors.WaitCursor;
+            }
+
+            MainForm.pic(this);
         }
     }
 }

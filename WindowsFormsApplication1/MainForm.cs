@@ -24,6 +24,7 @@ namespace WindowsFormsApplication1
             if (c.GetType().ToString().Contains("WindowsFormsApplication1"))
             {
                 c.BackgroundImage = DesignClass.FORM_BACKGROUND_IMG;
+                c.Cursor = DesignClass.FORM_CURSOR;
             }
 
             //Дизайн кнопок
@@ -54,8 +55,7 @@ namespace WindowsFormsApplication1
                     catch (Exception)
                     {
                         
-                    }
-                   
+                    }                   
                 }
 
                 pic(ctr);

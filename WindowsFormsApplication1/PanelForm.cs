@@ -48,6 +48,11 @@ namespace WindowsFormsApplication1
             DesignClass.PANEL_BACKGROUND_IMG = pictureBox1.Image;
 
         }
+
+        private void PanelForm_Load(object sender, EventArgs e)
+        {
+            MainForm.pic(this);
+        }
         
 
     }

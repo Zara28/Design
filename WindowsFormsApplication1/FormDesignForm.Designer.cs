@@ -33,6 +33,8 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.CursorComboBox = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -80,11 +82,45 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // CursorComboBox
+            // 
+            this.CursorComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CursorComboBox.FormattingEnabled = true;
+            this.CursorComboBox.Items.AddRange(new object[] {
+            "ыва",
+            "ыва",
+            "ыва",
+            "ыва",
+            "ыва",
+            "ыва",
+            "ыв",
+            "аы",
+            "ва",
+            "ыва",
+            "ыв",
+            "аыва"});
+            this.CursorComboBox.Location = new System.Drawing.Point(65, 203);
+            this.CursorComboBox.Name = "CursorComboBox";
+            this.CursorComboBox.Size = new System.Drawing.Size(121, 21);
+            this.CursorComboBox.TabIndex = 5;
+            this.CursorComboBox.SelectedIndexChanged += new System.EventHandler(this.CursorComboBox_SelectedIndexChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(16, 203);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(43, 13);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Курсор";
+            // 
             // FormDesignForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 199);
+            this.ClientSize = new System.Drawing.Size(284, 314);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.CursorComboBox);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);
@@ -106,5 +142,7 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ComboBox CursorComboBox;
+        private System.Windows.Forms.Label label2;
     }
 }

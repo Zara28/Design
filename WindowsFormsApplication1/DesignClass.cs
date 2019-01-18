@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
 {
@@ -15,6 +16,10 @@ namespace WindowsFormsApplication1
         /// Фоновая картинка формы
         /// </summary>
         public static Image FORM_BACKGROUND_IMG;
+        /// <summary>
+        /// Курсор
+        /// </summary>
+        public static Cursor FORM_CURSOR;
 
         #endregion
 
