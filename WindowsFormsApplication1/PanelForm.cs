@@ -53,6 +53,17 @@ namespace WindowsFormsApplication1
         {
             MainForm.pic(this);
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            DesignClass.PANEL_LENGTH = Math.Abs(Convert.ToInt32(textBox1.Text));
+            Size Size1 = new Size(panel1.Size.Width, 0);
+            Size Size2 = new Size(panel2.Size.Width, 0);
+            Size s1 = new System.Drawing.Size(DesignClass.PANEL_LENGTH, 0);
+            panel2.Location = panel1.Location + Size1 + s1;
+            panel3.Location = panel2.Location + Size2 + s1;
+            this.Size = new System.Drawing.Size(panel3.Location.X + panel3.Size.Width, this.Size.Height);
+        }
         
 
     }

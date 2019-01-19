@@ -45,6 +45,7 @@ namespace WindowsFormsApplication1
                     ((Label)ctr).BackColor = Color.Transparent;
                     ((Label)ctr).ForeColor = DesignClass.LABEL_TEXT_COLOR;
                 }
+                
                 else if (ctr.GetType().ToString() == "System.Windows.Forms.Panel")
                 {                    
                     ((Panel)ctr).BackgroundImage = DesignClass.PANEL_BACKGROUND_IMG;
