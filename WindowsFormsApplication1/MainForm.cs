@@ -16,6 +16,8 @@ namespace WindowsFormsApplication1
         {
             InitializeComponent();
             pic(this);
+            pictureBox1.Load("http://www.forumdaily.com/wp-content/uploads/2017/03/Depositphotos_31031331_m-2015.jpg");
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
         }
 
         public static void pic ( Control c)
@@ -25,6 +27,7 @@ namespace WindowsFormsApplication1
             {
                 c.BackgroundImage = DesignClass.FORM_BACKGROUND_IMG;
                 c.Cursor = DesignClass.FORM_CURSOR;
+                c.BackColor = DesignClass.FORM_COLOR;
             }
 
             //Дизайн кнопок
@@ -35,27 +38,23 @@ namespace WindowsFormsApplication1
                     ((Button)ctr).BackgroundImage = DesignClass.BUTTON_BACKGROUND_IMG;
                     ((Button)ctr).BackgroundImageLayout = ImageLayout.Stretch;
                     ((Button)ctr).ForeColor = DesignClass.BUTTON_TEXT_COLOR;
+                    ((Button)ctr).Font = DesignClass.BUTTON_FONT;
                 }
                 else if (ctr.GetType().ToString() == "System.Windows.Forms.Label")
                 {
                     ((Label)ctr).BackColor = Color.Transparent;
                     ((Label)ctr).ForeColor = DesignClass.LABEL_TEXT_COLOR;
                 }
+                
                 else if (ctr.GetType().ToString() == "System.Windows.Forms.Panel")
-                {
-                    try
+                {                    
+                    ((Panel)ctr).BackgroundImage = DesignClass.PANEL_BACKGROUND_IMG;
+                    ((Panel)ctr).BackColor = DesignClass.PANEL_COLOR;
+                    if (DesignClass.PANEL_TRANSPARENCY)
                     {
-                       /* ((Panel)ctr).BackgroundImage = DesignClass.PANEL_BACKGROUND_IMG;
-                        ((Panel)ctr).BackColor = DesignClass.PANEL_COLOR;
-                        if (DesignClass.PANEL_TRANSPARENCY)
-                        {
-                            ((Panel)ctr).BackColor = Color.Transparent;
-                        }*/
-                    }
-                    catch (Exception)
-                    {
-                        
-                    }                   
+                        ((Panel)ctr).BackColor = Color.Transparent;
+                    }                    
+                                   
                 }
 
                 pic(ctr);
@@ -93,6 +92,16 @@ namespace WindowsFormsApplication1
             PanelForm f = new PanelForm();
             f.ShowDialog();
             pic(this);
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

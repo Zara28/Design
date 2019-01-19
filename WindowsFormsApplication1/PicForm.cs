@@ -24,7 +24,7 @@ namespace WindowsFormsApplication1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            DesignClass.LENGTH = Convert.ToInt32(textBox1.Text);
+            DesignClass.LENGTH = Math.Abs( Convert.ToInt32(textBox1.Text));
             this.Close();
         }
 
