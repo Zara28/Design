@@ -27,5 +27,10 @@ namespace WindowsFormsApplication1
             DesignClass.LENGTH = Convert.ToInt32(textBox1.Text);
             this.Close();
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

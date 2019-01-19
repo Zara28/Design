@@ -69,6 +69,7 @@ namespace WindowsFormsApplication1
         /// Прозрачность панели
         /// </summary>
         public static bool PANEL_TRANSPARENCY;
+        public static int PANEL_LENGTH;
         #endregion
 
 

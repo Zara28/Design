@@ -45,12 +45,12 @@ namespace WindowsFormsApplication1
                 {
                     try
                     {
-                        ((Panel)ctr).BackgroundImage = DesignClass.PANEL_BACKGROUND_IMG;
+                       /* ((Panel)ctr).BackgroundImage = DesignClass.PANEL_BACKGROUND_IMG;
                         ((Panel)ctr).BackColor = DesignClass.PANEL_COLOR;
                         if (DesignClass.PANEL_TRANSPARENCY)
                         {
                             ((Panel)ctr).BackColor = Color.Transparent;
-                        }
+                        }*/
                     }
                     catch (Exception)
                     {
