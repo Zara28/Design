@@ -8,6 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using System.IO;
+using System.Drawing.Imaging;
+using System.Net;
+
 namespace WindowsFormsApplication1
 {
     public partial class ButtonDesignForm : Form
@@ -25,7 +29,8 @@ namespace WindowsFormsApplication1
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             DesignClass.BUTTON_BACKGROUND_IMG = ((PictureBox)sender).BackgroundImage;
-            DesignClass.BUTTON_BACKGROUND_IMG_ADRESS = ((PictureBox)sender).Tag.ToString();
+            this.Close();
+           // DesignClass.BUTTON_BACKGROUND_IMG_ADRESS = ((PictureBox)sender).Tag.ToString();
           
             MainForm.pic(this);
         }
@@ -64,6 +69,23 @@ namespace WindowsFormsApplication1
             }
 
             DesignClass.BUTTON_BACKGROUND_IMG = pictureBox4.Image;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+          
+
+            if (fontDialog1.ShowDialog() != DialogResult.Cancel)
+            {
+               
+                
+                if (fontDialog1.Font.Size > 5 && fontDialog1.Font.Size < 38)
+                {
+
+                    DesignClass.BUTTON_FONT = fontDialog1.Font;
+                    MainForm.pic(this);
+                }
+            }
         }
     }
 }
