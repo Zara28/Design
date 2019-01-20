@@ -36,10 +36,11 @@
             this.button6 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -76,6 +77,7 @@
             this.button3.TabIndex = 2;
             this.button3.Text = "Null";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
@@ -134,24 +136,16 @@
             this.tableLayoutPanel1.TabIndex = 5;
             this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
-            // pictureBox1
+            // button9
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(12, 147);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(127, 75);
-            this.pictureBox1.TabIndex = 6;
-            this.pictureBox1.TabStop = false;
-            // 
-            // button7
-            // 
-            this.button7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button7.Location = new System.Drawing.Point(93, 59);
-            this.button7.Margin = new System.Windows.Forms.Padding(12);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(58, 23);
-            this.button7.TabIndex = 2;
-            this.button7.Text = "Panel";
-            this.button7.UseVisualStyleBackColor = true;
+            this.button9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button9.Location = new System.Drawing.Point(12, 59);
+            this.button9.Margin = new System.Windows.Forms.Padding(12);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(57, 23);
+            this.button9.TabIndex = 4;
+            this.button9.Text = "Panel";
+            this.button9.UseVisualStyleBackColor = true;
             // 
             // button8
             // 
@@ -164,22 +158,40 @@
             this.button8.Text = "Panel";
             this.button8.UseVisualStyleBackColor = true;
             // 
-            // button9
+            // button7
             // 
-            this.button9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button9.Location = new System.Drawing.Point(12, 59);
-            this.button9.Margin = new System.Windows.Forms.Padding(12);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(57, 23);
-            this.button9.TabIndex = 4;
-            this.button9.Text = "Panel";
-            this.button9.UseVisualStyleBackColor = true;
+            this.button7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button7.Location = new System.Drawing.Point(93, 59);
+            this.button7.Margin = new System.Windows.Forms.Padding(12);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(58, 23);
+            this.button7.TabIndex = 2;
+            this.button7.Text = "Panel";
+            this.button7.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(12, 147);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(127, 75);
+            this.pictureBox1.TabIndex = 6;
+            this.pictureBox1.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(145, 58);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(72, 13);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "тест json 123";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(436, 366);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.panel1);
@@ -193,6 +205,7 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -210,6 +223,7 @@
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Label label1;
     }
 }
 

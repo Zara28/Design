@@ -1,9 +1,14 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -20,6 +25,7 @@ namespace WindowsFormsApplication1
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
         }
 
+        #region Измение растстояния между картинками, сами картинки, цвета и тд
         public static void pic ( Control c)
         {
             //Фон формы FIXME!!!
@@ -60,7 +66,8 @@ namespace WindowsFormsApplication1
                 pic(ctr);
             }
         }
-    
+        #endregion
+
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -103,5 +110,79 @@ namespace WindowsFormsApplication1
         {
 
         }
+
+        #region JSON сохранение
+
+
+        public byte[] ImageToByteArray(Image imageIn)
+        {
+            using (var ms = new MemoryStream())
+            {
+                if (imageIn == null)
+                {
+                    return null;
+                }
+                imageIn.Save(ms, imageIn.RawFormat);
+                return ms.ToArray();
+            }
+        }
+
+        string panda = "/9j/4AAQSkZJRgABAQEAyADIAAD/2wBDAAQDAwQDAwQEBAQFB";
+        string svet = "/9j/4AAQSkZJRgABAQEAAAAAAAD/4QCqRXhpZgAATU0AKgAAA";
+
+        public JArray formSerialize(Control contrl, JArray json =null)
+        {
+            if (json == null)
+            {
+                json = new JArray();
+            }
+            foreach (Control ctr in contrl.Controls)
+            {
+                if (ctr.GetType().ToString() == "System.Windows.Forms.Button")
+                {
+                    Dictionary<string, string> button = new Dictionary<string, string>();
+                    var bytes = ImageToByteArray(ctr.BackgroundImage);
+                    if (bytes != null)
+                    {
+                        string base64string = Convert.ToBase64String(bytes);
+                        if (base64string.StartsWith(panda))
+                        {
+                            button.Add("Image", "panda");
+                        }
+                        else if (base64string.StartsWith(svet))
+                        {
+                            button.Add("Image", "svet");
+                        }else
+                        {
+                            button.Add("Image", "gun");
+                        }
+                    }
+                    button.Add("ImageLayout", ctr.BackgroundImageLayout.ToString());
+                    button.Add("Color", ctr.ForeColor.Name);
+                    button.Add("Font", ctr.Font.Name);
+                    json.Add(JObject.FromObject(button));
+
+                }
+                else if (ctr.GetType().ToString() == "System.Windows.Forms.Label")
+                {
+                    Dictionary<string, string> label = new Dictionary<string, string>();
+                    label.Add("BackColor", ((Label)ctr).BackColor.Name);
+                    label.Add("ForeColor", ((Label)ctr).ForeColor.Name);
+                    json.Add(JObject.FromObject(label));
+                }
+                else if (ctr.GetType().ToString() == "System.Windows.Forms.Panel")
+                {
+                    json.Add(formSerialize(ctr, json));
+                }
+            }
+            return json; 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            File.WriteAllText("asdf.json", formSerialize(this).ToString());
+        }
+
+        #endregion
     }
 }
