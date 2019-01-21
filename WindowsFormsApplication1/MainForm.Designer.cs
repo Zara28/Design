@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -37,13 +38,15 @@
             this.button5 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.button9 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.PictureBoxContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.сохранитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.PictureBoxContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -63,7 +66,7 @@
             this.button2.Location = new System.Drawing.Point(12, 12);
             this.button2.Margin = new System.Windows.Forms.Padding(12);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(57, 23);
+            this.button2.Size = new System.Drawing.Size(57, 33);
             this.button2.TabIndex = 1;
             this.button2.Text = "Panel";
             this.button2.UseVisualStyleBackColor = true;
@@ -123,7 +126,6 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Controls.Add(this.button9, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.button8, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.button7, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.button2, 0, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 249);
@@ -139,32 +141,21 @@
             // button9
             // 
             this.button9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button9.Location = new System.Drawing.Point(12, 59);
+            this.button9.Location = new System.Drawing.Point(12, 69);
             this.button9.Margin = new System.Windows.Forms.Padding(12);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(57, 23);
+            this.button9.Size = new System.Drawing.Size(57, 33);
             this.button9.TabIndex = 4;
             this.button9.Text = "Panel";
             this.button9.UseVisualStyleBackColor = true;
             // 
-            // button8
-            // 
-            this.button8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button8.Location = new System.Drawing.Point(12, 106);
-            this.button8.Margin = new System.Windows.Forms.Padding(12);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(57, 1);
-            this.button8.TabIndex = 3;
-            this.button8.Text = "Panel";
-            this.button8.UseVisualStyleBackColor = true;
-            // 
             // button7
             // 
             this.button7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button7.Location = new System.Drawing.Point(93, 59);
+            this.button7.Location = new System.Drawing.Point(93, 69);
             this.button7.Margin = new System.Windows.Forms.Padding(12);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(58, 23);
+            this.button7.Size = new System.Drawing.Size(58, 33);
             this.button7.TabIndex = 2;
             this.button7.Text = "Panel";
             this.button7.UseVisualStyleBackColor = true;
@@ -186,6 +177,20 @@
             this.label1.TabIndex = 7;
             this.label1.Text = "тест json 123";
             // 
+            // PictureBoxContextMenuStrip
+            // 
+            this.PictureBoxContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.сохранитьToolStripMenuItem});
+            this.PictureBoxContextMenuStrip.Name = "PictureBoxContextMenuStrip";
+            this.PictureBoxContextMenuStrip.Size = new System.Drawing.Size(153, 48);
+            // 
+            // сохранитьToolStripMenuItem
+            // 
+            this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
+            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.сохранитьToolStripMenuItem.Text = "Сохранить";
+            this.сохранитьToolStripMenuItem.Click += new System.EventHandler(this.сохранитьToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -204,6 +209,7 @@
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.PictureBoxContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -221,9 +227,10 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ContextMenuStrip PictureBoxContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem сохранитьToolStripMenuItem;
     }
 }
 

@@ -4,13 +4,11 @@
     "ForeColor": "ControlText"
   },
   {
-    "Image": "",
     "ImageLayout": "Stretch",
     "Color": "ControlText",
     "Font": "Microsoft Sans Serif"
   },
   {
-    "Image": "",
     "ImageLayout": "Stretch",
     "Color": "ControlText",
     "Font": "Microsoft Sans Serif"
@@ -21,32 +19,27 @@
       "ForeColor": "ControlText"
     },
     {
-      "Image": "",
       "ImageLayout": "Stretch",
       "Color": "ControlText",
       "Font": "Microsoft Sans Serif"
     },
     {
-      "Image": "",
       "ImageLayout": "Stretch",
       "Color": "ControlText",
       "Font": "Microsoft Sans Serif"
     }
   ],
   {
-    "Image": "",
     "ImageLayout": "Stretch",
     "Color": "ControlText",
     "Font": "Microsoft Sans Serif"
   },
   {
-    "Image": "",
     "ImageLayout": "Stretch",
     "Color": "ControlText",
     "Font": "Microsoft Sans Serif"
   },
   {
-    "Image": "",
     "ImageLayout": "Stretch",
     "Color": "ControlText",
     "Font": "Microsoft Sans Serif"

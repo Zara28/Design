@@ -71,6 +71,11 @@ namespace WindowsFormsApplication1
         /// </summary>
         public static bool PANEL_TRANSPARENCY;
         public static int PANEL_LENGTH;
+        /// <summary>
+        /// Контекстное меню пикчербоксов
+        /// </summary>
+        public static ContextMenuStrip StripSave;
+        public static int PictureSaveIndex = 0;
         #endregion
 
 

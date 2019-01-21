@@ -20,9 +20,6 @@ namespace WindowsFormsApplication1
         public MainForm()
         {
             InitializeComponent();
-            pic(this);
-            pictureBox1.Load("http://www.forumdaily.com/wp-content/uploads/2017/03/Depositphotos_31031331_m-2015.jpg");
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
         }
 
         #region Измение растстояния между картинками, сами картинки, цвета и тд
@@ -51,7 +48,10 @@ namespace WindowsFormsApplication1
                     ((Label)ctr).BackColor = Color.Transparent;
                     ((Label)ctr).ForeColor = DesignClass.LABEL_TEXT_COLOR;
                 }
-                
+                else if (ctr.GetType().ToString() == "System.Windows.Forms.PictureBox")
+                {
+                    ctr.ContextMenuStrip = DesignClass.StripSave;
+                }                
                 else if (ctr.GetType().ToString() == "System.Windows.Forms.Panel")
                 {                    
                     ((Panel)ctr).BackgroundImage = DesignClass.PANEL_BACKGROUND_IMG;
@@ -83,7 +83,11 @@ namespace WindowsFormsApplication1
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            DesignClass.StripSave = PictureBoxContextMenuStrip;
+            pic(this);
+            pictureBox1.Load("http://www.forumdaily.com/wp-content/uploads/2017/03/Depositphotos_31031331_m-2015.jpg");
+            pictureBox1.BackgroundImage = pictureBox1.Image;
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -184,5 +188,13 @@ namespace WindowsFormsApplication1
         }
 
         #endregion
+
+        private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PictureBox pb = (PictureBox)((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl;
+
+            pb.BackgroundImage.Save("../../SavedPictures/Scr" + Convert.ToString(DesignClass.PictureSaveIndex) + ".jpg");
+            DesignClass.PictureSaveIndex++;
+        }
     }
 }
