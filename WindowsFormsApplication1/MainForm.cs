@@ -38,10 +38,10 @@ namespace WindowsFormsApplication1
             {
                 if (ctr.GetType().ToString() == "System.Windows.Forms.Button")
                 {
-                    ((Button)ctr).BackgroundImage = DesignClass.BUTTON_BACKGROUND_IMG;
+                    ((Button)ctr).BackgroundImage       = DesignClass.BUTTON_BACKGROUND_IMG;
                     ((Button)ctr).BackgroundImageLayout = ImageLayout.Stretch;
-                    ((Button)ctr).ForeColor = DesignClass.BUTTON_TEXT_COLOR;
-                    ((Button)ctr).Font = DesignClass.BUTTON_FONT;
+                    ((Button)ctr).ForeColor             = DesignClass.BUTTON_TEXT_COLOR;
+                    ((Button)ctr).Font                  = DesignClass.BUTTON_FONT;
                 }
                 else if (ctr.GetType().ToString() == "System.Windows.Forms.Label")
                 {
@@ -133,6 +133,31 @@ namespace WindowsFormsApplication1
 
         string panda = "/9j/4AAQSkZJRgABAQEAyADIAAD/2wBDAAQDAwQDAwQEBAQFB";
         string svet = "/9j/4AAQSkZJRgABAQEAAAAAAAD/4QCqRXhpZgAATU0AKgAAA";
+        string gun = "/9j/4AAQSkZJRgABAQEAAAAAAAD/4QDGRXhpZgAATU0AKgAAAAgABAEOAAIAAAA";
+
+        public string imageText(Image img)
+        {
+            String imgName = "";
+            var bytes = ImageToByteArray(img);
+            if (bytes != null)
+            {
+                string base64string = Convert.ToBase64String(bytes);
+                if (base64string.StartsWith(panda))
+                {
+                    imgName = "panda";
+                }
+                else if (base64string.StartsWith(svet))
+                {
+                    imgName = "svet";
+                }
+                else if (base64string.StartsWith(gun))
+                {
+                    imgName = "gun";
+                }
+            }
+
+            return imgName;
+        }
 
         public JArray formSerialize(Control contrl, JArray json =null)
         {
@@ -145,22 +170,7 @@ namespace WindowsFormsApplication1
                 if (ctr.GetType().ToString() == "System.Windows.Forms.Button")
                 {
                     Dictionary<string, string> button = new Dictionary<string, string>();
-                    var bytes = ImageToByteArray(ctr.BackgroundImage);
-                    if (bytes != null)
-                    {
-                        string base64string = Convert.ToBase64String(bytes);
-                        if (base64string.StartsWith(panda))
-                        {
-                            button.Add("Image", "panda");
-                        }
-                        else if (base64string.StartsWith(svet))
-                        {
-                            button.Add("Image", "svet");
-                        }else
-                        {
-                            button.Add("Image", "gun");
-                        }
-                    }
+                    
                     button.Add("ImageLayout", ctr.BackgroundImageLayout.ToString());
                     button.Add("Color", ctr.ForeColor.Name);
                     button.Add("Font", ctr.Font.Name);
@@ -182,9 +192,31 @@ namespace WindowsFormsApplication1
             return json; 
         }
 
+        public Dictionary<string, JObject> typeSerialize()
+        {
+            Dictionary<string, JObject> ayaya = new Dictionary<string, JObject>();
+            ayaya.Add("button", JObject.FromObject(new Dictionary<string, string>{
+                {"BackgroundImage",       button1.BackgroundImage.ToString()               },
+                {"BackgroundImageLayout", button1.BackgroundImageLayout.ToString()                      },
+                {"ForeColor",             button1.ForeColor.Name                      },
+                {"Font",                  button1.Font.ToString()                      }
+            }));
+            ayaya.Add("label", JObject.FromObject(new Dictionary<string, string>{
+                {"BackColor", label1.BackColor.Name},
+                {"ForeColor", label1.ForeColor.Name}
+            }));
+            ayaya.Add("panel", JObject.FromObject(new Dictionary<string, string>{
+                {"BackColor", panel1.BackColor.Name},
+                {"BackgroundImage", panel1.ForeColor.Name}
+            }));
+
+            return ayaya;
+        }
+
         private void button3_Click(object sender, EventArgs e)
         {
-            File.WriteAllText("asdf.json", formSerialize(this).ToString());
+            File.WriteAllText("asdf.json", typeSerialize().ToString());
+            //File.WriteAllText("asdf123.txt", Convert.ToBase64String(ImageToByteArray(Image.FromFile("Scr2.jpg"))));
         }
 
         #endregion
