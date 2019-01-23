@@ -38,10 +38,12 @@ namespace WindowsFormsApplication1
             {
                 if (ctr.GetType().ToString() == "System.Windows.Forms.Button")
                 {
-                    ((Button)ctr).BackgroundImage       = DesignClass.BUTTON_BACKGROUND_IMG;
+                    ((Button)ctr).BackgroundImage = DesignClass.BUTTON_BACKGROUND_IMG;
                     ((Button)ctr).BackgroundImageLayout = ImageLayout.Stretch;
-                    ((Button)ctr).ForeColor             = DesignClass.BUTTON_TEXT_COLOR;
-                    ((Button)ctr).Font                  = DesignClass.BUTTON_FONT;
+                    ((Button)ctr).ForeColor = DesignClass.BUTTON_TEXT_COLOR;
+                    ((Button)ctr).Font = DesignClass.BUTTON_FONT;
+                    ctr.ContextMenuStrip = DesignClass.Visible;
+                    
                 }
                 else if (ctr.GetType().ToString() == "System.Windows.Forms.Label")
                 {
@@ -84,6 +86,8 @@ namespace WindowsFormsApplication1
         private void Form1_Load(object sender, EventArgs e)
         {
             DesignClass.StripSave = PictureBoxContextMenuStrip;
+            DesignClass.Visible = ButtonContextMenuStrip;
+           
             pic(this);
             pictureBox1.Load("http://www.forumdaily.com/wp-content/uploads/2017/03/Depositphotos_31031331_m-2015.jpg");
             pictureBox1.BackgroundImage = pictureBox1.Image;
@@ -132,36 +136,9 @@ namespace WindowsFormsApplication1
         }
 
         string panda = "/9j/4AAQSkZJRgABAQEAyADIAAD/2wBDAAQDAwQDAwQEBAQFB";
-
         string svet = "/9j/4AAQSkZJRgABAQEAAAAAAAD/4QCqRXhpZgAATU0AKgAAA";
-        string gun = "/9j/4AAQSkZJRgABAQEAAAAAAAD/4QDGRXhpZgAATU0AKgAAAAgABAEOAAIAAAA";
-
-        public string imageText(Image img)
-        {
-            String imgName = "";
-            var bytes = ImageToByteArray(img);
-            if (bytes != null)
-            {
-                string base64string = Convert.ToBase64String(bytes);
-                if (base64string.StartsWith(panda))
-                {
-                    imgName = "panda";
-                }
-                else if (base64string.StartsWith(svet))
-                {
-                    imgName = "svet";
-                }
-                else if (base64string.StartsWith(gun))
-                {
-                    imgName = "gun";
-                }
-            }
-
-            return imgName;
-        }
 
         public JArray formSerialize(Control contrl, JArray json =null)
-
         {
             if (json == null)
             {
@@ -171,11 +148,24 @@ namespace WindowsFormsApplication1
             {
                 if (ctr.GetType().ToString() == "System.Windows.Forms.Button")
                 {
-
                     Dictionary<string, string> button = new Dictionary<string, string>();
-                    
+                    var bytes = ImageToByteArray(ctr.BackgroundImage);
+                    if (bytes != null)
+                    {
+                        string base64string = Convert.ToBase64String(bytes);
+                        if (base64string.StartsWith(panda))
+                        {
+                            button.Add("Image", "panda");
+                        }
+                        else if (base64string.StartsWith(svet))
+                        {
+                            button.Add("Image", "svet");
+                        }else
+                        {
+                            button.Add("Image", "gun");
+                        }
+                    }
                     button.Add("ImageLayout", ctr.BackgroundImageLayout.ToString());
-
                     button.Add("Color", ctr.ForeColor.Name);
                     button.Add("Font", ctr.Font.Name);
                     json.Add(JObject.FromObject(button));
@@ -183,18 +173,12 @@ namespace WindowsFormsApplication1
                 }
                 else if (ctr.GetType().ToString() == "System.Windows.Forms.Label")
                 {
-
                     Dictionary<string, string> label = new Dictionary<string, string>();
-
-                    label.Add("Name", ctr.Name);
                     label.Add("BackColor", ((Label)ctr).BackColor.Name);
-                    label.Add("Type", "Label");
-
                     label.Add("ForeColor", ((Label)ctr).ForeColor.Name);
                     json.Add(JObject.FromObject(label));
                 }
                 else if (ctr.GetType().ToString() == "System.Windows.Forms.Panel")
-
                 {
                     json.Add(formSerialize(ctr, json));
                 }
@@ -202,34 +186,9 @@ namespace WindowsFormsApplication1
             return json; 
         }
 
-        public Dictionary<string, JObject> typeSerialize()
-        {
-            Dictionary<string, JObject> ayaya = new Dictionary<string, JObject>();
-            ayaya.Add("button", JObject.FromObject(new Dictionary<string, string>{
-                {"BackgroundImage",       button1.BackgroundImage.ToString()               },
-                {"BackgroundImageLayout", button1.BackgroundImageLayout.ToString()                      },
-                {"ForeColor",             button1.ForeColor.Name                      },
-                {"Font",                  button1.Font.ToString()                      }
-            }));
-            ayaya.Add("label", JObject.FromObject(new Dictionary<string, string>{
-                {"BackColor", label1.BackColor.Name},
-                {"ForeColor", label1.ForeColor.Name}
-            }));
-            ayaya.Add("panel", JObject.FromObject(new Dictionary<string, string>{
-                {"BackColor", panel1.BackColor.Name},
-                {"BackgroundImage", panel1.ForeColor.Name}
-            }));
-
-            return ayaya;
-
-        }
-
         private void button3_Click(object sender, EventArgs e)
         {
-
-            File.WriteAllText("asdf.json", typeSerialize().ToString());
-            //File.WriteAllText("asdf123.txt", Convert.ToBase64String(ImageToByteArray(Image.FromFile("Scr2.jpg"))));
-
+            File.WriteAllText("asdf.json", formSerialize(this).ToString());
         }
 
         #endregion
@@ -240,6 +199,29 @@ namespace WindowsFormsApplication1
 
             pb.BackgroundImage.Save("../../SavedPictures/Scr" + Convert.ToString(DesignClass.PictureSaveIndex) + ".jpg");
             DesignClass.PictureSaveIndex++;
+        }
+
+        public static void list(object sender, EventArgs e, ContextMenuStrip s)
+        {
+
+            
+            
+
+        }
+
+        public void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Form1 f = new Form1(((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl.FindForm());
+            f.ShowDialog();
+            //MessageBox.Show(((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl.FindForm().Name);
+            //((Button)((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl).Visible = false;
+           // list(sender, e, ButtonContextMenuStrip);
+
+            
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
         }
     }
 }

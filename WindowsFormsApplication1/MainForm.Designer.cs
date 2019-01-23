@@ -43,10 +43,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.PictureBoxContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.сохранитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ButtonContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.PictureBoxContextMenuStrip.SuspendLayout();
+            this.ButtonContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -90,6 +93,7 @@
             this.button4.TabIndex = 3;
             this.button4.Text = "Null";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // panel1
             // 
@@ -182,14 +186,29 @@
             this.PictureBoxContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.сохранитьToolStripMenuItem});
             this.PictureBoxContextMenuStrip.Name = "PictureBoxContextMenuStrip";
-            this.PictureBoxContextMenuStrip.Size = new System.Drawing.Size(153, 48);
+            this.PictureBoxContextMenuStrip.Size = new System.Drawing.Size(133, 26);
             // 
             // сохранитьToolStripMenuItem
             // 
             this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
-            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.сохранитьToolStripMenuItem.Text = "Сохранить";
             this.сохранитьToolStripMenuItem.Click += new System.EventHandler(this.сохранитьToolStripMenuItem_Click);
+            // 
+            // ButtonContextMenuStrip
+            // 
+            this.ButtonContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1});
+            this.ButtonContextMenuStrip.Name = "ButtonContextMenuStrip";
+            this.ButtonContextMenuStrip.ShowCheckMargin = true;
+            this.ButtonContextMenuStrip.Size = new System.Drawing.Size(138, 26);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(174, 22);
+            this.toolStripMenuItem1.Text = "Скрыть";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // MainForm
             // 
@@ -210,6 +229,7 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.PictureBoxContextMenuStrip.ResumeLayout(false);
+            this.ButtonContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -231,6 +251,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ContextMenuStrip PictureBoxContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem сохранитьToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip ButtonContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
     }
 }
 
