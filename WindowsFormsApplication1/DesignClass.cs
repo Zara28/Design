@@ -55,8 +55,6 @@ namespace WindowsFormsApplication1
 
         public static Color LABEL_TEXT_COLOR;
 
-        public static ContextMenuStrip Visible;
-
         #endregion
 
         #region Панели

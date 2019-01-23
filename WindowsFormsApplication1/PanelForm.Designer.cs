@@ -165,9 +165,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(164, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(159, 13);
+            this.label1.Size = new System.Drawing.Size(96, 13);
             this.label1.TabIndex = 12;
-            this.label1.Text = "Как выглядят твои настройки";
+            this.label1.Text = "Тестовые панели";
             // 
             // label2
             // 
@@ -197,7 +197,7 @@
             this.Controls.Add(this.button1);
             this.Name = "PanelForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Дизайн панелей";
+            this.Text = " Настройка панелей";
             this.Load += new System.EventHandler(this.PanelForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
