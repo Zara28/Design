@@ -132,6 +132,7 @@ namespace WindowsFormsApplication1
         }
 
         string panda = "/9j/4AAQSkZJRgABAQEAyADIAAD/2wBDAAQDAwQDAwQEBAQFB";
+
         string svet = "/9j/4AAQSkZJRgABAQEAAAAAAAD/4QCqRXhpZgAATU0AKgAAA";
         string gun = "/9j/4AAQSkZJRgABAQEAAAAAAAD/4QDGRXhpZgAATU0AKgAAAAgABAEOAAIAAAA";
 
@@ -160,6 +161,7 @@ namespace WindowsFormsApplication1
         }
 
         public JArray formSerialize(Control contrl, JArray json =null)
+
         {
             if (json == null)
             {
@@ -169,9 +171,11 @@ namespace WindowsFormsApplication1
             {
                 if (ctr.GetType().ToString() == "System.Windows.Forms.Button")
                 {
+
                     Dictionary<string, string> button = new Dictionary<string, string>();
                     
                     button.Add("ImageLayout", ctr.BackgroundImageLayout.ToString());
+
                     button.Add("Color", ctr.ForeColor.Name);
                     button.Add("Font", ctr.Font.Name);
                     json.Add(JObject.FromObject(button));
@@ -179,12 +183,18 @@ namespace WindowsFormsApplication1
                 }
                 else if (ctr.GetType().ToString() == "System.Windows.Forms.Label")
                 {
+
                     Dictionary<string, string> label = new Dictionary<string, string>();
+
+                    label.Add("Name", ctr.Name);
                     label.Add("BackColor", ((Label)ctr).BackColor.Name);
+                    label.Add("Type", "Label");
+
                     label.Add("ForeColor", ((Label)ctr).ForeColor.Name);
                     json.Add(JObject.FromObject(label));
                 }
                 else if (ctr.GetType().ToString() == "System.Windows.Forms.Panel")
+
                 {
                     json.Add(formSerialize(ctr, json));
                 }
@@ -211,12 +221,15 @@ namespace WindowsFormsApplication1
             }));
 
             return ayaya;
+
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
+
             File.WriteAllText("asdf.json", typeSerialize().ToString());
             //File.WriteAllText("asdf123.txt", Convert.ToBase64String(ImageToByteArray(Image.FromFile("Scr2.jpg"))));
+
         }
 
         #endregion
