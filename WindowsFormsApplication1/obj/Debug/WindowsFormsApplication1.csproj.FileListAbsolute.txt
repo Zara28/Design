@@ -32,3 +32,4 @@ C:\Users\student.ATIAM\Downloads\Вебинары\1\Design\WindowsFormsApplicati
 C:\Users\student.ATIAM\Downloads\Вебинары\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.MainForm.resources
 C:\Users\student.ATIAM\Downloads\Вебинары\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.PanelForm.resources
 C:\Users\student.ATIAM\Downloads\Вебинары\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.PicForm.resources
+C:\Users\student.ATIAM\Downloads\Вебинары\Design\WindowsFormsApplication1\bin\Debug\Newtonsoft.Json.dll

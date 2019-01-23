@@ -1,0 +1,47 @@
+[
+  {
+    "BackColor": "Transparent",
+    "ForeColor": "ControlText"
+  },
+  {
+    "ImageLayout": "Stretch",
+    "Color": "ControlText",
+    "Font": "Microsoft Sans Serif"
+  },
+  {
+    "ImageLayout": "Stretch",
+    "Color": "ControlText",
+    "Font": "Microsoft Sans Serif"
+  },
+  [
+    {
+      "BackColor": "Transparent",
+      "ForeColor": "ControlText"
+    },
+    {
+      "ImageLayout": "Stretch",
+      "Color": "ControlText",
+      "Font": "Microsoft Sans Serif"
+    },
+    {
+      "ImageLayout": "Stretch",
+      "Color": "ControlText",
+      "Font": "Microsoft Sans Serif"
+    }
+  ],
+  {
+    "ImageLayout": "Stretch",
+    "Color": "ControlText",
+    "Font": "Microsoft Sans Serif"
+  },
+  {
+    "ImageLayout": "Stretch",
+    "Color": "ControlText",
+    "Font": "Microsoft Sans Serif"
+  },
+  {
+    "ImageLayout": "Stretch",
+    "Color": "ControlText",
+    "Font": "Microsoft Sans Serif"
+  }
+]
