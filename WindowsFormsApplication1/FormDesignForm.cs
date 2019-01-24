@@ -4,13 +4,17 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
+using System.Reflection;
 
 namespace WindowsFormsApplication1
 {
     public partial class FormDesignForm : Form
     {
+       public string[] cury =Assembly.GetExecutingAssembly().GetManifestResourceNames();
+     
         public FormDesignForm()
         {
             InitializeComponent();
@@ -33,6 +37,8 @@ namespace WindowsFormsApplication1
         private void FormDesignForm_Load(object sender, EventArgs e)
         {
             MainForm.pic(this);
+
+            CursorComboBox.Items.AddRange(cury);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -45,8 +51,11 @@ namespace WindowsFormsApplication1
         }
 
         private void CursorComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (CursorComboBox.SelectedIndex == 0)
+        {            
+          
+            DesignClass.FORM_CURSOR = (Cursor)CursorComboBox.SelectedItem;
+             
+          /*  if (CursorComboBox.SelectedIndex == 0)
             {
                 DesignClass.FORM_CURSOR = Cursors.Cross;
             }
@@ -73,7 +82,7 @@ namespace WindowsFormsApplication1
             else if (CursorComboBox.SelectedIndex == 6)
             {
                 DesignClass.FORM_CURSOR = Cursors.WaitCursor;
-            }
+            }*/
 
             MainForm.pic(this);
         }

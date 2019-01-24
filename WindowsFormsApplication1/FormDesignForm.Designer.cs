@@ -92,19 +92,6 @@
             // 
             this.CursorComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CursorComboBox.FormattingEnabled = true;
-            this.CursorComboBox.Items.AddRange(new object[] {
-            "ыва",
-            "ыва",
-            "ыва",
-            "ыва",
-            "ыва",
-            "ыва",
-            "ыв",
-            "аы",
-            "ва",
-            "ыва",
-            "ыв",
-            "аыва"});
             this.CursorComboBox.Location = new System.Drawing.Point(65, 203);
             this.CursorComboBox.Name = "CursorComboBox";
             this.CursorComboBox.Size = new System.Drawing.Size(121, 21);

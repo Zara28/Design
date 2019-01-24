@@ -42,8 +42,6 @@ namespace WindowsFormsApplication1
                     ((Button)ctr).BackgroundImageLayout = ImageLayout.Stretch;
                     ((Button)ctr).ForeColor = DesignClass.BUTTON_TEXT_COLOR;
                     ((Button)ctr).Font = DesignClass.BUTTON_FONT;
-                    ctr.ContextMenuStrip = DesignClass.Visible;
-                    
                 }
                 else if (ctr.GetType().ToString() == "System.Windows.Forms.Label")
                 {
@@ -86,8 +84,6 @@ namespace WindowsFormsApplication1
         private void Form1_Load(object sender, EventArgs e)
         {
             DesignClass.StripSave = PictureBoxContextMenuStrip;
-            DesignClass.Visible = ButtonContextMenuStrip;
-           
             pic(this);
             pictureBox1.Load("http://www.forumdaily.com/wp-content/uploads/2017/03/Depositphotos_31031331_m-2015.jpg");
             pictureBox1.BackgroundImage = pictureBox1.Image;
@@ -199,29 +195,6 @@ namespace WindowsFormsApplication1
 
             pb.BackgroundImage.Save("../../SavedPictures/Scr" + Convert.ToString(DesignClass.PictureSaveIndex) + ".jpg");
             DesignClass.PictureSaveIndex++;
-        }
-
-        public static void list(object sender, EventArgs e, ContextMenuStrip s)
-        {
-
-            
-            
-
-        }
-
-        public void toolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            Form1 f = new Form1(((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl.FindForm());
-            f.ShowDialog();
-            //MessageBox.Show(((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl.FindForm().Name);
-            //((Button)((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl).Visible = false;
-           // list(sender, e, ButtonContextMenuStrip);
-
-            
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
         }
     }
 }
