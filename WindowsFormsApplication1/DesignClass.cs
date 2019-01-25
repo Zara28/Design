@@ -74,7 +74,11 @@ namespace WindowsFormsApplication1
         /// <summary>
         /// Контекстное меню пикчербоксов
         /// </summary>
-        public static ContextMenuStrip StripSave;
+        public static ContextMenuStrip PICTURE_SAVE_MENU;
+        /// <summary>
+        /// Контекстное меню форм
+        /// </summary>
+        public static ContextMenuStrip BUTTONS_VISIBILITY_MENU;
         public static int PictureSaveIndex = 0;
         #endregion
 

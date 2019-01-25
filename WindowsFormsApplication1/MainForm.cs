@@ -31,6 +31,7 @@ namespace WindowsFormsApplication1
                 c.BackgroundImage = DesignClass.FORM_BACKGROUND_IMG;
                 c.Cursor = DesignClass.FORM_CURSOR;
                 c.BackColor = DesignClass.FORM_COLOR;
+                c.ContextMenuStrip = DesignClass.BUTTONS_VISIBILITY_MENU;
             }
 
             //Дизайн кнопок
@@ -50,7 +51,7 @@ namespace WindowsFormsApplication1
                 }
                 else if (ctr.GetType().ToString() == "System.Windows.Forms.PictureBox")
                 {
-                    ctr.ContextMenuStrip = DesignClass.StripSave;
+                    ctr.ContextMenuStrip = DesignClass.PICTURE_SAVE_MENU;
                 }                
                 else if (ctr.GetType().ToString() == "System.Windows.Forms.Panel")
                 {                    
@@ -82,7 +83,8 @@ namespace WindowsFormsApplication1
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            DesignClass.StripSave = PictureBoxContextMenuStrip;
+            DesignClass.PICTURE_SAVE_MENU = PictureBoxContextMenuStrip;
+            DesignClass.BUTTONS_VISIBILITY_MENU = visibilityContextMenuStrip;
             pic(this);
             pictureBox1.Load("http://www.forumdaily.com/wp-content/uploads/2017/03/Depositphotos_31031331_m-2015.jpg");
             pictureBox1.BackgroundImage = pictureBox1.Image;
