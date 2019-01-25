@@ -59,8 +59,7 @@ namespace WindowsFormsApplication1
                     if (DesignClass.PANEL_TRANSPARENCY)
                     {
                         ((Panel)ctr).BackColor = Color.Transparent;
-                    }                    
-                                   
+                    }          
                 }
 
                 pic(ctr);
@@ -131,10 +130,35 @@ namespace WindowsFormsApplication1
             }
         }
 
-        string panda = "/9j/4AAQSkZJRgABAQEAyADIAAD/2wBDAAQDAwQDAwQEBAQFB";
+        string panda = "/9j/4AAQSkZJRgABAQEAyADIAAD/2wBDAAQDAwQDAwQEBAQFB"; 
         string svet = "/9j/4AAQSkZJRgABAQEAAAAAAAD/4QCqRXhpZgAATU0AKgAAA";
+        string gun = "/9j/4AAQSkZJRgABAQEAAAAAAAD/4QDGRXhpZgAATU0AKgAAAAgABAEOAAIAAAA";
 
-        public JArray formSerialize(Control contrl, JArray json =null)
+        public string imageText(Image img)
+        {
+            String imgName = "";
+            var bytes = ImageToByteArray(img);
+            if (bytes != null)
+            {
+                string base64string = Convert.ToBase64String(bytes);
+                if (base64string.StartsWith(panda))
+                {
+                    imgName = "panda";
+                }
+                else if (base64string.StartsWith(svet))
+                {
+                    imgName = "svet";
+                }
+                else if (base64string.StartsWith(gun))
+                {
+                    imgName = "gun";
+                }
+            }
+
+            return imgName;
+        }
+
+        public JArray formSerialize(Control contrl, JArray json = null)
         {
             if (json == null)
             {
@@ -145,6 +169,7 @@ namespace WindowsFormsApplication1
                 if (ctr.GetType().ToString() == "System.Windows.Forms.Button")
                 {
                     Dictionary<string, string> button = new Dictionary<string, string>();
+                    #region Поиск картинок
                     var bytes = ImageToByteArray(ctr.BackgroundImage);
                     if (bytes != null)
                     {
@@ -156,12 +181,16 @@ namespace WindowsFormsApplication1
                         else if (base64string.StartsWith(svet))
                         {
                             button.Add("Image", "svet");
-                        }else
+                        }
+                        else
                         {
                             button.Add("Image", "gun");
                         }
                     }
+                    #endregion
+                    button.Add("Name", ctr.Name);
                     button.Add("ImageLayout", ctr.BackgroundImageLayout.ToString());
+                    button.Add("Type", "Button");
                     button.Add("Color", ctr.ForeColor.Name);
                     button.Add("Font", ctr.Font.Name);
                     json.Add(JObject.FromObject(button));
@@ -170,21 +199,68 @@ namespace WindowsFormsApplication1
                 else if (ctr.GetType().ToString() == "System.Windows.Forms.Label")
                 {
                     Dictionary<string, string> label = new Dictionary<string, string>();
+
+                    label.Add("Name", ctr.Name);
                     label.Add("BackColor", ((Label)ctr).BackColor.Name);
+                    label.Add("Type", "Label");
                     label.Add("ForeColor", ((Label)ctr).ForeColor.Name);
                     json.Add(JObject.FromObject(label));
                 }
                 else if (ctr.GetType().ToString() == "System.Windows.Forms.Panel")
                 {
                     json.Add(formSerialize(ctr, json));
+                    Dictionary<string, string> panel = new Dictionary<string, string>();
+                    panel.Add("Name", ctr.Name);
+                    panel.Add("Type", "panel");
+                    panel.Add("Form", ctr.FindForm().Name);
+                    json.Add(JObject.FromObject(panel));
                 }
             }
             return json; 
         }
 
+        public Dictionary<string, JObject> typeSerialize()
+        {
+            Dictionary<string, JObject> AllTypesData = new Dictionary<string, JObject>();
+
+            //Make a function
+            Dictionary<string, string> ButtonData = new Dictionary<string, string>();
+            if (DesignClass.BUTTON_BACKGROUND_IMG_ADRESS != null)
+            {
+                ButtonData.Add("BackgroundImage", DesignClass.BUTTON_BACKGROUND_IMG_ADRESS.ToString());
+            }
+            if (button1.BackgroundImageLayout != null)
+            {
+                ButtonData.Add("BackgroundImageLayout", button1.BackgroundImageLayout.ToString());
+            }
+            if (DesignClass.BUTTON_TEXT_COLOR != null)
+            {
+                ButtonData.Add("ForeColor", DesignClass.BUTTON_TEXT_COLOR.ToString());
+            }
+            if (DesignClass.BUTTON_FONT != null)
+            {
+                ButtonData.Add("Font", DesignClass.BUTTON_FONT.ToString());
+            }
+
+
+            AllTypesData.Add("button", JObject.FromObject(ButtonData));
+            AllTypesData.Add("label", JObject.FromObject(new Dictionary<string, string>{
+                {"BackColor", label1.BackColor.Name},
+                {"ForeColor", label1.ForeColor.Name}
+            }));
+            AllTypesData.Add("panel", JObject.FromObject(new Dictionary<string, string>{
+                {"BackColor", panel1.BackColor.Name},
+                {"BackgroundImage", panel1.ForeColor.Name}
+            }));
+
+            return AllTypesData;
+        }
+
+
         private void button3_Click(object sender, EventArgs e)
         {
-            File.WriteAllText("asdf.json", formSerialize(this).ToString());
+            File.WriteAllText("asdf.json", typeSerialize().ToString());
+            File.WriteAllText("zhukoff.json", formSerialize(this).ToString());
         }
 
         #endregion
@@ -195,6 +271,12 @@ namespace WindowsFormsApplication1
 
             pb.BackgroundImage.Save("../../SavedPictures/Scr" + Convert.ToString(DesignClass.PictureSaveIndex) + ".jpg");
             DesignClass.PictureSaveIndex++;
+        }
+
+        private void buttonsVisibilityToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form1 f = new Form1(((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl.FindForm());
+            f.ShowDialog();
         }
     }
 }
