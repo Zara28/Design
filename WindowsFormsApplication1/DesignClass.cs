@@ -35,6 +35,7 @@ namespace WindowsFormsApplication1
         /// Цвет текста кнопки
         /// </summary>
         public static Color BUTTON_TEXT_COLOR;
+        public static Color BUTTON_COLOR;
         public static Font BUTTON_FONT;
         public static String BUTTON_BACKGROUND_IMG_ADRESS;
       
