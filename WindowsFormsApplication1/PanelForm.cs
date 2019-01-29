@@ -69,7 +69,7 @@ namespace WindowsFormsApplication1
             int k = 0;
             int q = 0;
             MainForm.pic(this);
-            String s = File.ReadAllText("zhukoff.json");
+            /*String s = File.ReadAllText("zhukoff.json");
             String[] s2 = s.Split(new char[] {'[', ']', '\n', ' ', '{', '}'}, StringSplitOptions.RemoveEmptyEntries);
             for (int i = 0; i < s2.Length; i++)
             {
@@ -83,13 +83,13 @@ namespace WindowsFormsApplication1
                     k = 0;
                 }
                 else
-                    { 
-                        sjh[k].nazvanie = s2[i];
-                        sjh[k].parametr = s2[i + 1];
-                        i++;
-                        k++;
-                    }
-            }
+                { 
+                    sjh[k].nazvanie = s2[i];
+                    sjh[k].parametr = s2[i + 1];
+                    i++;
+                    k++;
+                }
+            }*/
                 //String[] s3 = s2[0].Split(new string[] { "},{", "{", "}"}, StringSplitOptions.RemoveEmptyEntries);
                 foreach (Control ctr in this.Controls)
                 {
@@ -122,8 +122,6 @@ namespace WindowsFormsApplication1
                     }
                 }
             }
-
-
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -136,7 +134,5 @@ namespace WindowsFormsApplication1
             panel3.Location = panel2.Location + Size2 + s1;
             this.Size = new System.Drawing.Size(panel3.Location.X + panel3.Size.Width, this.Size.Height);
         }
-        
-
     }
 }

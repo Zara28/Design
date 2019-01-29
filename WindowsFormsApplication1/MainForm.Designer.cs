@@ -67,10 +67,10 @@
             // button2
             // 
             this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button2.Location = new System.Drawing.Point(12, 12);
-            this.button2.Margin = new System.Windows.Forms.Padding(12);
+            this.button2.Location = new System.Drawing.Point(0, 0);
+            this.button2.Margin = new System.Windows.Forms.Padding(0);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(57, 33);
+            this.button2.Size = new System.Drawing.Size(81, 57);
             this.button2.TabIndex = 1;
             this.button2.Text = "Panel";
             this.button2.UseVisualStyleBackColor = true;
@@ -145,23 +145,23 @@
             // button9
             // 
             this.button9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button9.Location = new System.Drawing.Point(12, 69);
-            this.button9.Margin = new System.Windows.Forms.Padding(12);
+            this.button9.Location = new System.Drawing.Point(0, 57);
+            this.button9.Margin = new System.Windows.Forms.Padding(0);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(57, 33);
+            this.button9.Size = new System.Drawing.Size(81, 57);
             this.button9.TabIndex = 4;
-            this.button9.Text = "Panel";
+            this.button9.Text = "Фигня";
             this.button9.UseVisualStyleBackColor = true;
             // 
             // button7
             // 
             this.button7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button7.Location = new System.Drawing.Point(93, 69);
-            this.button7.Margin = new System.Windows.Forms.Padding(12);
+            this.button7.Location = new System.Drawing.Point(83, 59);
+            this.button7.Margin = new System.Windows.Forms.Padding(2);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(58, 33);
+            this.button7.Size = new System.Drawing.Size(78, 53);
             this.button7.TabIndex = 2;
-            this.button7.Text = "Panel";
+            this.button7.Text = "SQLPanel";
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 

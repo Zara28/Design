@@ -48,4 +48,5 @@ C:\Users\Student\Desktop\OnlineMagazine-master1\23.01\Design-master\WindowsForms
 C:\Users\Student\Desktop\OnlineMagazine-master1\23.01\Design-master\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
 C:\Users\Student\Desktop\OnlineMagazine-master1\23.01\Design-master\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache
 C:\Users\Student\Desktop\OnlineMagazine-master1\23.01\Design-master\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form1.resources
-C:\Users\student.ATIAM\Downloads\Вебинары\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form1.resources
+C:\Users\student.ATIAM\Downloads\Вебинары\Design\WindowsFormsApplication1\bin\Debug\MySql.Data.dll
+C:\Users\student.ATIAM\Downloads\Вебинары\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Nevidimost.resources

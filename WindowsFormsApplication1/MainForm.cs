@@ -13,6 +13,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using MySql.Data;
+using MySql.Data.MySqlClient;
+
 namespace WindowsFormsApplication1
 {
     public partial class MainForm : Form
@@ -20,6 +23,7 @@ namespace WindowsFormsApplication1
         public MainForm()
         {
             InitializeComponent();
+            pic(this);
         }
 
         #region Измение растстояния между картинками, сами картинки, цвета и тд
@@ -43,6 +47,7 @@ namespace WindowsFormsApplication1
                     ((Button)ctr).BackgroundImageLayout = ImageLayout.Stretch;
                     ((Button)ctr).ForeColor = DesignClass.BUTTON_TEXT_COLOR;
                     ((Button)ctr).Font = DesignClass.BUTTON_FONT;
+                    ((Button)ctr).BackColor = DesignClass.BUTTON_COLOR;
                 }
                 else if (ctr.GetType().ToString() == "System.Windows.Forms.Label")
                 {
@@ -278,8 +283,65 @@ namespace WindowsFormsApplication1
 
         private void buttonsVisibilityToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form1 f = new Form1(((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl.FindForm());
+            Nevidimost f = new Nevidimost(((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl.FindForm());
             f.ShowDialog();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            SQLClass.OpenConnection();
+            List<String> Auths = SQLClass.Select("SELECT `design` FROM `design1` WHERE `type` = 'Button'");
+            SQLClass.CloseConnection();
+
+            String designKnopki = Auths[0];
+            
+            /*  String designKnopki = "BackColor: Control, " +
+                  "ForeColor: ControlText, " +
+                  "Font: Microsoft Sans Serif";*/
+            
+            String[] words = designKnopki.Split(new char[] { ':', ',', ' ', '\"' }, StringSplitOptions.RemoveEmptyEntries);
+            
+            for (int index = 0; index < words.Length; index++)
+            {
+                if (words[index] == "BackColor")
+                {
+                    foreach (String colorName in Enum.GetNames(typeof(KnownColor)))
+                    {
+                        if (colorName == words[index + 1])
+                        {
+                            Color knownColor = Color.FromKnownColor((KnownColor)Enum.Parse(typeof(KnownColor), colorName));
+                            DesignClass.BUTTON_COLOR = knownColor;
+                        }
+                    }
+                }
+                
+                if (words[index] == "ForeColor")
+                {
+                    foreach (String colorName in Enum.GetNames(typeof(KnownColor)))
+                    {
+                        if (colorName == words[index + 1])
+                        {
+                            Color knownColor = Color.FromKnownColor((KnownColor)Enum.Parse(typeof(KnownColor), colorName));
+                            DesignClass.BUTTON_TEXT_COLOR = knownColor;
+                        }
+
+                    }
+
+                }
+
+                if (words[index] == "Font")
+                {
+                    foreach (FontFamily item in FontFamily.Families)
+                    {
+                        if (item.ToString() == words[index + 1])
+                        {
+                            DesignClass.BUTTON_FONT = new Font(item, 14);
+                        }
+                    }
+                }
+            }
+
+            pic(this);
         }
     }
 }
