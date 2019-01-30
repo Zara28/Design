@@ -35,7 +35,7 @@ namespace WindowsFormsApplication1
                 c.BackgroundImage = DesignClass.FORM_BACKGROUND_IMG;
                 c.Cursor = DesignClass.FORM_CURSOR;
                 c.BackColor = DesignClass.FORM_COLOR;
-                
+                c.ContextMenuStrip = DesignClass.BUTTONS_VISIBILITY_MENU;
             }
 
             //Дизайн кнопок
@@ -48,7 +48,6 @@ namespace WindowsFormsApplication1
                     ((Button)ctr).ForeColor = DesignClass.BUTTON_TEXT_COLOR;
                     ((Button)ctr).Font = DesignClass.BUTTON_FONT;
                     ((Button)ctr).BackColor = DesignClass.BUTTON_COLOR;
-                    ((Button)ctr).ContextMenuStrip = DesignClass.BUTTONS_VISIBILITY_MENU;
                 }
                 else if (ctr.GetType().ToString() == "System.Windows.Forms.Label")
                 {
@@ -66,8 +65,7 @@ namespace WindowsFormsApplication1
                     if (DesignClass.PANEL_TRANSPARENCY)
                     {
                         ((Panel)ctr).BackColor = Color.Transparent;
-                    }
-                    ((Panel)ctr).ContextMenuStrip = DesignClass.PANEL_MENU;
+                    }          
                 }
 
                 pic(ctr);
@@ -93,7 +91,6 @@ namespace WindowsFormsApplication1
 
             DesignClass.PICTURE_SAVE_MENU = PictureBoxContextMenuStrip;
             DesignClass.BUTTONS_VISIBILITY_MENU = visibilityContextMenuStrip;
-            DesignClass.PANEL_MENU = contextMenuStripPanel;
             pic(this);
             pictureBox1.Load("http://www.forumdaily.com/wp-content/uploads/2017/03/Depositphotos_31031331_m-2015.jpg");
             pictureBox1.BackgroundImage = pictureBox1.Image;
@@ -127,7 +124,11 @@ namespace WindowsFormsApplication1
 
         #region JSON сохранение
 
-
+        /// <summary>
+        /// Превращает картику в байты
+        /// </summary>
+        /// <param name="imageIn">Обьект Image</param>
+        /// <returns>Байты в виде byte[]</returns>
         public byte[] ImageToByteArray(Image imageIn)
         {
             using (var ms = new MemoryStream())
@@ -141,10 +142,17 @@ namespace WindowsFormsApplication1
             }
         }
 
+        #region Строки для поиска конкретных картинок
         string panda = "/9j/4AAQSkZJRgABAQEAyADIAAD/2wBDAAQDAwQDAwQEBAQFB"; 
         string svet = "/9j/4AAQSkZJRgABAQEAAAAAAAD/4QCqRXhpZgAATU0AKgAAA";
         string gun = "/9j/4AAQSkZJRgABAQEAAAAAAAD/4QDGRXhpZgAATU0AKgAAAAgABAEOAAIAAAA";
+        #endregion
 
+        /// <summary>
+        /// Превращает картинку в её название
+        /// </summary>
+        /// <param name="img">Обьект Image</param>
+        /// <returns>Название картинки. Например panda</returns>
         public string imageText(Image img)
         {
             String imgName = "";
@@ -164,11 +172,24 @@ namespace WindowsFormsApplication1
                 {
                     imgName = "gun";
                 }
+                else
+                {
+                    throw new Exception("Не знаю такой картинки");
+                }
             }
 
             return imgName;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="contrl">
+        /// лист объектов которые надо сохрнить.
+        /// обычно равно this
+        /// </param>
+        /// <param name="json">json к которому надо добавить ещё больше json-а</param>
+        /// <returns></returns>
         public JArray formSerialize(Control contrl, JArray json = null)
         {
             if (json == null)
@@ -180,25 +201,7 @@ namespace WindowsFormsApplication1
                 if (ctr.GetType().ToString() == "System.Windows.Forms.Button")
                 {
                     Dictionary<string, string> button = new Dictionary<string, string>();
-                    #region Поиск картинок
-                    var bytes = ImageToByteArray(ctr.BackgroundImage);
-                    if (bytes != null)
-                    {
-                        string base64string = Convert.ToBase64String(bytes);
-                        if (base64string.StartsWith(panda))
-                        {
-                            button.Add("Image", "panda");
-                        }
-                        else if (base64string.StartsWith(svet))
-                        {
-                            button.Add("Image", "svet");
-                        }
-                        else
-                        {
-                            button.Add("Image", "gun");
-                        }
-                    }
-                    #endregion
+                    button.Add("Image", imageText(ctr.BackgroundImage));
                     button.Add("Name", ctr.Name);
                     button.Add("ImageLayout", ctr.BackgroundImageLayout.ToString());
                     button.Add("Type", "Button");
@@ -264,6 +267,15 @@ namespace WindowsFormsApplication1
                 {"BackgroundImage", panel1.ForeColor.Name}
             }));
 
+            SQLClass.OpenConnection();
+            foreach (string type in AllTypesData.Keys)
+            {
+                SQLClass.Delete("DELETE FROM design1 WHERE type = '" + type + "'");
+                SQLClass.Insert(String.Format("INSERT INTO `design1`(`type`, `design`, `author`) VALUES ('{0}','{1}','{2}')", 
+                    type, AllTypesData[type].ToString(), "test"));
+            }
+            SQLClass.CloseConnection();
+
             return AllTypesData;
         }
 
@@ -290,6 +302,9 @@ namespace WindowsFormsApplication1
             f.ShowDialog();
         }
 
+        /// <summary>
+        /// Меняет дизайн всех кнопок на тот который в базе
+        /// </summary>
         private void button7_Click(object sender, EventArgs e)
         {
             SQLClass.OpenConnection();
@@ -347,28 +362,35 @@ namespace WindowsFormsApplication1
             pic(this);
         }
 
-
-        private void contextMenuStripPanel_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void visibilityContextMenuStrip_Opening(object sender, CancelEventArgs e)
-        {
-
-        }
-
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Panel pb = (Panel)((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl;
-            Form2 form = new Form2(pb);
-            form.ShowDialog();
-            pb = form.panel;
-            SQLClass.OpenConnection();
-            //SQLClass.Delete("DELETE * FROM `designDiffirent` WHERE `type` = Panel AND `name` = " + pb.Name + " AND `FormFrom` = " + this.Name);
-            SQLClass.Insert("INSERT INTO `designDiffirent` (`type`, `design`, `author`, `name`, `FormFrom`) VALUES ( 'Panel', " +
-                 "'Color = " + pb.BackColor + ", Visible = " + pb.Visible + ", BackgroundImage = " + pb.BackgroundImage + "', 'admin', '" + pb.Name + "', '"+ this.Name+"')");
-            SQLClass.CloseConnection();
-            //(((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl.FindForm())
+
+        }
+
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void toolStripTextBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void fddfgdfgToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void изменитьКнопкуToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Button pb = (Button)((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl;
+
+            // MessageBox.Show(pb.Text);
+
+            ButtonChange f = new ButtonChange(pb);
+            f.ShowDialog();
+            pb = f.newButton;
         }
     }
 }
