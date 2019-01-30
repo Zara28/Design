@@ -13,9 +13,11 @@ namespace WindowsFormsApplication1
 {
     public partial class PanelForm : Form
     {
+        public Panel panel;
         public PanelForm()
         {
             InitializeComponent();
+            
         }
         public struct pokaz
         {
@@ -28,6 +30,8 @@ namespace WindowsFormsApplication1
             public string nazv;
             public List<pokaz> par;
         }
+
+
 
 
         private void button1_Click(object sender, EventArgs e)

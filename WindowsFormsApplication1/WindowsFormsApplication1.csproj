@@ -58,6 +58,12 @@
     <Compile Include="ButtonDesignForm.Designer.cs">
       <DependentUpon>ButtonDesignForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form2.Designer.cs">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Nevidimost.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +99,9 @@
     <Compile Include="SQLClass.cs" />
     <EmbeddedResource Include="ButtonDesignForm.resx">
       <DependentUpon>ButtonDesignForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form2.resx">
+      <DependentUpon>Form2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Nevidimost.resx">
       <DependentUpon>Nevidimost.cs</DependentUpon>

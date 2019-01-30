@@ -80,6 +80,7 @@ namespace WindowsFormsApplication1
         /// Контекстное меню форм
         /// </summary>
         public static ContextMenuStrip BUTTONS_VISIBILITY_MENU;
+        public static ContextMenuStrip PANEL_MENU;
         public static int PictureSaveIndex = 0;
         #endregion
 

@@ -176,9 +176,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(279, 141);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(150, 13);
+            this.label2.Size = new System.Drawing.Size(156, 13);
             this.label2.TabIndex = 13;
-            this.label2.Text = "Растояние между понелями";
+            this.label2.Text = "Раcстояние между пaнелями";
             // 
             // textBox5
             // 

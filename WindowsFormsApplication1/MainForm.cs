@@ -35,7 +35,7 @@ namespace WindowsFormsApplication1
                 c.BackgroundImage = DesignClass.FORM_BACKGROUND_IMG;
                 c.Cursor = DesignClass.FORM_CURSOR;
                 c.BackColor = DesignClass.FORM_COLOR;
-                c.ContextMenuStrip = DesignClass.BUTTONS_VISIBILITY_MENU;
+                
             }
 
             //Дизайн кнопок
@@ -48,6 +48,7 @@ namespace WindowsFormsApplication1
                     ((Button)ctr).ForeColor = DesignClass.BUTTON_TEXT_COLOR;
                     ((Button)ctr).Font = DesignClass.BUTTON_FONT;
                     ((Button)ctr).BackColor = DesignClass.BUTTON_COLOR;
+                    ((Button)ctr).ContextMenuStrip = DesignClass.BUTTONS_VISIBILITY_MENU;
                 }
                 else if (ctr.GetType().ToString() == "System.Windows.Forms.Label")
                 {
@@ -65,7 +66,8 @@ namespace WindowsFormsApplication1
                     if (DesignClass.PANEL_TRANSPARENCY)
                     {
                         ((Panel)ctr).BackColor = Color.Transparent;
-                    }          
+                    }
+                    ((Panel)ctr).ContextMenuStrip = DesignClass.PANEL_MENU;
                 }
 
                 pic(ctr);
@@ -91,6 +93,7 @@ namespace WindowsFormsApplication1
 
             DesignClass.PICTURE_SAVE_MENU = PictureBoxContextMenuStrip;
             DesignClass.BUTTONS_VISIBILITY_MENU = visibilityContextMenuStrip;
+            DesignClass.PANEL_MENU = contextMenuStripPanel;
             pic(this);
             pictureBox1.Load("http://www.forumdaily.com/wp-content/uploads/2017/03/Depositphotos_31031331_m-2015.jpg");
             pictureBox1.BackgroundImage = pictureBox1.Image;
@@ -342,6 +345,30 @@ namespace WindowsFormsApplication1
             }
 
             pic(this);
+        }
+
+
+        private void contextMenuStripPanel_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void visibilityContextMenuStrip_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Panel pb = (Panel)((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl;
+            Form2 form = new Form2(pb);
+            form.ShowDialog();
+            pb = form.panel;
+            SQLClass.OpenConnection();
+            //SQLClass.Delete("DELETE * FROM `designDiffirent` WHERE `type` = Panel AND `name` = " + pb.Name + " AND `FormFrom` = " + this.Name);
+            SQLClass.Insert("INSERT INTO `designDiffirent` (`type`, `design`, `author`, `name`, `FormFrom`) VALUES ( 'Panel', " +
+                 "'Color = " + pb.BackColor + ", Visible = " + pb.Visible + ", BackgroundImage = " + pb.BackgroundImage + "', 'admin', '" + pb.Name + "', '"+ this.Name+"')");
+            SQLClass.CloseConnection();
+            //(((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl.FindForm())
         }
     }
 }
