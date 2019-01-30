@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
-using System.IO;
-using System.Drawing.Imaging;
-using System.Net;
 
 namespace WindowsFormsApplication1
 {
@@ -73,12 +72,8 @@ namespace WindowsFormsApplication1
 
         private void button4_Click(object sender, EventArgs e)
         {
-          
-
             if (fontDialog1.ShowDialog() != DialogResult.Cancel)
-            {
-               
-                
+            {   
                 if (fontDialog1.Font.Size > 5 && fontDialog1.Font.Size < 38)
                 {
 

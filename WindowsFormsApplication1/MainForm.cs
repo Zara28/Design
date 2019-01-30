@@ -13,6 +13,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using MySql.Data;
+using MySql.Data.MySqlClient;
+
 namespace WindowsFormsApplication1
 {
     public partial class MainForm : Form
@@ -20,6 +23,7 @@ namespace WindowsFormsApplication1
         public MainForm()
         {
             InitializeComponent();
+            pic(this);
         }
 
         #region Измение растстояния между картинками, сами картинки, цвета и тд
@@ -31,6 +35,7 @@ namespace WindowsFormsApplication1
                 c.BackgroundImage = DesignClass.FORM_BACKGROUND_IMG;
                 c.Cursor = DesignClass.FORM_CURSOR;
                 c.BackColor = DesignClass.FORM_COLOR;
+                c.ContextMenuStrip = DesignClass.BUTTONS_VISIBILITY_MENU;
             }
 
             //Дизайн кнопок
@@ -42,6 +47,7 @@ namespace WindowsFormsApplication1
                     ((Button)ctr).BackgroundImageLayout = ImageLayout.Stretch;
                     ((Button)ctr).ForeColor = DesignClass.BUTTON_TEXT_COLOR;
                     ((Button)ctr).Font = DesignClass.BUTTON_FONT;
+                    ((Button)ctr).BackColor = DesignClass.BUTTON_COLOR;
                 }
                 else if (ctr.GetType().ToString() == "System.Windows.Forms.Label")
                 {
@@ -50,7 +56,7 @@ namespace WindowsFormsApplication1
                 }
                 else if (ctr.GetType().ToString() == "System.Windows.Forms.PictureBox")
                 {
-                    ctr.ContextMenuStrip = DesignClass.StripSave;
+                    ctr.ContextMenuStrip = DesignClass.PICTURE_SAVE_MENU;
                 }                
                 else if (ctr.GetType().ToString() == "System.Windows.Forms.Panel")
                 {                    
@@ -59,8 +65,7 @@ namespace WindowsFormsApplication1
                     if (DesignClass.PANEL_TRANSPARENCY)
                     {
                         ((Panel)ctr).BackColor = Color.Transparent;
-                    }                    
-                                   
+                    }          
                 }
 
                 pic(ctr);
@@ -83,7 +88,9 @@ namespace WindowsFormsApplication1
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            DesignClass.StripSave = PictureBoxContextMenuStrip;
+
+            DesignClass.PICTURE_SAVE_MENU = PictureBoxContextMenuStrip;
+            DesignClass.BUTTONS_VISIBILITY_MENU = visibilityContextMenuStrip;
             pic(this);
             pictureBox1.Load("http://www.forumdaily.com/wp-content/uploads/2017/03/Depositphotos_31031331_m-2015.jpg");
             pictureBox1.BackgroundImage = pictureBox1.Image;
@@ -117,7 +124,11 @@ namespace WindowsFormsApplication1
 
         #region JSON сохранение
 
-
+        /// <summary>
+        /// Превращает картику в байты
+        /// </summary>
+        /// <param name="imageIn">Обьект Image</param>
+        /// <returns>Байты в виде byte[]</returns>
         public byte[] ImageToByteArray(Image imageIn)
         {
             using (var ms = new MemoryStream())
@@ -131,10 +142,55 @@ namespace WindowsFormsApplication1
             }
         }
 
-        string panda = "/9j/4AAQSkZJRgABAQEAyADIAAD/2wBDAAQDAwQDAwQEBAQFB";
+        #region Строки для поиска конкретных картинок
+        string panda = "/9j/4AAQSkZJRgABAQEAyADIAAD/2wBDAAQDAwQDAwQEBAQFB"; 
         string svet = "/9j/4AAQSkZJRgABAQEAAAAAAAD/4QCqRXhpZgAATU0AKgAAA";
+        string gun = "/9j/4AAQSkZJRgABAQEAAAAAAAD/4QDGRXhpZgAATU0AKgAAAAgABAEOAAIAAAA";
+        #endregion
 
-        public JArray formSerialize(Control contrl, JArray json =null)
+        /// <summary>
+        /// Превращает картинку в её название
+        /// </summary>
+        /// <param name="img">Обьект Image</param>
+        /// <returns>Название картинки. Например panda</returns>
+        public string imageText(Image img)
+        {
+            String imgName = "";
+            var bytes = ImageToByteArray(img);
+            if (bytes != null)
+            {
+                string base64string = Convert.ToBase64String(bytes);
+                if (base64string.StartsWith(panda))
+                {
+                    imgName = "panda";
+                }
+                else if (base64string.StartsWith(svet))
+                {
+                    imgName = "svet";
+                }
+                else if (base64string.StartsWith(gun))
+                {
+                    imgName = "gun";
+                }
+                else
+                {
+                    throw new Exception("Не знаю такой картинки");
+                }
+            }
+
+            return imgName;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="contrl">
+        /// лист объектов которые надо сохрнить.
+        /// обычно равно this
+        /// </param>
+        /// <param name="json">json к которому надо добавить ещё больше json-а</param>
+        /// <returns></returns>
+        public JArray formSerialize(Control contrl, JArray json = null)
         {
             if (json == null)
             {
@@ -145,23 +201,10 @@ namespace WindowsFormsApplication1
                 if (ctr.GetType().ToString() == "System.Windows.Forms.Button")
                 {
                     Dictionary<string, string> button = new Dictionary<string, string>();
-                    var bytes = ImageToByteArray(ctr.BackgroundImage);
-                    if (bytes != null)
-                    {
-                        string base64string = Convert.ToBase64String(bytes);
-                        if (base64string.StartsWith(panda))
-                        {
-                            button.Add("Image", "panda");
-                        }
-                        else if (base64string.StartsWith(svet))
-                        {
-                            button.Add("Image", "svet");
-                        }else
-                        {
-                            button.Add("Image", "gun");
-                        }
-                    }
+                    button.Add("Image", imageText(ctr.BackgroundImage));
+                    button.Add("Name", ctr.Name);
                     button.Add("ImageLayout", ctr.BackgroundImageLayout.ToString());
+                    button.Add("Type", "Button");
                     button.Add("Color", ctr.ForeColor.Name);
                     button.Add("Font", ctr.Font.Name);
                     json.Add(JObject.FromObject(button));
@@ -170,21 +213,77 @@ namespace WindowsFormsApplication1
                 else if (ctr.GetType().ToString() == "System.Windows.Forms.Label")
                 {
                     Dictionary<string, string> label = new Dictionary<string, string>();
+
+                    label.Add("Name", ctr.Name);
                     label.Add("BackColor", ((Label)ctr).BackColor.Name);
+                    label.Add("Type", "Label");
                     label.Add("ForeColor", ((Label)ctr).ForeColor.Name);
                     json.Add(JObject.FromObject(label));
                 }
                 else if (ctr.GetType().ToString() == "System.Windows.Forms.Panel")
                 {
                     json.Add(formSerialize(ctr, json));
+                    Dictionary<string, string> panel = new Dictionary<string, string>();
+                    panel.Add("Name", ctr.Name);
+                    panel.Add("Type", "panel");
+                    panel.Add("Form", ctr.FindForm().Name);
+                    json.Add(JObject.FromObject(panel));
                 }
             }
             return json; 
         }
 
+        public Dictionary<string, JObject> typeSerialize()
+        {
+            Dictionary<string, JObject> AllTypesData = new Dictionary<string, JObject>();
+
+            //Make a function
+            Dictionary<string, string> ButtonData = new Dictionary<string, string>();
+            if (DesignClass.BUTTON_BACKGROUND_IMG_ADRESS != null)
+            {
+                ButtonData.Add("BackgroundImage", DesignClass.BUTTON_BACKGROUND_IMG_ADRESS.ToString());
+            }
+            if (button1.BackgroundImageLayout != null)
+            {
+                ButtonData.Add("BackgroundImageLayout", button1.BackgroundImageLayout.ToString());
+            }
+            if (DesignClass.BUTTON_TEXT_COLOR != null)
+            {
+                ButtonData.Add("ForeColor", DesignClass.BUTTON_TEXT_COLOR.ToString());
+            }
+            if (DesignClass.BUTTON_FONT != null)
+            {
+                ButtonData.Add("Font", DesignClass.BUTTON_FONT.ToString());
+            }
+
+
+            AllTypesData.Add("button", JObject.FromObject(ButtonData));
+            AllTypesData.Add("label", JObject.FromObject(new Dictionary<string, string>{
+                {"BackColor", label1.BackColor.Name},
+                {"ForeColor", label1.ForeColor.Name}
+            }));
+            AllTypesData.Add("panel", JObject.FromObject(new Dictionary<string, string>{
+                {"BackColor", panel1.BackColor.Name},
+                {"BackgroundImage", panel1.ForeColor.Name}
+            }));
+
+            SQLClass.OpenConnection();
+            foreach (string type in AllTypesData.Keys)
+            {
+                SQLClass.Delete("DELETE FROM design1 WHERE type = '" + type + "'");
+                SQLClass.Insert(String.Format("INSERT INTO `design1`(`type`, `design`, `author`) VALUES ('{0}','{1}','{2}')", 
+                    type, AllTypesData[type].ToString(), "test"));
+            }
+            SQLClass.CloseConnection();
+
+            return AllTypesData;
+        }
+
+
         private void button3_Click(object sender, EventArgs e)
         {
-            File.WriteAllText("asdf.json", formSerialize(this).ToString());
+            File.WriteAllText("asdf.json", typeSerialize().ToString());
+            File.WriteAllText("zhukoff.json", formSerialize(this).ToString());
         }
 
         #endregion
@@ -195,6 +294,103 @@ namespace WindowsFormsApplication1
 
             pb.BackgroundImage.Save("../../SavedPictures/Scr" + Convert.ToString(DesignClass.PictureSaveIndex) + ".jpg");
             DesignClass.PictureSaveIndex++;
+        }
+
+        private void buttonsVisibilityToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Nevidimost f = new Nevidimost(((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl.FindForm());
+            f.ShowDialog();
+        }
+
+        /// <summary>
+        /// Меняет дизайн всех кнопок на тот который в базе
+        /// </summary>
+        private void button7_Click(object sender, EventArgs e)
+        {
+            SQLClass.OpenConnection();
+            List<String> Auths = SQLClass.Select("SELECT `design` FROM `design1` WHERE `type` = 'Button'");
+            SQLClass.CloseConnection();
+
+            String designKnopki = Auths[0];
+            
+            /*  String designKnopki = "BackColor: Control, " +
+                  "ForeColor: ControlText, " +
+                  "Font: Microsoft Sans Serif";*/
+            
+            String[] words = designKnopki.Split(new char[] { ':', ',', ' ', '\"' }, StringSplitOptions.RemoveEmptyEntries);
+            
+            for (int index = 0; index < words.Length; index++)
+            {
+                if (words[index] == "BackColor")
+                {
+                    foreach (String colorName in Enum.GetNames(typeof(KnownColor)))
+                    {
+                        if (colorName == words[index + 1])
+                        {
+                            Color knownColor = Color.FromKnownColor((KnownColor)Enum.Parse(typeof(KnownColor), colorName));
+                            DesignClass.BUTTON_COLOR = knownColor;
+                        }
+                    }
+                }
+                
+                if (words[index] == "ForeColor")
+                {
+                    foreach (String colorName in Enum.GetNames(typeof(KnownColor)))
+                    {
+                        if (colorName == words[index + 1])
+                        {
+                            Color knownColor = Color.FromKnownColor((KnownColor)Enum.Parse(typeof(KnownColor), colorName));
+                            DesignClass.BUTTON_TEXT_COLOR = knownColor;
+                        }
+
+                    }
+
+                }
+
+                if (words[index] == "Font")
+                {
+                    foreach (FontFamily item in FontFamily.Families)
+                    {
+                        if (item.ToString() == words[index + 1])
+                        {
+                            DesignClass.BUTTON_FONT = new Font(item, 14);
+                        }
+                    }
+                }
+            }
+
+            pic(this);
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void toolStripTextBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void fddfgdfgToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void изменитьКнопкуToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Button pb = (Button)((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl;
+
+            // MessageBox.Show(pb.Text);
+
+            ButtonChange f = new ButtonChange(pb);
+            f.ShowDialog();
+            pb = f.newButton;
         }
     }
 }

@@ -43,10 +43,17 @@
             this.label1 = new System.Windows.Forms.Label();
             this.PictureBoxContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.сохранитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.visibilityContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.buttonsVisibilityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.изменитьКнопкуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.PictureBoxContextMenuStrip.SuspendLayout();
+            this.visibilityContextMenuStrip.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -63,10 +70,10 @@
             // button2
             // 
             this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button2.Location = new System.Drawing.Point(12, 12);
-            this.button2.Margin = new System.Windows.Forms.Padding(12);
+            this.button2.Location = new System.Drawing.Point(0, 0);
+            this.button2.Margin = new System.Windows.Forms.Padding(0);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(57, 33);
+            this.button2.Size = new System.Drawing.Size(81, 57);
             this.button2.TabIndex = 1;
             this.button2.Text = "Panel";
             this.button2.UseVisualStyleBackColor = true;
@@ -74,6 +81,7 @@
             // 
             // button3
             // 
+            this.button3.ContextMenuStrip = this.contextMenuStrip1;
             this.button3.Location = new System.Drawing.Point(227, 27);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
@@ -141,24 +149,25 @@
             // button9
             // 
             this.button9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button9.Location = new System.Drawing.Point(12, 69);
-            this.button9.Margin = new System.Windows.Forms.Padding(12);
+            this.button9.Location = new System.Drawing.Point(0, 57);
+            this.button9.Margin = new System.Windows.Forms.Padding(0);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(57, 33);
+            this.button9.Size = new System.Drawing.Size(81, 57);
             this.button9.TabIndex = 4;
-            this.button9.Text = "Panel";
+            this.button9.Text = "Фигня";
             this.button9.UseVisualStyleBackColor = true;
             // 
             // button7
             // 
             this.button7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button7.Location = new System.Drawing.Point(93, 69);
-            this.button7.Margin = new System.Windows.Forms.Padding(12);
+            this.button7.Location = new System.Drawing.Point(83, 59);
+            this.button7.Margin = new System.Windows.Forms.Padding(2);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(58, 33);
+            this.button7.Size = new System.Drawing.Size(78, 53);
             this.button7.TabIndex = 2;
-            this.button7.Text = "Panel";
+            this.button7.Text = "SQLPanel";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // pictureBox1
             // 
@@ -182,20 +191,58 @@
             this.PictureBoxContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.сохранитьToolStripMenuItem});
             this.PictureBoxContextMenuStrip.Name = "PictureBoxContextMenuStrip";
-            this.PictureBoxContextMenuStrip.Size = new System.Drawing.Size(153, 48);
+            this.PictureBoxContextMenuStrip.Size = new System.Drawing.Size(133, 26);
             // 
             // сохранитьToolStripMenuItem
             // 
             this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
-            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.сохранитьToolStripMenuItem.Text = "Сохранить";
             this.сохранитьToolStripMenuItem.Click += new System.EventHandler(this.сохранитьToolStripMenuItem_Click);
+            // 
+            // visibilityContextMenuStrip
+            // 
+            this.visibilityContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.buttonsVisibilityToolStripMenuItem});
+            this.visibilityContextMenuStrip.Name = "visibilityContextMenuStrip";
+            this.visibilityContextMenuStrip.Size = new System.Drawing.Size(178, 26);
+            // 
+            // buttonsVisibilityToolStripMenuItem
+            // 
+            this.buttonsVisibilityToolStripMenuItem.Name = "buttonsVisibilityToolStripMenuItem";
+            this.buttonsVisibilityToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.buttonsVisibilityToolStripMenuItem.Text = "Видимость кнопок";
+            this.buttonsVisibilityToolStripMenuItem.Click += new System.EventHandler(this.buttonsVisibilityToolStripMenuItem_Click);
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(74, 136);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(100, 96);
+            this.richTextBox1.TabIndex = 8;
+            this.richTextBox1.Text = "";
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.изменитьКнопкуToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(171, 48);
+            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
+            // 
+            // изменитьКнопкуToolStripMenuItem
+            // 
+            this.изменитьКнопкуToolStripMenuItem.Name = "изменитьКнопкуToolStripMenuItem";
+            this.изменитьКнопкуToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.изменитьКнопкуToolStripMenuItem.Text = "Изменить кнопку";
+            this.изменитьКнопкуToolStripMenuItem.Click += new System.EventHandler(this.изменитьКнопкуToolStripMenuItem_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(436, 366);
+            this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.tableLayoutPanel1);
@@ -210,6 +257,8 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.PictureBoxContextMenuStrip.ResumeLayout(false);
+            this.visibilityContextMenuStrip.ResumeLayout(false);
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -231,6 +280,11 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ContextMenuStrip PictureBoxContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem сохранитьToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip visibilityContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem buttonsVisibilityToolStripMenuItem;
+        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem изменитьКнопкуToolStripMenuItem;
     }
 }
 

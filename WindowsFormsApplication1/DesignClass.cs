@@ -35,6 +35,7 @@ namespace WindowsFormsApplication1
         /// Цвет текста кнопки
         /// </summary>
         public static Color BUTTON_TEXT_COLOR;
+        public static Color BUTTON_COLOR;
         public static Font BUTTON_FONT;
         public static String BUTTON_BACKGROUND_IMG_ADRESS;
       
@@ -74,7 +75,12 @@ namespace WindowsFormsApplication1
         /// <summary>
         /// Контекстное меню пикчербоксов
         /// </summary>
-        public static ContextMenuStrip StripSave;
+        public static ContextMenuStrip PICTURE_SAVE_MENU;
+        /// <summary>
+        /// Контекстное меню форм
+        /// </summary>
+        public static ContextMenuStrip BUTTONS_VISIBILITY_MENU;
+        public static ContextMenuStrip PANEL_MENU;
         public static int PictureSaveIndex = 0;
         #endregion
 
