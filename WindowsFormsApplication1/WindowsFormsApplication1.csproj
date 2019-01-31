@@ -58,6 +58,12 @@
     <Compile Include="ButtonDesignForm.Designer.cs">
       <DependentUpon>ButtonDesignForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PanelUniqueForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PanelUniqueForm.Designer.cs">
+      <DependentUpon>PanelUniqueForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormThisDesign.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,11 +88,11 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="PanelForm.cs">
+    <Compile Include="PanelDefaultForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PanelForm.Designer.cs">
-      <DependentUpon>PanelForm.cs</DependentUpon>
+    <Compile Include="PanelDefaultForm.Designer.cs">
+      <DependentUpon>PanelDefaultForm.cs</DependentUpon>
     </Compile>
     <Compile Include="PicForm.cs">
       <SubType>Form</SubType>
@@ -100,6 +106,9 @@
     <EmbeddedResource Include="ButtonDesignForm.resx">
       <DependentUpon>ButtonDesignForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PanelUniqueForm.resx">
+      <DependentUpon>PanelUniqueForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Nevidimost.resx">
       <DependentUpon>Nevidimost.cs</DependentUpon>
     </EmbeddedResource>
@@ -109,8 +118,8 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PanelForm.resx">
-      <DependentUpon>PanelForm.cs</DependentUpon>
+    <EmbeddedResource Include="PanelDefaultForm.resx">
+      <DependentUpon>PanelDefaultForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PicForm.resx">
       <DependentUpon>PicForm.cs</DependentUpon>

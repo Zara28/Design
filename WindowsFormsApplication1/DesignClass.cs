@@ -22,6 +22,10 @@ namespace WindowsFormsApplication1
         /// Курсор
         /// </summary>
         public static Cursor FORM_CURSOR;
+        /// <summary>
+        /// Контекстное меню форм
+        /// </summary>
+        public static ContextMenuStrip FORM_MENU;
 
         #endregion
 
@@ -77,13 +81,13 @@ namespace WindowsFormsApplication1
         /// </summary>
         public static ContextMenuStrip PICTURE_SAVE_MENU;
         /// <summary>
-        /// Контекстное меню форм
+        /// Контекстное меню панелей
         /// </summary>
-        public static ContextMenuStrip BUTTONS_VISIBILITY_MENU;
         public static ContextMenuStrip PANEL_MENU;
+        /// <summary>
+        /// Номер последней картинки (чтобы несколько скриншотов сохранять)
+        /// </summary>
         public static int PictureSaveIndex = 0;
         #endregion
-
-
     }
 }

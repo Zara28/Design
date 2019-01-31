@@ -43,15 +43,18 @@
             this.label1 = new System.Windows.Forms.Label();
             this.PictureBoxContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.сохранитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.visibilityContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.FormContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.buttonsVisibilityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.дизайнФормыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.PanelContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.ggToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.PictureBoxContextMenuStrip.SuspendLayout();
-            this.visibilityContextMenuStrip.SuspendLayout();
+            this.FormContextMenuStrip.SuspendLayout();
+            this.PanelContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -197,13 +200,13 @@
             this.сохранитьToolStripMenuItem.Text = "Сохранить";
             this.сохранитьToolStripMenuItem.Click += new System.EventHandler(this.сохранитьToolStripMenuItem_Click);
             // 
-            // visibilityContextMenuStrip
+            // FormContextMenuStrip
             // 
-            this.visibilityContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.FormContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.buttonsVisibilityToolStripMenuItem,
             this.дизайнФормыToolStripMenuItem});
-            this.visibilityContextMenuStrip.Name = "visibilityContextMenuStrip";
-            this.visibilityContextMenuStrip.Size = new System.Drawing.Size(178, 70);
+            this.FormContextMenuStrip.Name = "visibilityContextMenuStrip";
+            this.FormContextMenuStrip.Size = new System.Drawing.Size(178, 48);
             // 
             // buttonsVisibilityToolStripMenuItem
             // 
@@ -211,6 +214,13 @@
             this.buttonsVisibilityToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.buttonsVisibilityToolStripMenuItem.Text = "Видимость кнопок";
             this.buttonsVisibilityToolStripMenuItem.Click += new System.EventHandler(this.buttonsVisibilityToolStripMenuItem_Click);
+            // 
+            // дизайнФормыToolStripMenuItem
+            // 
+            this.дизайнФормыToolStripMenuItem.Name = "дизайнФормыToolStripMenuItem";
+            this.дизайнФормыToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.дизайнФормыToolStripMenuItem.Text = "Дизайн формы";
+            this.дизайнФормыToolStripMenuItem.Click += new System.EventHandler(this.дизайнФормыToolStripMenuItem_Click);
             // 
             // richTextBox1
             // 
@@ -220,19 +230,26 @@
             this.richTextBox1.TabIndex = 8;
             this.richTextBox1.Text = "";
             // 
-            // дизайнФормыToolStripMenuItem
+            // PanelContextMenuStrip
             // 
-            this.дизайнФормыToolStripMenuItem.Name = "дизайнФормыToolStripMenuItem";
-            this.дизайнФормыToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.дизайнФормыToolStripMenuItem.Text = "Дизайн формы";
-            this.дизайнФормыToolStripMenuItem.Click += new System.EventHandler(this.дизайнФормыToolStripMenuItem_Click);
+            this.PanelContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ggToolStripMenuItem});
+            this.PanelContextMenuStrip.Name = "PanelContextMenuStrip";
+            this.PanelContextMenuStrip.Size = new System.Drawing.Size(158, 26);
+            // 
+            // ggToolStripMenuItem
+            // 
+            this.ggToolStripMenuItem.Name = "ggToolStripMenuItem";
+            this.ggToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.ggToolStripMenuItem.Text = "Дизайн панели";
+            this.ggToolStripMenuItem.Click += new System.EventHandler(this.ggToolStripMenuItem_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(436, 366);
-            this.ContextMenuStrip = this.visibilityContextMenuStrip;
+            this.ContextMenuStrip = this.FormContextMenuStrip;
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
@@ -248,7 +265,8 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.PictureBoxContextMenuStrip.ResumeLayout(false);
-            this.visibilityContextMenuStrip.ResumeLayout(false);
+            this.FormContextMenuStrip.ResumeLayout(false);
+            this.PanelContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -270,10 +288,12 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ContextMenuStrip PictureBoxContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem сохранитьToolStripMenuItem;
-        private System.Windows.Forms.ContextMenuStrip visibilityContextMenuStrip;
+        private System.Windows.Forms.ContextMenuStrip FormContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem buttonsVisibilityToolStripMenuItem;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.ToolStripMenuItem дизайнФормыToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip PanelContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem ggToolStripMenuItem;
     }
 }
 

@@ -35,7 +35,7 @@ namespace WindowsFormsApplication1
                 c.BackgroundImage = DesignClass.FORM_BACKGROUND_IMG;
                 c.Cursor = DesignClass.FORM_CURSOR;
                 c.BackColor = DesignClass.FORM_COLOR;
-                c.ContextMenuStrip = DesignClass.BUTTONS_VISIBILITY_MENU;
+                c.ContextMenuStrip = DesignClass.FORM_MENU;
             }
 
             //Дизайн кнопок
@@ -62,6 +62,7 @@ namespace WindowsFormsApplication1
                 {                    
                     ((Panel)ctr).BackgroundImage = DesignClass.PANEL_BACKGROUND_IMG;
                     ((Panel)ctr).BackColor = DesignClass.PANEL_COLOR;
+                    ctr.ContextMenuStrip = DesignClass.PANEL_MENU;
                     if (DesignClass.PANEL_TRANSPARENCY)
                     {
                         ((Panel)ctr).BackColor = Color.Transparent;
@@ -90,7 +91,8 @@ namespace WindowsFormsApplication1
         {
 
             DesignClass.PICTURE_SAVE_MENU = PictureBoxContextMenuStrip;
-            DesignClass.BUTTONS_VISIBILITY_MENU = visibilityContextMenuStrip;
+            DesignClass.FORM_MENU = FormContextMenuStrip;
+            DesignClass.PANEL_MENU = PanelContextMenuStrip;
             pic(this);
             pictureBox1.Load("http://www.forumdaily.com/wp-content/uploads/2017/03/Depositphotos_31031331_m-2015.jpg");
             pictureBox1.BackgroundImage = pictureBox1.Image;
@@ -107,7 +109,7 @@ namespace WindowsFormsApplication1
 
         private void button2_Click(object sender, EventArgs e)
         {
-            PanelForm f = new PanelForm();
+            PanelDefaultForm f = new PanelDefaultForm();
             f.ShowDialog();
             pic(this);
         }
@@ -289,10 +291,7 @@ namespace WindowsFormsApplication1
 
         private void button7_Click(object sender, EventArgs e)
         {
-            SQLClass.OpenConnection();
-            List<String> Auths = SQLClass.Select("SELECT design FROM `design1` WHERE `type` = 'Button'");
-            SQLClass.CloseConnection();
-
+            List<String> Auths = SQLClass.Select("SELECT design FROM design1 WHERE type = 'Button'");
             String designKnopki = Auths[0];
             
             /*  String designKnopki = "BackColor: Control, " +
@@ -365,6 +364,20 @@ namespace WindowsFormsApplication1
         
              
             //Convert.ToString(fo.Font);
+        }
+
+        private void ggToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Panel pb = (Panel)((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl;
+            PanelUniqueForm form = new PanelUniqueForm(pb);
+            form.ShowDialog();
+            pb = form.panel;
+
+            SQLClass.Delete("DELETE * FROM designDiffirent WHERE type = 'Panel' AND name = " + pb.Name + " AND FormFrom = " + this.Name);
+            SQLClass.Insert("INSERT INTO designDiffirent (type, design, author, name, FormFrom) VALUES " +
+                "('Panel', " +
+                "'Color = " + pb.BackColor + ", Visible = " + pb.Visible + ", BackgroundImage = " + pb.BackgroundImage + "', "  +
+                "'admin', '" + pb.Name + "', '" + this.Name + "')");
         }
     }
 }
