@@ -36,6 +36,10 @@ namespace WindowsFormsApplication1
         /// </summary>
         public static Image BUTTON_BACKGROUND_IMG;
         /// <summary>
+        /// Контекстное меню кнопки
+        /// </summary>
+        public static ContextMenuStrip BUTTON_MENU;
+        /// <summary>
         /// Цвет текста кнопки
         /// </summary>
         public static Color BUTTON_TEXT_COLOR;

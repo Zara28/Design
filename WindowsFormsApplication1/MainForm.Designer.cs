@@ -49,12 +49,15 @@
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.PanelContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ggToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ButtonContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.changeUniqueBtnMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.PictureBoxContextMenuStrip.SuspendLayout();
             this.FormContextMenuStrip.SuspendLayout();
             this.PanelContextMenuStrip.SuspendLayout();
+            this.ButtonContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -244,6 +247,20 @@
             this.ggToolStripMenuItem.Text = "Дизайн панели";
             this.ggToolStripMenuItem.Click += new System.EventHandler(this.ggToolStripMenuItem_Click);
             // 
+            // ButtonContextMenuStrip
+            // 
+            this.ButtonContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.changeUniqueBtnMenuItem});
+            this.ButtonContextMenuStrip.Name = "ButtonContextMenuStrip";
+            this.ButtonContextMenuStrip.Size = new System.Drawing.Size(171, 26);
+            // 
+            // changeUniqueBtnMenuItem
+            // 
+            this.changeUniqueBtnMenuItem.Name = "changeUniqueBtnMenuItem";
+            this.changeUniqueBtnMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.changeUniqueBtnMenuItem.Text = "Изменить кнопку";
+            this.changeUniqueBtnMenuItem.Click += new System.EventHandler(this.changeUniqueBtnMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -267,6 +284,7 @@
             this.PictureBoxContextMenuStrip.ResumeLayout(false);
             this.FormContextMenuStrip.ResumeLayout(false);
             this.PanelContextMenuStrip.ResumeLayout(false);
+            this.ButtonContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -294,6 +312,8 @@
         private System.Windows.Forms.ToolStripMenuItem дизайнФормыToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip PanelContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem ggToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip ButtonContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem changeUniqueBtnMenuItem;
     }
 }
 

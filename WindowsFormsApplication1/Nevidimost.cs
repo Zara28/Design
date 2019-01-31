@@ -10,6 +10,9 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
 {
+    /// <summary>
+    /// Видимость кнопок с формы
+    /// </summary>
     public partial class Nevidimost : Form
     {
         public Control CC;

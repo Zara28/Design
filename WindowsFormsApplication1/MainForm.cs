@@ -81,7 +81,7 @@ namespace WindowsFormsApplication1
 
         private void button5_Click(object sender, EventArgs e)
         {
-            ButtonDesignForm form = new ButtonDesignForm();
+            ButtonDefaultForm form = new ButtonDefaultForm();
             form.ShowDialog();
 
             pic(this);
@@ -89,10 +89,11 @@ namespace WindowsFormsApplication1
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
             DesignClass.PICTURE_SAVE_MENU = PictureBoxContextMenuStrip;
             DesignClass.FORM_MENU = FormContextMenuStrip;
+            DesignClass.BUTTON_MENU = ButtonContextMenuStrip;
             DesignClass.PANEL_MENU = PanelContextMenuStrip;
+            
             pic(this);
             pictureBox1.Load("http://www.forumdaily.com/wp-content/uploads/2017/03/Depositphotos_31031331_m-2015.jpg");
             pictureBox1.BackgroundImage = pictureBox1.Image;
@@ -127,6 +128,12 @@ namespace WindowsFormsApplication1
         #region JSON сохранение
 
 
+
+        /// <summary>
+        /// Превращает картику в байты
+        /// </summary>
+        /// <param name="imageIn">Обьект Image</param>
+        /// <returns>Байты в виде byte[]</returns>
         public byte[] ImageToByteArray(Image imageIn)
         {
             using (var ms = new MemoryStream())
@@ -140,10 +147,17 @@ namespace WindowsFormsApplication1
             }
         }
 
+        #region Строки для поиска конкретных картинок
         string panda = "/9j/4AAQSkZJRgABAQEAyADIAAD/2wBDAAQDAwQDAwQEBAQFB"; 
         string svet = "/9j/4AAQSkZJRgABAQEAAAAAAAD/4QCqRXhpZgAATU0AKgAAA";
         string gun = "/9j/4AAQSkZJRgABAQEAAAAAAAD/4QDGRXhpZgAATU0AKgAAAAgABAEOAAIAAAA";
+        #endregion
 
+        /// <summary>
+        /// Превращает картинку в её название
+        /// </summary>
+        /// <param name="img">Обьект Image</param>
+        /// <returns>Название картинки. Например panda</returns>
         public string imageText(Image img)
         {
             String imgName = "";
@@ -163,11 +177,21 @@ namespace WindowsFormsApplication1
                 {
                     imgName = "gun";
                 }
+                else
+                {
+                    throw new Exception("Не знаю такой картинки");
+                }
             }
 
             return imgName;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="contrl">лист объектов которые надо сохрнить. обычно равно this</param>
+        /// <param name="json">json к которому надо добавить ещё больше json-а</param>
+        /// <returns></returns>
         public JArray formSerialize(Control contrl, JArray json = null)
         {
             if (json == null)
@@ -179,25 +203,7 @@ namespace WindowsFormsApplication1
                 if (ctr.GetType().ToString() == "System.Windows.Forms.Button")
                 {
                     Dictionary<string, string> button = new Dictionary<string, string>();
-                    #region Поиск картинок
-                    var bytes = ImageToByteArray(ctr.BackgroundImage);
-                    if (bytes != null)
-                    {
-                        string base64string = Convert.ToBase64String(bytes);
-                        if (base64string.StartsWith(panda))
-                        {
-                            button.Add("Image", "panda");
-                        }
-                        else if (base64string.StartsWith(svet))
-                        {
-                            button.Add("Image", "svet");
-                        }
-                        else
-                        {
-                            button.Add("Image", "gun");
-                        }
-                    }
-                    #endregion
+                    button.Add("Image", imageText(ctr.BackgroundImage));
                     button.Add("Name", ctr.Name);
                     button.Add("ImageLayout", ctr.BackgroundImageLayout.ToString());
                     button.Add("Type", "Button");
@@ -261,7 +267,14 @@ namespace WindowsFormsApplication1
             AllTypesData.Add("panel", JObject.FromObject(new Dictionary<string, string>{
                 {"BackColor", panel1.BackColor.Name},
                 {"BackgroundImage", panel1.ForeColor.Name}
-            }));
+            })); 
+            
+            foreach (string type in AllTypesData.Keys)
+            {
+                SQLClass.Delete("DELETE FROM design1 WHERE type = '" + type + "'");
+                SQLClass.Insert(String.Format("INSERT INTO design1(type, design, author) VALUES ('{0}','{1}','{2}')",
+                    type, AllTypesData[type].ToString(), "test"));
+            }
 
             return AllTypesData;
         }
@@ -289,6 +302,9 @@ namespace WindowsFormsApplication1
             f.ShowDialog();
         }
 
+        /// <summary>
+        /// Меняет дизайн всех кнопок на тот который в базе
+        /// </summary>
         private void button7_Click(object sender, EventArgs e)
         {
             List<String> Auths = SQLClass.Select("SELECT design FROM design1 WHERE type = 'Button'");
@@ -378,6 +394,14 @@ namespace WindowsFormsApplication1
                 "('Panel', " +
                 "'Color = " + pb.BackColor + ", Visible = " + pb.Visible + ", BackgroundImage = " + pb.BackgroundImage + "', "  +
                 "'admin', '" + pb.Name + "', '" + this.Name + "')");
+        }
+
+        private void changeUniqueBtnMenuItem_Click(object sender, EventArgs e)
+        {
+            Button pb = (Button)((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl;
+            ButtonUniqueForm f = new ButtonUniqueForm(pb);
+            f.ShowDialog();
+            pb = f.newButton;
         }
     }
 }
