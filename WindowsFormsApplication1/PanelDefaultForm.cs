@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -49,23 +49,20 @@ namespace WindowsFormsApplication1
         /// <summary>
         /// Получаем название и тип компонента
         /// </summary>
-        /// 
-
-        
-       // public static void Get_T_N(/*String[] stroki, ref string nazv, ref string type*/)
-     //   {
-      //      for (int i = 0; i < stroki.Length; i++)
-      //      {
-        //        if (stroki[i] == "Name")
-        //        {
-         //           this.nazv = stroki[i + 1];
-          //      }
-           //     if (stroki[i] == "Type")
-           //     {
-          //          type = stroki[i + 1];
-             //   }
-           // }
-      //  }
+        public static void Get_T_N(String[] stroki, ref string nazv, ref string type)
+        {
+            for (int i = 0; i < stroki.Length; i++)
+            {
+                if (stroki[i] == "Name")
+                {
+                    nazv = stroki[i + 1];
+                }
+                if (stroki[i] == "Type")
+                {
+                    type = stroki[i + 1];
+                }
+            }
+        }
 
 
 
