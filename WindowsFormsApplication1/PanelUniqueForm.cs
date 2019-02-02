@@ -55,5 +55,10 @@ namespace WindowsFormsApplication1
         {
             this.Close();
         }
+
+        private void PanelUniqueForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

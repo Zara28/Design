@@ -39,9 +39,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(202, 226);
+            this.button1.Location = new System.Drawing.Point(269, 278);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(100, 28);
             this.button1.TabIndex = 0;
             this.button1.Text = "Change";
             this.button1.UseVisualStyleBackColor = true;
@@ -49,9 +50,10 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(13, 25);
+            this.button2.Location = new System.Drawing.Point(17, 31);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(100, 28);
             this.button2.TabIndex = 1;
             this.button2.Text = "Color";
             this.button2.UseVisualStyleBackColor = true;
@@ -59,9 +61,10 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(13, 68);
+            this.button3.Location = new System.Drawing.Point(17, 84);
+            this.button3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.Size = new System.Drawing.Size(100, 28);
             this.button3.TabIndex = 2;
             this.button3.Text = "Transparent";
             this.button3.UseVisualStyleBackColor = true;
@@ -69,16 +72,18 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(13, 122);
+            this.textBox1.Location = new System.Drawing.Point(17, 150);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.Size = new System.Drawing.Size(132, 22);
             this.textBox1.TabIndex = 3;
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(133, 122);
+            this.button4.Location = new System.Drawing.Point(177, 150);
+            this.button4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.Size = new System.Drawing.Size(100, 28);
             this.button4.TabIndex = 4;
             this.button4.Text = "Image";
             this.button4.UseVisualStyleBackColor = true;
@@ -86,25 +91,28 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(22, 158);
+            this.pictureBox1.Location = new System.Drawing.Point(29, 194);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(111, 91);
+            this.pictureBox1.Size = new System.Drawing.Size(148, 112);
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
             // 
-            // Form2
+            // PanelUniqueForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(379, 321);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Name = "Form2";
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Name = "PanelUniqueForm";
             this.Text = "Дизайн конкретной панели";
+            this.Load += new System.EventHandler(this.PanelUniqueForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

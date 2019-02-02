@@ -203,14 +203,13 @@ namespace WindowsFormsApplication1
                 if (ctr.GetType().ToString() == "System.Windows.Forms.Button")
                 {
                     Dictionary<string, string> button = new Dictionary<string, string>();
-                    button.Add("Image", imageText(ctr.BackgroundImage));
+                    button.Add("BackgroundImage", imageText(ctr.BackgroundImage));
                     button.Add("Name", ctr.Name);
-                    button.Add("ImageLayout", ctr.BackgroundImageLayout.ToString());
+                    button.Add("BackgroundImageLayout", ctr.BackgroundImageLayout.ToString());
                     button.Add("Type", "Button");
-                    button.Add("Color", ctr.ForeColor.Name);
+                    button.Add("ForeColor", ctr.ForeColor.Name);
                     button.Add("Font", ctr.Font.Name);
                     json.Add(JObject.FromObject(button));
-
                 }
                 else if (ctr.GetType().ToString() == "System.Windows.Forms.Label")
                 {
@@ -372,14 +371,10 @@ namespace WindowsFormsApplication1
                 ((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl.FindForm().Font = fo.Font;
                 ((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl.FindForm().ForeColor = fo.Color;
                 ((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl.FindForm().BackColor = cl.Color;
-                SQLClass.OpenConnection();
                 SQLClass.Delete("DELETE FROM designDiffirent WHERE FormFrom = '" + FormName + "' and type = 'Form'");
-                SQLClass.Insert("INSERT INTO designDiffirent (type, design, FormFrom, Author, Name) VALUES ('Form', " + "'" + Convert.ToString(fo.Font) + "'," + "'" + FormName + "', '', '')");
-                SQLClass.CloseConnection();
+                SQLClass.Insert("INSERT INTO designDiffirent (type, design, FormFrom, Author, Name)" +
+                    " VALUES ('Form', " + "'" + Convert.ToString(fo.Font) + "'," + "'" + FormName + "', '', '')");
             }
-        
-             
-            //Convert.ToString(fo.Font);
         }
 
         private void ggToolStripMenuItem_Click(object sender, EventArgs e)
