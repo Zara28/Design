@@ -203,9 +203,13 @@ namespace WindowsFormsApplication1
                 if (ctr.GetType().ToString() == "System.Windows.Forms.Button")
                 {
                     Dictionary<string, string> button = new Dictionary<string, string>();
-                    button.Add("BackgroundImage", imageText(ctr.BackgroundImage));
+                    //button.Add("BackgroundImage", imageText(ctr.BackgroundImage));
                     button.Add("Name", ctr.Name);
+                    button.Add("Enabled", ctr.Enabled.ToString());
+                    button.Add("Visible", ctr.Visible.ToString());
                     button.Add("BackgroundImageLayout", ctr.BackgroundImageLayout.ToString());
+                    button.Add("FontSize", ctr.Font.Size.ToString());
+                    button.Add("BackColor", ctr.BackColor.Name);
                     button.Add("Type", "Button");
                     button.Add("ForeColor", ctr.ForeColor.Name);
                     button.Add("Font", ctr.Font.Name);
@@ -217,7 +221,11 @@ namespace WindowsFormsApplication1
 
                     label.Add("Name", ctr.Name);
                     label.Add("BackColor", ((Label)ctr).BackColor.Name);
+                    label.Add("Enabled", ctr.Enabled.ToString());
+                    label.Add("Visible", ctr.Visible.ToString());
                     label.Add("Type", "Label");
+                    label.Add("FontSize", ctr.Font.Size.ToString());
+                    label.Add("Font", ctr.Font.Name);
                     label.Add("ForeColor", ((Label)ctr).ForeColor.Name);
                     json.Add(JObject.FromObject(label));
                 }
@@ -226,6 +234,8 @@ namespace WindowsFormsApplication1
                     json.Add(formSerialize(ctr, json));
                     Dictionary<string, string> panel = new Dictionary<string, string>();
                     panel.Add("Name", ctr.Name);
+                    panel.Add("Enabled", ctr.Enabled.ToString());
+                    panel.Add("Visible", ctr.Visible.ToString());
                     panel.Add("Type", "panel");
                     panel.Add("Form", ctr.FindForm().Name);
                     json.Add(JObject.FromObject(panel));

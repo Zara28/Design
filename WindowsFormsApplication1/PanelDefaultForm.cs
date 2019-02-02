@@ -28,26 +28,44 @@ namespace WindowsFormsApplication1
         public struct item
         {
             public string nazv;
+            public string type;
             public List<pokaz> par;
+            public void Get_T_N(/*String[] stroki, ref string nazv, ref string type*/)
+            {
+                for (int i = 0; i < par.Count; i++)
+                {
+                    if (par[i].nazvanie == "Name")
+                    {
+                        nazv = par[i].parametr;
+                    }
+                    if (par[i].nazvanie == "Type")
+                    {
+                        type = par[i].parametr;
+                    }
+                }
+            }
         }
 
         /// <summary>
         /// Получаем название и тип компонента
         /// </summary>
-        public static void Get_T_N(String[] stroki, ref string nazv, ref string type)
-        {
-            for (int i = 0; i < stroki.Length; i++)
-            {
-                if (stroki[i] == "Name")
-                {
-                    nazv = stroki[i + 1];
-                }
-                if (stroki[i] == "Type")
-                {
-                    type = stroki[i + 1];
-                }
-            }
-        }
+        /// 
+
+        
+       // public static void Get_T_N(/*String[] stroki, ref string nazv, ref string type*/)
+     //   {
+      //      for (int i = 0; i < stroki.Length; i++)
+      //      {
+        //        if (stroki[i] == "Name")
+        //        {
+         //           this.nazv = stroki[i + 1];
+          //      }
+           //     if (stroki[i] == "Type")
+           //     {
+          //          type = stroki[i + 1];
+             //   }
+           // }
+      //  }
 
 
 
@@ -94,8 +112,8 @@ namespace WindowsFormsApplication1
             }
             int k = 0;
             int q = 0;
-            MainForm.pic(this);
-            /*String s = File.ReadAllText("zhukoff.json");
+            //MainForm.pic(this);
+            String s = File.ReadAllText("zhukoff.json");
             List<String> s2 = new List<string>(s.Split(new string[] { "  ", "[", "]", "\n", "{", "}", ": ", "\r", "\",", "\"" }, StringSplitOptions.RemoveEmptyEntries));
             for (int i = 0; i < s2.Count; i++)
             {
@@ -104,7 +122,6 @@ namespace WindowsFormsApplication1
                     s2.RemoveAt(i);
                 }
             }
-            textBox5.Text = s2[6];
             for (int i = 0; i < s2.Count; i++)
             {
                 if (s2[i] == ",")
@@ -126,47 +143,99 @@ namespace WindowsFormsApplication1
             }
             for (int i = 0; i < qwerty.Length; i++)
             {
-                //qwerty[i].Get_T_N();
+                qwerty[i].Get_T_N();
             }
-            */
+            
 
             //String[] s3 = s2[0].Split(new string[] { "},{", "{", "}"}, StringSplitOptions.RemoveEmptyEntries); 
-            /*foreach (Control ctr in this.Controls)
+            foreach (Control ctr in this.Controls)
             {
                 for (int i = 0; i < qwerty.Length; i++)
                 {
-                    if (ctr.Name == qwerty[i].nazv && ctr.GetType().Name == qwerty[i].type)
+                    if (ctr.Name == qwerty[i].nazv && ctr.GetType().ToString() == "System.Windows.Forms." + qwerty[i].type)
                     {
-                        for (int jj = 0; jj < qwerty[i].par.Count; jj++)
+                        for (int j = 0; j < qwerty[i].par.Count; j++)
                         {
-                            if (qwerty[i].par[jj].nazvanie == "ForeColor")
+                            if (qwerty[i].par[j].nazvanie == "ForeColor")
                             {
                                 foreach (String colorName in Enum.GetNames(typeof(KnownColor)))
                                 {
-                                    if (colorName == qwerty[i].par[jj].parametr)
+                                    if (colorName == qwerty[i].par[j].parametr)
                                     {
-                                        Color knownColor = Color.FromKnownColor((KnownColor)Enum.Parse(typeof(KnownColor), colorName));// 
-                                        ctr.BackColor = knownColor;
+                                        Color knownColor = Color.FromKnownColor((KnownColor)Enum.Parse(typeof(KnownColor), colorName));
+                                        ctr.ForeColor = knownColor;
+                                        break;
                                     }
                                 }
                             }
                             else
                             {
-                                if (qwerty[i].par[jj].nazvanie == "BackColor")
+                                if (qwerty[i].par[j].nazvanie == "BackColor")
                                     foreach (String colorName in Enum.GetNames(typeof(KnownColor)))
                                     {
-                                        if (colorName == qwerty[i].par[jj].parametr)
+                                        if (colorName == qwerty[i].par[j].parametr)
                                         {
-                                            Color knownColor = Color.FromKnownColor((KnownColor)Enum.Parse(typeof(KnownColor), colorName));// 
+                                            Color knownColor = Color.FromKnownColor((KnownColor)Enum.Parse(typeof(KnownColor), colorName));
                                             ctr.BackColor = knownColor;
+                                            break;
                                         }
                                     }
+                                else
+                                {
+                                    if(qwerty[i].par[j].nazvanie == "Font")
+                                    {
+                                        ctr.Font = new Font(qwerty[i].par[j].parametr, ctr.Font.Size);
+                                    }
+                                    else
+                                    {
+                                        if (qwerty[i].par[j].nazvanie == "BackgroundImageLayout")
+                                        {
+                                            switch (qwerty[i].par[j].nazvanie)
+                                            {
+                                                case "Stretch":
+                                                    ctr.BackgroundImageLayout = ImageLayout.Stretch;
+                                                    break;
+                                                case "Zoom":
+                                                    ctr.BackgroundImageLayout = ImageLayout.Zoom;
+                                                    break;
+                                                case "Center":
+                                                    ctr.BackgroundImageLayout = ImageLayout.Center;
+                                                    break;
+                                                case "Tile":
+                                                    ctr.BackgroundImageLayout = ImageLayout.Tile;
+                                                    break;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            if(qwerty[i].par[j].nazvanie == "Enabled")
+                                            {
+                                                ctr.Enabled = Convert.ToBoolean(qwerty[i].par[j].parametr);
+                                            }
+                                            else
+                                            {
+                                                if (qwerty[i].par[j].nazvanie == "Visible")
+                                                {
+                                                    ctr.Visible = Convert.ToBoolean(qwerty[i].par[j].parametr);
+                                                }
+                                                else
+                                                {
+                                                    if (qwerty[i].par[j].nazvanie == "FontSize")
+                                                    {
+                                                        //ctr.Font = new Font(ctr.Font.Name, Convert.ToDouble(qwerty[i].par[j].parametr));
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
                             }
-                            break;
+                            
                         }
+                        break;  
                     }
                 }
-            }*/
+            }
             // label1.BackColor = ; 
             //textBox5.Text = s[0]; 
 
@@ -180,7 +249,7 @@ namespace WindowsFormsApplication1
             String[] words = str.Split(new char[] { ':', ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
             String t = "", n = "";
-            Get_T_N(words, ref n, ref t);
+            //.Get_T_N(words, ref n, ref t);
 
             MessageBox.Show("type = " + t + " name = " + n);
 
