@@ -26,14 +26,14 @@ namespace WindowsFormsApplication1
             MyDialog.ShowDialog();
 
             panel.BackColor = MyDialog.Color;
-            this.Close();
+            //this.Close();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             panel.Visible = false;
 
-            this.Close();
+            //this.Close();
         }
 
         private void button4_Click(object sender, EventArgs e)
