@@ -63,6 +63,7 @@ namespace WindowsFormsApplication1
         public static int LENGTH;
 
         public static Color LABEL_TEXT_COLOR;
+        public static Color LABEL_COLOR;
 
         #endregion
 

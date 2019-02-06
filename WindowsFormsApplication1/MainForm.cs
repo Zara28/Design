@@ -180,6 +180,7 @@ namespace WindowsFormsApplication1
             DesignClass.FORM_MENU = FormContextMenuStrip;
             DesignClass.BUTTON_MENU = ButtonContextMenuStrip;
             DesignClass.PANEL_MENU = PanelContextMenuStrip;
+            pn_chit();
             
             pic(this);
             pictureBox1.Load("http://www.forumdaily.com/wp-content/uploads/2017/03/Depositphotos_31031331_m-2015.jpg");
@@ -331,6 +332,10 @@ namespace WindowsFormsApplication1
             return json; 
         }
 
+        /// <summary>
+        /// Сохранение дефолтного дизайна в базу
+        /// </summary>
+        /// <returns></returns>
         public Dictionary<string, JObject> typeSerialize()
         {
             Dictionary<string, JObject> AllTypesData = new Dictionary<string, JObject>();
@@ -341,10 +346,9 @@ namespace WindowsFormsApplication1
             {
                 ButtonData.Add("BackgroundImage", DesignClass.BUTTON_BACKGROUND_IMG_ADRESS.ToString());
             }
-            if (button1.BackgroundImageLayout != null)
-            {
-                ButtonData.Add("BackgroundImageLayout", button1.BackgroundImageLayout.ToString());
-            }
+
+            ButtonData.Add("BackgroundImageLayout", button1.BackgroundImageLayout.ToString());
+
             if (DesignClass.BUTTON_TEXT_COLOR != null)
             {
                 ButtonData.Add("ForeColor", DesignClass.BUTTON_TEXT_COLOR.ToString());
@@ -353,17 +357,32 @@ namespace WindowsFormsApplication1
             {
                 ButtonData.Add("Font", DesignClass.BUTTON_FONT.ToString());
             }
+            
+            Dictionary<string, string> PanelData = new Dictionary<string, string>();
+            if (DesignClass.PANEL_COLOR != null)
+            {
+                PanelData.Add("BackColor", DesignClass.PANEL_COLOR.ToString());
+            }
+            if(DesignClass.PANEL_TRANSPARENCY != null)
+            {
+                PanelData.Add("Transparency", DesignClass.PANEL_TRANSPARENCY.ToString());
+            }
 
+
+            Dictionary<string, string> labelData = new Dictionary<string, string>();
+            if (DesignClass.LABEL_COLOR != null)
+            {
+                PanelData.Add("BackColor", DesignClass.LABEL_COLOR.ToString());
+            }
+            if (DesignClass.LABEL_TEXT_COLOR != null)
+            {
+                PanelData.Add("ForeColor", DesignClass.LABEL_TEXT_COLOR.ToString());
+            }
 
             AllTypesData.Add("button", JObject.FromObject(ButtonData));
-            AllTypesData.Add("label", JObject.FromObject(new Dictionary<string, string>{
-                {"BackColor", label1.BackColor.Name},
-                {"ForeColor", label1.ForeColor.Name}
-            }));
-            AllTypesData.Add("panel", JObject.FromObject(new Dictionary<string, string>{
-                {"BackColor", panel1.BackColor.Name},
-                {"BackgroundImage", panel1.ForeColor.Name}
-            })); 
+            AllTypesData.Add("label", JObject.FromObject(labelData));
+            AllTypesData.Add("panel", JObject.FromObject(PanelData)); 
+
             
             foreach (string type in AllTypesData.Keys)
             {
@@ -398,6 +417,78 @@ namespace WindowsFormsApplication1
             f.ShowDialog();
         }
 
+        public void pn_chit()
+        {
+            List<String> Auths = SQLClass.Select("SELECT design FROM design1 WHERE type = 'panel'");
+            String designKnopki = Auths[0];
+
+            
+            String[] words = designKnopki.Split(new char[] { ':', ',', ' ', '\"' }, StringSplitOptions.RemoveEmptyEntries);
+            
+            for (int index = 0; index < words.Length; index++)
+            {
+                if (words[index] == "BackColor")
+                {
+                    foreach (String colorName in Enum.GetNames(typeof(KnownColor)))
+                    {
+                        if (colorName == words[index + 1])
+                        {
+                            Color knownColor = Color.FromKnownColor((KnownColor)Enum.Parse(typeof(KnownColor), colorName));
+                            DesignClass.PANEL_COLOR = knownColor;
+                        }
+                    }
+                }
+
+                if (words[index] == "Transparency")
+                {
+                    DesignClass.PANEL_TRANSPARENCY = Convert.ToBoolean(words[index + 1]);
+                }
+
+            }
+            pic(this);
+        
+        }
+
+        public void lb_chit()
+        {
+            List<String> Auths = SQLClass.Select("SELECT design FROM design1 WHERE type = 'label'");
+            String designKnopki = Auths[0];
+
+
+            String[] words = designKnopki.Split(new char[] { ':', ',', ' ', '\"' }, StringSplitOptions.RemoveEmptyEntries);
+
+            for (int index = 0; index < words.Length; index++)
+            {
+                if (words[index] == "BackColor")
+                {
+                    foreach (String colorName in Enum.GetNames(typeof(KnownColor)))
+                    {
+                        if (colorName == words[index + 1])
+                        {
+                            Color knownColor = Color.FromKnownColor((KnownColor)Enum.Parse(typeof(KnownColor), colorName));
+                            DesignClass.LABEL_COLOR = knownColor;
+                        }
+                    }
+                }
+
+                if (words[index] == "ForeColor")
+                {
+                    foreach (String colorName in Enum.GetNames(typeof(KnownColor)))
+                    {
+                        if (colorName == words[index + 1])
+                        {
+                            Color knownColor = Color.FromKnownColor((KnownColor)Enum.Parse(typeof(KnownColor), colorName));
+                            DesignClass.LABEL_TEXT_COLOR = knownColor;
+                        }
+                    }
+                }
+
+            }
+            pic(this);
+
+        }
+
+
         /// <summary>
         /// Меняет дизайн всех кнопок на тот который в базе
         /// </summary>
@@ -405,13 +496,13 @@ namespace WindowsFormsApplication1
         {
             List<String> Auths = SQLClass.Select("SELECT design FROM design1 WHERE type = 'Button'");
             String designKnopki = Auths[0];
-            
+
             /*  String designKnopki = "BackColor: Control, " +
                   "ForeColor: ControlText, " +
                   "Font: Microsoft Sans Serif";*/
-            
+
             String[] words = designKnopki.Split(new char[] { ':', ',', ' ', '\"' }, StringSplitOptions.RemoveEmptyEntries);
-            
+
             for (int index = 0; index < words.Length; index++)
             {
                 if (words[index] == "BackColor")
@@ -425,7 +516,7 @@ namespace WindowsFormsApplication1
                         }
                     }
                 }
-                
+
                 if (words[index] == "ForeColor")
                 {
                     foreach (String colorName in Enum.GetNames(typeof(KnownColor)))
@@ -500,6 +591,17 @@ namespace WindowsFormsApplication1
                 "('Button', " +
                 "'Color = " + pb.BackColor + ", Visible = " + pb.Visible + ", BackgroundImage = " + pb.BackgroundImage + ", Text = "+ pb.Text +
                 "', 'admin', '" + pb.Name + "', '" + this.Name + "')");
+        }
+
+        private void sgdfgdgToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void сохранитьДефолтныйДизайнToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            typeSerialize();
+
         }
     }
 }
