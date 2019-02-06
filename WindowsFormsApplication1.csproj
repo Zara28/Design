@@ -1,0 +1,510 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9B709494-A43A-4F50-9FBD-81376B3343F8}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WindowsFormsApplication1</RootNamespace>
+    <AssemblyName>WindowsFormsApplication1</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MySql.Data, Version=6.7.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>.\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ButtonUniqueForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ButtonUniqueForm.Designer.cs">
+      <DependentUpon>ButtonUniqueForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tables.cs" />
+    <Compile Include="DesignClass.cs" />
+    <Compile Include="ButtonDefaultForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ButtonDefaultForm.Designer.cs">
+      <DependentUpon>ButtonDefaultForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PanelUniqueForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PanelUniqueForm.Designer.cs">
+      <DependentUpon>PanelUniqueForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormThisDesign.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormThisDesign.Designer.cs">
+      <DependentUpon>FormThisDesign.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Nevidimost.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Nevidimost.Designer.cs">
+      <DependentUpon>Nevidimost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDesignForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDesignForm.Designer.cs">
+      <DependentUpon>FormDesignForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PanelDefaultForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PanelDefaultForm.Designer.cs">
+      <DependentUpon>PanelDefaultForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PicForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PicForm.Designer.cs">
+      <DependentUpon>PicForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SQLClass.cs" />
+    <EmbeddedResource Include="ButtonUniqueForm.resx">
+      <DependentUpon>ButtonUniqueForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ButtonDefaultForm.resx">
+      <DependentUpon>ButtonDefaultForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PanelUniqueForm.resx">
+      <DependentUpon>PanelUniqueForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Nevidimost.resx">
+      <DependentUpon>Nevidimost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDesignForm.resx">
+      <DependentUpon>FormDesignForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PanelDefaultForm.resx">
+      <DependentUpon>PanelDefaultForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PicForm.resx">
+      <DependentUpon>PicForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Cursors\aero_busy.ani" />
+    <None Include="Properties\Cursors\aero_busy_l.ani" />
+    <None Include="Properties\Cursors\aero_busy_xl.ani" />
+    <None Include="Properties\Cursors\aero_working.ani" />
+    <None Include="Properties\Cursors\aero_working_l.ani" />
+    <None Include="Properties\Cursors\aero_working_xl.ani" />
+    <None Include="Properties\DataSources\ButtonDesignForm.datasource" />
+    <None Include="Properties\DataSources\DesignClass.datasource" />
+    <None Include="Properties\DataSources\FormDesignForm.datasource" />
+    <None Include="Properties\DataSources\MainForm.datasource" />
+    <None Include="Properties\DataSources\PanelForm.datasource" />
+    <None Include="Properties\DataSources\PicForm.datasource" />
+    <None Include="Properties\DataSources\Program.datasource" />
+    <None Include="Properties\DataSources\WindowsFormsApplication1.Properties.Resources.datasource" />
+    <None Include="Properties\DataSources\WindowsFormsApplication1.Properties.Settings.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Resources\Cursors\aero_busy.ani" />
+    <None Include="Resources\Cursors\aero_busy_l.ani" />
+    <None Include="Resources\Cursors\aero_busy_xl.ani" />
+    <None Include="Resources\Cursors\aero_working.ani" />
+    <None Include="Resources\Cursors\aero_working_l.ani" />
+    <None Include="Resources\Cursors\aero_working_xl.ani" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MySql.Data.dll" />
+    <Content Include="Properties\Cursors\aero_arrow.cur" />
+    <Content Include="Properties\Cursors\aero_arrow_l.cur" />
+    <Content Include="Properties\Cursors\aero_arrow_xl.cur" />
+    <Content Include="Properties\Cursors\aero_ew.cur" />
+    <Content Include="Properties\Cursors\aero_ew_l.cur" />
+    <Content Include="Properties\Cursors\aero_ew_xl.cur" />
+    <Content Include="Properties\Cursors\aero_helpsel.cur" />
+    <Content Include="Properties\Cursors\aero_helpsel_l.cur" />
+    <Content Include="Properties\Cursors\aero_helpsel_xl.cur" />
+    <Content Include="Properties\Cursors\aero_link.cur" />
+    <Content Include="Properties\Cursors\aero_link_i.cur" />
+    <Content Include="Properties\Cursors\aero_link_il.cur" />
+    <Content Include="Properties\Cursors\aero_link_im.cur" />
+    <Content Include="Properties\Cursors\aero_link_l.cur" />
+    <Content Include="Properties\Cursors\aero_link_xl.cur" />
+    <Content Include="Properties\Cursors\aero_move.cur" />
+    <Content Include="Properties\Cursors\aero_move_l.cur" />
+    <Content Include="Properties\Cursors\aero_move_xl.cur" />
+    <Content Include="Properties\Cursors\aero_nesw.cur" />
+    <Content Include="Properties\Cursors\aero_nesw_l.cur" />
+    <Content Include="Properties\Cursors\aero_nesw_xl.cur" />
+    <Content Include="Properties\Cursors\aero_ns.cur" />
+    <Content Include="Properties\Cursors\aero_ns_l.cur" />
+    <Content Include="Properties\Cursors\aero_ns_xl.cur" />
+    <Content Include="Properties\Cursors\aero_nwse.cur" />
+    <Content Include="Properties\Cursors\aero_nwse_l.cur" />
+    <Content Include="Properties\Cursors\aero_nwse_xl.cur" />
+    <Content Include="Properties\Cursors\aero_pen.cur" />
+    <Content Include="Properties\Cursors\aero_pen_l.cur" />
+    <Content Include="Properties\Cursors\aero_pen_xl.cur" />
+    <Content Include="Properties\Cursors\aero_unavail.cur" />
+    <Content Include="Properties\Cursors\aero_unavail_l.cur" />
+    <Content Include="Properties\Cursors\aero_unavail_xl.cur" />
+    <Content Include="Properties\Cursors\aero_up.cur" />
+    <Content Include="Properties\Cursors\aero_up_l.cur" />
+    <Content Include="Properties\Cursors\aero_up_xl.cur" />
+    <Content Include="Properties\Cursors\arrow_i.cur" />
+    <Content Include="Properties\Cursors\arrow_il.cur" />
+    <Content Include="Properties\Cursors\arrow_im.cur" />
+    <Content Include="Properties\Cursors\arrow_l.cur" />
+    <Content Include="Properties\Cursors\arrow_m.cur" />
+    <Content Include="Properties\Cursors\arrow_r.cur" />
+    <Content Include="Properties\Cursors\arrow_rl.cur" />
+    <Content Include="Properties\Cursors\arrow_rm.cur" />
+    <Content Include="Properties\Cursors\beam_i.cur" />
+    <Content Include="Properties\Cursors\beam_il.cur" />
+    <Content Include="Properties\Cursors\beam_im.cur" />
+    <Content Include="Properties\Cursors\beam_l.cur" />
+    <Content Include="Properties\Cursors\beam_m.cur" />
+    <Content Include="Properties\Cursors\beam_r.cur" />
+    <Content Include="Properties\Cursors\beam_rl.cur" />
+    <Content Include="Properties\Cursors\beam_rm.cur" />
+    <Content Include="Properties\Cursors\busy_i.cur" />
+    <Content Include="Properties\Cursors\busy_il.cur" />
+    <Content Include="Properties\Cursors\busy_im.cur" />
+    <Content Include="Properties\Cursors\busy_l.cur" />
+    <Content Include="Properties\Cursors\busy_m.cur" />
+    <Content Include="Properties\Cursors\busy_r.cur" />
+    <Content Include="Properties\Cursors\busy_rl.cur" />
+    <Content Include="Properties\Cursors\busy_rm.cur" />
+    <Content Include="Properties\Cursors\cross_i.cur" />
+    <Content Include="Properties\Cursors\cross_il.cur" />
+    <Content Include="Properties\Cursors\cross_im.cur" />
+    <Content Include="Properties\Cursors\cross_l.cur" />
+    <Content Include="Properties\Cursors\cross_m.cur" />
+    <Content Include="Properties\Cursors\cross_r.cur" />
+    <Content Include="Properties\Cursors\cross_rl.cur" />
+    <Content Include="Properties\Cursors\cross_rm.cur" />
+    <Content Include="Properties\Cursors\help_i.cur" />
+    <Content Include="Properties\Cursors\help_il.cur" />
+    <Content Include="Properties\Cursors\help_im.cur" />
+    <Content Include="Properties\Cursors\help_l.cur" />
+    <Content Include="Properties\Cursors\help_m.cur" />
+    <Content Include="Properties\Cursors\help_r.cur" />
+    <Content Include="Properties\Cursors\help_rl.cur" />
+    <Content Include="Properties\Cursors\help_rm.cur" />
+    <Content Include="Properties\Cursors\lappstrt.cur" />
+    <Content Include="Properties\Cursors\larrow.cur" />
+    <Content Include="Properties\Cursors\lcross.cur" />
+    <Content Include="Properties\Cursors\libeam.cur" />
+    <Content Include="Properties\Cursors\lmove.cur" />
+    <Content Include="Properties\Cursors\lnesw.cur" />
+    <Content Include="Properties\Cursors\lnodrop.cur" />
+    <Content Include="Properties\Cursors\lns.cur" />
+    <Content Include="Properties\Cursors\lnwse.cur" />
+    <Content Include="Properties\Cursors\lwait.cur" />
+    <Content Include="Properties\Cursors\lwe.cur" />
+    <Content Include="Properties\Cursors\move_i.cur" />
+    <Content Include="Properties\Cursors\move_il.cur" />
+    <Content Include="Properties\Cursors\move_im.cur" />
+    <Content Include="Properties\Cursors\move_l.cur" />
+    <Content Include="Properties\Cursors\move_m.cur" />
+    <Content Include="Properties\Cursors\move_r.cur" />
+    <Content Include="Properties\Cursors\move_rl.cur" />
+    <Content Include="Properties\Cursors\move_rm.cur" />
+    <Content Include="Properties\Cursors\no_i.cur" />
+    <Content Include="Properties\Cursors\no_il.cur" />
+    <Content Include="Properties\Cursors\no_im.cur" />
+    <Content Include="Properties\Cursors\no_l.cur" />
+    <Content Include="Properties\Cursors\no_m.cur" />
+    <Content Include="Properties\Cursors\no_r.cur" />
+    <Content Include="Properties\Cursors\no_rl.cur" />
+    <Content Include="Properties\Cursors\no_rm.cur" />
+    <Content Include="Properties\Cursors\pen_i.cur" />
+    <Content Include="Properties\Cursors\pen_il.cur" />
+    <Content Include="Properties\Cursors\pen_im.cur" />
+    <Content Include="Properties\Cursors\pen_l.cur" />
+    <Content Include="Properties\Cursors\pen_m.cur" />
+    <Content Include="Properties\Cursors\pen_r.cur" />
+    <Content Include="Properties\Cursors\pen_rl.cur" />
+    <Content Include="Properties\Cursors\pen_rm.cur" />
+    <Content Include="Properties\Cursors\size1_i.cur" />
+    <Content Include="Properties\Cursors\size1_il.cur" />
+    <Content Include="Properties\Cursors\size1_im.cur" />
+    <Content Include="Properties\Cursors\size1_l.cur" />
+    <Content Include="Properties\Cursors\size1_m.cur" />
+    <Content Include="Properties\Cursors\size1_r.cur" />
+    <Content Include="Properties\Cursors\size1_rl.cur" />
+    <Content Include="Properties\Cursors\size1_rm.cur" />
+    <Content Include="Properties\Cursors\size2_i.cur" />
+    <Content Include="Properties\Cursors\size2_il.cur" />
+    <Content Include="Properties\Cursors\size2_im.cur" />
+    <Content Include="Properties\Cursors\size2_l.cur" />
+    <Content Include="Properties\Cursors\size2_m.cur" />
+    <Content Include="Properties\Cursors\size2_r.cur" />
+    <Content Include="Properties\Cursors\size2_rl.cur" />
+    <Content Include="Properties\Cursors\size2_rm.cur" />
+    <Content Include="Properties\Cursors\size3_i.cur" />
+    <Content Include="Properties\Cursors\size3_il.cur" />
+    <Content Include="Properties\Cursors\size3_im.cur" />
+    <Content Include="Properties\Cursors\size3_l.cur" />
+    <Content Include="Properties\Cursors\size3_m.cur" />
+    <Content Include="Properties\Cursors\size3_r.cur" />
+    <Content Include="Properties\Cursors\size3_rl.cur" />
+    <Content Include="Properties\Cursors\size3_rm.cur" />
+    <Content Include="Properties\Cursors\size4_i.cur" />
+    <Content Include="Properties\Cursors\size4_il.cur" />
+    <Content Include="Properties\Cursors\size4_im.cur" />
+    <Content Include="Properties\Cursors\size4_l.cur" />
+    <Content Include="Properties\Cursors\size4_m.cur" />
+    <Content Include="Properties\Cursors\size4_r.cur" />
+    <Content Include="Properties\Cursors\size4_rl.cur" />
+    <Content Include="Properties\Cursors\size4_rm.cur" />
+    <Content Include="Properties\Cursors\up_i.cur" />
+    <Content Include="Properties\Cursors\up_il.cur" />
+    <Content Include="Properties\Cursors\up_im.cur" />
+    <Content Include="Properties\Cursors\up_l.cur" />
+    <Content Include="Properties\Cursors\up_m.cur" />
+    <Content Include="Properties\Cursors\up_r.cur" />
+    <Content Include="Properties\Cursors\up_rl.cur" />
+    <Content Include="Properties\Cursors\up_rm.cur" />
+    <Content Include="Properties\Cursors\wait_i.cur" />
+    <Content Include="Properties\Cursors\wait_il.cur" />
+    <Content Include="Properties\Cursors\wait_im.cur" />
+    <Content Include="Properties\Cursors\wait_l.cur" />
+    <Content Include="Properties\Cursors\wait_m.cur" />
+    <Content Include="Properties\Cursors\wait_r.cur" />
+    <Content Include="Properties\Cursors\wait_rl.cur" />
+    <Content Include="Properties\Cursors\wait_rm.cur" />
+    <None Include="Resources\Cursors\wait_rm.cur" />
+    <None Include="Resources\Cursors\wait_rl.cur" />
+    <None Include="Resources\Cursors\wait_r.cur" />
+    <None Include="Resources\Cursors\wait_m.cur" />
+    <None Include="Resources\Cursors\wait_l.cur" />
+    <None Include="Resources\Cursors\wait_im.cur" />
+    <None Include="Resources\Cursors\wait_il.cur" />
+    <None Include="Resources\Cursors\wait_i.cur" />
+    <None Include="Resources\Cursors\up_rm.cur" />
+    <None Include="Resources\Cursors\up_rl.cur" />
+    <None Include="Resources\Cursors\up_r.cur" />
+    <None Include="Resources\Cursors\up_m.cur" />
+    <None Include="Resources\Cursors\up_l.cur" />
+    <None Include="Resources\Cursors\up_im.cur" />
+    <None Include="Resources\Cursors\up_il.cur" />
+    <None Include="Resources\Cursors\up_i.cur" />
+    <None Include="Resources\Cursors\size4_rm.cur" />
+    <None Include="Resources\Cursors\size4_rl.cur" />
+    <None Include="Resources\Cursors\size4_r.cur" />
+    <None Include="Resources\Cursors\size4_m.cur" />
+    <None Include="Resources\Cursors\size4_l.cur" />
+    <None Include="Resources\Cursors\size4_im.cur" />
+    <None Include="Resources\Cursors\size4_il.cur" />
+    <None Include="Resources\Cursors\size4_i.cur" />
+    <None Include="Resources\Cursors\size3_rm.cur" />
+    <None Include="Resources\Cursors\size3_rl.cur" />
+    <None Include="Resources\Cursors\size3_r.cur" />
+    <None Include="Resources\Cursors\size3_m.cur" />
+    <None Include="Resources\Cursors\size3_l.cur" />
+    <None Include="Resources\Cursors\size3_im.cur" />
+    <None Include="Resources\Cursors\size3_il.cur" />
+    <None Include="Resources\Cursors\size3_i.cur" />
+    <None Include="Resources\Cursors\size2_rm.cur" />
+    <None Include="Resources\Cursors\size2_rl.cur" />
+    <None Include="Resources\Cursors\size2_r.cur" />
+    <None Include="Resources\Cursors\size2_m.cur" />
+    <None Include="Resources\Cursors\size2_l.cur" />
+    <None Include="Resources\Cursors\size2_im.cur" />
+    <None Include="Resources\Cursors\size2_il.cur" />
+    <None Include="Resources\Cursors\size2_i.cur" />
+    <None Include="Resources\Cursors\size1_rm.cur" />
+    <None Include="Resources\Cursors\size1_rl.cur" />
+    <None Include="Resources\Cursors\size1_r.cur" />
+    <None Include="Resources\Cursors\size1_m.cur" />
+    <None Include="Resources\Cursors\size1_l.cur" />
+    <None Include="Resources\Cursors\size1_im.cur" />
+    <None Include="Resources\Cursors\size1_il.cur" />
+    <None Include="Resources\Cursors\size1_i.cur" />
+    <None Include="Resources\Cursors\pen_rm.cur" />
+    <None Include="Resources\Cursors\pen_rl.cur" />
+    <None Include="Resources\Cursors\pen_r.cur" />
+    <None Include="Resources\Cursors\pen_m.cur" />
+    <None Include="Resources\Cursors\pen_l.cur" />
+    <None Include="Resources\Cursors\pen_im.cur" />
+    <None Include="Resources\Cursors\pen_il.cur" />
+    <None Include="Resources\Cursors\pen_i.cur" />
+    <None Include="Resources\Cursors\no_rm.cur" />
+    <None Include="Resources\Cursors\no_rl.cur" />
+    <None Include="Resources\Cursors\no_r.cur" />
+    <None Include="Resources\Cursors\no_m.cur" />
+    <None Include="Resources\Cursors\no_l.cur" />
+    <None Include="Resources\Cursors\no_im.cur" />
+    <None Include="Resources\Cursors\no_il.cur" />
+    <None Include="Resources\Cursors\no_i.cur" />
+    <None Include="Resources\Cursors\move_rm.cur" />
+    <None Include="Resources\Cursors\move_rl.cur" />
+    <None Include="Resources\Cursors\move_r.cur" />
+    <None Include="Resources\Cursors\move_m.cur" />
+    <None Include="Resources\Cursors\move_l.cur" />
+    <None Include="Resources\Cursors\move_im.cur" />
+    <None Include="Resources\Cursors\move_il.cur" />
+    <None Include="Resources\Cursors\move_i.cur" />
+    <None Include="Resources\Cursors\lwe.cur" />
+    <None Include="Resources\Cursors\lwait.cur" />
+    <None Include="Resources\Cursors\lnwse.cur" />
+    <None Include="Resources\Cursors\lns.cur" />
+    <None Include="Resources\Cursors\lnodrop.cur" />
+    <None Include="Resources\Cursors\lnesw.cur" />
+    <None Include="Resources\Cursors\lmove.cur" />
+    <None Include="Resources\Cursors\libeam.cur" />
+    <None Include="Resources\Cursors\lcross.cur" />
+    <None Include="Resources\Cursors\larrow.cur" />
+    <None Include="Resources\Cursors\lappstrt.cur" />
+    <None Include="Resources\Cursors\help_rm.cur" />
+    <None Include="Resources\Cursors\help_rl.cur" />
+    <None Include="Resources\Cursors\help_r.cur" />
+    <None Include="Resources\Cursors\help_m.cur" />
+    <None Include="Resources\Cursors\help_l.cur" />
+    <None Include="Resources\Cursors\help_im.cur" />
+    <None Include="Resources\Cursors\help_il.cur" />
+    <None Include="Resources\Cursors\help_i.cur" />
+    <None Include="Resources\Cursors\cross_rm.cur" />
+    <None Include="Resources\Cursors\cross_rl.cur" />
+    <None Include="Resources\Cursors\cross_r.cur" />
+    <None Include="Resources\Cursors\cross_m.cur" />
+    <None Include="Resources\Cursors\cross_l.cur" />
+    <None Include="Resources\Cursors\cross_im.cur" />
+    <None Include="Resources\Cursors\cross_il.cur" />
+    <None Include="Resources\Cursors\cross_i.cur" />
+    <None Include="Resources\Cursors\busy_rm.cur" />
+    <None Include="Resources\Cursors\busy_rl.cur" />
+    <None Include="Resources\Cursors\busy_r.cur" />
+    <None Include="Resources\Cursors\busy_m.cur" />
+    <None Include="Resources\Cursors\busy_l.cur" />
+    <None Include="Resources\Cursors\busy_im.cur" />
+    <None Include="Resources\Cursors\busy_il.cur" />
+    <None Include="Resources\Cursors\busy_i.cur" />
+    <None Include="Resources\Cursors\beam_rm.cur" />
+    <None Include="Resources\Cursors\beam_rl.cur" />
+    <None Include="Resources\Cursors\beam_r.cur" />
+    <None Include="Resources\Cursors\beam_m.cur" />
+    <None Include="Resources\Cursors\beam_l.cur" />
+    <None Include="Resources\Cursors\beam_im.cur" />
+    <None Include="Resources\Cursors\beam_il.cur" />
+    <None Include="Resources\Cursors\beam_i.cur" />
+    <None Include="Resources\Cursors\arrow_rm.cur" />
+    <None Include="Resources\Cursors\arrow_rl.cur" />
+    <None Include="Resources\Cursors\arrow_r.cur" />
+    <None Include="Resources\Cursors\arrow_m.cur" />
+    <None Include="Resources\Cursors\arrow_l.cur" />
+    <None Include="Resources\Cursors\arrow_im.cur" />
+    <None Include="Resources\Cursors\arrow_il.cur" />
+    <None Include="Resources\Cursors\arrow_i.cur" />
+    <None Include="Resources\Cursors\aero_up_xl.cur" />
+    <None Include="Resources\Cursors\aero_up_l.cur" />
+    <None Include="Resources\Cursors\aero_up.cur" />
+    <None Include="Resources\Cursors\aero_unavail_xl.cur" />
+    <None Include="Resources\Cursors\aero_unavail_l.cur" />
+    <None Include="Resources\Cursors\aero_unavail.cur" />
+    <None Include="Resources\Cursors\aero_pen_xl.cur" />
+    <None Include="Resources\Cursors\aero_pen_l.cur" />
+    <None Include="Resources\Cursors\aero_pen.cur" />
+    <None Include="Resources\Cursors\aero_nwse_xl.cur" />
+    <None Include="Resources\Cursors\aero_nwse_l.cur" />
+    <None Include="Resources\Cursors\aero_nwse.cur" />
+    <None Include="Resources\Cursors\aero_ns_xl.cur" />
+    <None Include="Resources\Cursors\aero_ns_l.cur" />
+    <None Include="Resources\Cursors\aero_ns.cur" />
+    <None Include="Resources\Cursors\aero_nesw_xl.cur" />
+    <None Include="Resources\Cursors\aero_nesw_l.cur" />
+    <None Include="Resources\Cursors\aero_nesw.cur" />
+    <None Include="Resources\Cursors\aero_move_xl.cur" />
+    <None Include="Resources\Cursors\aero_move_l.cur" />
+    <None Include="Resources\Cursors\aero_move.cur" />
+    <None Include="Resources\Cursors\aero_link_xl.cur" />
+    <None Include="Resources\Cursors\aero_link_l.cur" />
+    <None Include="Resources\Cursors\aero_link_im.cur" />
+    <None Include="Resources\Cursors\aero_link_il.cur" />
+    <None Include="Resources\Cursors\aero_link_i.cur" />
+    <None Include="Resources\Cursors\aero_link.cur" />
+    <None Include="Resources\Cursors\aero_helpsel_xl.cur" />
+    <None Include="Resources\Cursors\aero_helpsel_l.cur" />
+    <None Include="Resources\Cursors\aero_helpsel.cur" />
+    <None Include="Resources\Cursors\aero_ew_xl.cur" />
+    <None Include="Resources\Cursors\aero_ew_l.cur" />
+    <None Include="Resources\Cursors\aero_ew.cur" />
+    <None Include="Resources\Cursors\aero_arrow_xl.cur" />
+    <None Include="Resources\Cursors\aero_arrow_l.cur" />
+    <None Include="Resources\Cursors\aero_arrow.cur" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
