@@ -115,6 +115,9 @@
     <EmbeddedResource Include="ButtonDefaultForm.resx">
       <DependentUpon>ButtonDefaultForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormThisDesign.resx">
+      <DependentUpon>FormThisDesign.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PanelUniqueForm.resx">
       <DependentUpon>PanelUniqueForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -338,6 +341,7 @@
     <Content Include="Properties\Cursors\wait_r.cur" />
     <Content Include="Properties\Cursors\wait_rl.cur" />
     <Content Include="Properties\Cursors\wait_rm.cur" />
+    <None Include="Resources\Менять.jpg" />
     <None Include="Resources\Cursors\wait_rm.cur" />
     <None Include="Resources\Cursors\wait_rl.cur" />
     <None Include="Resources\Cursors\wait_r.cur" />

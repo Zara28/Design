@@ -34,6 +34,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.button6 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -50,7 +51,6 @@
             this.ggToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ButtonContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.changeUniqueBtnMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -111,6 +111,14 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(200, 272);
             this.panel1.TabIndex = 4;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(17, 119);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 2;
+            this.textBox1.Text = "sdfsfsdfsdf";
             // 
             // button6
             // 
@@ -210,7 +218,8 @@
             this.buttonsVisibilityToolStripMenuItem,
             this.дизайнФормыToolStripMenuItem});
             this.FormContextMenuStrip.Name = "visibilityContextMenuStrip";
-            this.FormContextMenuStrip.Size = new System.Drawing.Size(178, 48);
+            this.FormContextMenuStrip.Size = new System.Drawing.Size(178, 70);
+            this.FormContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.FormContextMenuStrip_Opening);
             // 
             // buttonsVisibilityToolStripMenuItem
             // 
@@ -253,14 +262,6 @@
             this.changeUniqueBtnMenuItem.Size = new System.Drawing.Size(170, 22);
             this.changeUniqueBtnMenuItem.Text = "Изменить кнопку";
             this.changeUniqueBtnMenuItem.Click += new System.EventHandler(this.changeUniqueBtnMenuItem_Click);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(17, 119);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 2;
-            this.textBox1.Text = "sdfsfsdfsdf";
             // 
             // MainForm
             // 
