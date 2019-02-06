@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
 {
-    public partial class Form2 : Form
+    public partial class PanelUniqueForm : Form
     {
         public Panel panel;
-        public Form2(Panel p)
+        public PanelUniqueForm(Panel p)
         {
             InitializeComponent();
             panel = p;
@@ -26,14 +26,14 @@ namespace WindowsFormsApplication1
             MyDialog.ShowDialog();
 
             panel.BackColor = MyDialog.Color;
-            this.Close();
+            //this.Close();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             panel.Visible = false;
 
-            this.Close();
+            //this.Close();
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -54,6 +54,11 @@ namespace WindowsFormsApplication1
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void PanelUniqueForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

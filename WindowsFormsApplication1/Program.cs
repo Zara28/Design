@@ -4,6 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using MySql.Data;
+using MySql.Data.MySqlClient;
+
 namespace WindowsFormsApplication1
 {
     static class Program
@@ -16,7 +19,9 @@ namespace WindowsFormsApplication1
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            SQLClass.OpenConnection();
             Application.Run(new MainForm());
+            SQLClass.CloseConnection();
         }
     }
 }

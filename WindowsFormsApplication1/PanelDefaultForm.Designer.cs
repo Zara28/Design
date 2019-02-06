@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApplication1
 {
-    partial class PanelForm
+    partial class PanelDefaultForm
     {
         /// <summary>
         /// Required designer variable.
@@ -44,6 +44,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
+            this.button5 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -188,11 +189,24 @@
             this.textBox5.Size = new System.Drawing.Size(670, 319);
             this.textBox5.TabIndex = 14;
             // 
-            // PanelForm
+            // button5
+            // 
+            this.button5.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.button5.Font = new System.Drawing.Font("Niagara Solid", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button5.ForeColor = System.Drawing.Color.Red;
+            this.button5.Location = new System.Drawing.Point(494, 141);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(157, 65);
+            this.button5.TabIndex = 15;
+            this.button5.Text = "button5";
+            this.button5.UseVisualStyleBackColor = false;
+            // 
+            // PanelDefaultForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(695, 566);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -206,7 +220,7 @@
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Name = "PanelForm";
+            this.Name = "PanelDefaultForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = " Настройка панелей";
             this.Load += new System.EventHandler(this.PanelForm_Load);
@@ -239,5 +253,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.Button button5;
     }
 }

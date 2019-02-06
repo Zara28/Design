@@ -35,7 +35,7 @@ namespace WindowsFormsApplication1
                 c.BackgroundImage = DesignClass.FORM_BACKGROUND_IMG;
                 c.Cursor = DesignClass.FORM_CURSOR;
                 c.BackColor = DesignClass.FORM_COLOR;
-                c.ContextMenuStrip = DesignClass.BUTTONS_VISIBILITY_MENU;
+                c.ContextMenuStrip = DesignClass.FORM_MENU;
             }
 
             //Дизайн кнопок
@@ -48,6 +48,7 @@ namespace WindowsFormsApplication1
                     ((Button)ctr).ForeColor = DesignClass.BUTTON_TEXT_COLOR;
                     ((Button)ctr).Font = DesignClass.BUTTON_FONT;
                     ((Button)ctr).BackColor = DesignClass.BUTTON_COLOR;
+                    ctr.ContextMenuStrip = DesignClass.BUTTON_MENU;
                 }
                 else if (ctr.GetType().ToString() == "System.Windows.Forms.Label")
                 {
@@ -62,12 +63,98 @@ namespace WindowsFormsApplication1
                 {                    
                     ((Panel)ctr).BackgroundImage = DesignClass.PANEL_BACKGROUND_IMG;
                     ((Panel)ctr).BackColor = DesignClass.PANEL_COLOR;
+                    ctr.ContextMenuStrip = DesignClass.PANEL_MENU;
                     if (DesignClass.PANEL_TRANSPARENCY)
                     {
                         ((Panel)ctr).BackColor = Color.Transparent;
                     }          
                 }
 
+                String str = "Type: Label, " +
+                "Name: label1, " +
+                "BackColor: Transparent" +
+                "ForeColor: ControlText";
+                List<String> what = SQLClass.Select("SELECT design FROM design1 WHERE type = 'Button'");
+
+                
+
+                
+
+
+
+                List<String> uniqueDesign = SQLClass.Select("SELECT design, FormFrom, Name, Type FROM designDiffirent");
+
+                for (int index = 0; index < uniqueDesign.Count; index += 4)
+                {
+                    if (uniqueDesign[index + 1] == ctr.FindForm().Name &&
+                        uniqueDesign[index + 2] == ctr.Name &&
+                        ctr.GetType().ToString() == "System.Windows.Forms." + uniqueDesign[index + 3])
+                    {
+                        String[] words = uniqueDesign[index].Split(new string[] { ":", ",", " = ", "=" }, StringSplitOptions.RemoveEmptyEntries);
+
+                        String FontName = "";
+                        int FontSize = 0;
+
+                        for (int i = 0; i < words.Length; i++)
+                        {
+                            if (words[i] == "Color")
+                            {
+                                foreach (String colorName in Enum.GetNames(typeof(KnownColor)))
+                                {
+                                    String colorFromDB = words[i + 1];
+                                    if (colorFromDB.StartsWith("Color"))
+                                    {
+                                        colorFromDB = colorFromDB.Replace("Color [", "").Replace("]", "");
+                                    }
+
+                                    if (colorName == colorFromDB)
+                                    {
+                                        
+                                        Color knownColor = Color.FromKnownColor((KnownColor)Enum.Parse(typeof(KnownColor), colorName));
+                                        ctr.BackColor = knownColor;
+                                       
+                                        //ctr.BackColor = Color.FromArgb(Convert.ToInt32(words[i + 1]));
+                                        
+                                    }
+                                }
+                            }
+
+                            if (words[i] == "Visible")
+                            {
+                                ctr.Visible = (words[i + 1] == "True");
+                            }
+
+                            if (words[i] == "FontName")
+                            {
+                                FontName = words[i + 1];
+                            }
+
+                            if (words[i] == "FontSize")
+                            {
+                                FontSize = Convert.ToInt32(words[i + 1]);
+                            }
+
+                            /*  if (words[i] == "BackgroundImage")
+                              {
+                                  if (ctr.GetType().ToString() == "System.Windows.Forms.Button")
+                                  {
+                                      DesignClass.BUTTON_BACKGROUND_IMG = words[i + 1];
+                                  }
+                                
+                              }*/
+                        }
+
+                        if (FontName != "" && FontSize > 0)
+                        {
+                            ctr.Font = new Font(FontName, FontSize);
+                        }
+
+                    }
+
+                }
+
+
+               
                 pic(ctr);
             }
         }
@@ -78,9 +165,10 @@ namespace WindowsFormsApplication1
         {
         }
 
+      
         private void button5_Click(object sender, EventArgs e)
         {
-            ButtonDesignForm form = new ButtonDesignForm();
+            ButtonDefaultForm form = new ButtonDefaultForm();
             form.ShowDialog();
 
             pic(this);
@@ -88,9 +176,11 @@ namespace WindowsFormsApplication1
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
             DesignClass.PICTURE_SAVE_MENU = PictureBoxContextMenuStrip;
-            DesignClass.BUTTONS_VISIBILITY_MENU = visibilityContextMenuStrip;
+            DesignClass.FORM_MENU = FormContextMenuStrip;
+            DesignClass.BUTTON_MENU = ButtonContextMenuStrip;
+            DesignClass.PANEL_MENU = PanelContextMenuStrip;
+            
             pic(this);
             pictureBox1.Load("http://www.forumdaily.com/wp-content/uploads/2017/03/Depositphotos_31031331_m-2015.jpg");
             pictureBox1.BackgroundImage = pictureBox1.Image;
@@ -107,7 +197,7 @@ namespace WindowsFormsApplication1
 
         private void button2_Click(object sender, EventArgs e)
         {
-            PanelForm f = new PanelForm();
+            PanelDefaultForm f = new PanelDefaultForm();
             f.ShowDialog();
             pic(this);
         }
@@ -125,6 +215,12 @@ namespace WindowsFormsApplication1
         #region JSON сохранение
 
 
+
+        /// <summary>
+        /// Превращает картику в байты
+        /// </summary>
+        /// <param name="imageIn">Обьект Image</param>
+        /// <returns>Байты в виде byte[]</returns>
         public byte[] ImageToByteArray(Image imageIn)
         {
             using (var ms = new MemoryStream())
@@ -138,10 +234,17 @@ namespace WindowsFormsApplication1
             }
         }
 
+        #region Строки для поиска конкретных картинок
         string panda = "/9j/4AAQSkZJRgABAQEAyADIAAD/2wBDAAQDAwQDAwQEBAQFB"; 
         string svet = "/9j/4AAQSkZJRgABAQEAAAAAAAD/4QCqRXhpZgAATU0AKgAAA";
         string gun = "/9j/4AAQSkZJRgABAQEAAAAAAAD/4QDGRXhpZgAATU0AKgAAAAgABAEOAAIAAAA";
+        #endregion
 
+        /// <summary>
+        /// Превращает картинку в её название
+        /// </summary>
+        /// <param name="img">Обьект Image</param>
+        /// <returns>Название картинки. Например panda</returns>
         public string imageText(Image img)
         {
             String imgName = "";
@@ -161,11 +264,21 @@ namespace WindowsFormsApplication1
                 {
                     imgName = "gun";
                 }
+                else
+                {
+                    throw new Exception("Не знаю такой картинки");
+                }
             }
 
             return imgName;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="contrl">лист объектов которые надо сохрнить. обычно равно this</param>
+        /// <param name="json">json к которому надо добавить ещё больше json-а</param>
+        /// <returns></returns>
         public JArray formSerialize(Control contrl, JArray json = null)
         {
             if (json == null)
@@ -177,32 +290,17 @@ namespace WindowsFormsApplication1
                 if (ctr.GetType().ToString() == "System.Windows.Forms.Button")
                 {
                     Dictionary<string, string> button = new Dictionary<string, string>();
-                    #region Поиск картинок
-                    var bytes = ImageToByteArray(ctr.BackgroundImage);
-                    if (bytes != null)
-                    {
-                        string base64string = Convert.ToBase64String(bytes);
-                        if (base64string.StartsWith(panda))
-                        {
-                            button.Add("Image", "panda");
-                        }
-                        else if (base64string.StartsWith(svet))
-                        {
-                            button.Add("Image", "svet");
-                        }
-                        else
-                        {
-                            button.Add("Image", "gun");
-                        }
-                    }
-                    #endregion
+                    //button.Add("BackgroundImage", imageText(ctr.BackgroundImage));
                     button.Add("Name", ctr.Name);
-                    button.Add("ImageLayout", ctr.BackgroundImageLayout.ToString());
+                    button.Add("Enabled", ctr.Enabled.ToString());
+                    button.Add("Visible", ctr.Visible.ToString());
+                    button.Add("BackgroundImageLayout", ctr.BackgroundImageLayout.ToString());
+                    button.Add("FontSize", ctr.Font.Size.ToString());
+                    button.Add("BackColor", ctr.BackColor.Name);
                     button.Add("Type", "Button");
-                    button.Add("Color", ctr.ForeColor.Name);
+                    button.Add("ForeColor", ctr.ForeColor.Name);
                     button.Add("Font", ctr.Font.Name);
                     json.Add(JObject.FromObject(button));
-
                 }
                 else if (ctr.GetType().ToString() == "System.Windows.Forms.Label")
                 {
@@ -210,7 +308,11 @@ namespace WindowsFormsApplication1
 
                     label.Add("Name", ctr.Name);
                     label.Add("BackColor", ((Label)ctr).BackColor.Name);
+                    label.Add("Enabled", ctr.Enabled.ToString());
+                    label.Add("Visible", ctr.Visible.ToString());
                     label.Add("Type", "Label");
+                    label.Add("FontSize", ctr.Font.Size.ToString());
+                    label.Add("Font", ctr.Font.Name);
                     label.Add("ForeColor", ((Label)ctr).ForeColor.Name);
                     json.Add(JObject.FromObject(label));
                 }
@@ -219,6 +321,8 @@ namespace WindowsFormsApplication1
                     json.Add(formSerialize(ctr, json));
                     Dictionary<string, string> panel = new Dictionary<string, string>();
                     panel.Add("Name", ctr.Name);
+                    panel.Add("Enabled", ctr.Enabled.ToString());
+                    panel.Add("Visible", ctr.Visible.ToString());
                     panel.Add("Type", "panel");
                     panel.Add("Form", ctr.FindForm().Name);
                     json.Add(JObject.FromObject(panel));
@@ -259,7 +363,14 @@ namespace WindowsFormsApplication1
             AllTypesData.Add("panel", JObject.FromObject(new Dictionary<string, string>{
                 {"BackColor", panel1.BackColor.Name},
                 {"BackgroundImage", panel1.ForeColor.Name}
-            }));
+            })); 
+            
+            foreach (string type in AllTypesData.Keys)
+            {
+                SQLClass.Delete("DELETE FROM design1 WHERE type = '" + type + "'");
+                SQLClass.Insert(String.Format("INSERT INTO design1(type, design, author) VALUES ('{0}','{1}','{2}')",
+                    type, AllTypesData[type].ToString(), "test"));
+            }
 
             return AllTypesData;
         }
@@ -287,12 +398,12 @@ namespace WindowsFormsApplication1
             f.ShowDialog();
         }
 
+        /// <summary>
+        /// Меняет дизайн всех кнопок на тот который в базе
+        /// </summary>
         private void button7_Click(object sender, EventArgs e)
         {
-            SQLClass.OpenConnection();
-            List<String> Auths = SQLClass.Select("SELECT design FROM `design1` WHERE `type` = 'Button'");
-            SQLClass.CloseConnection();
-
+            List<String> Auths = SQLClass.Select("SELECT design FROM design1 WHERE type = 'Button'");
             String designKnopki = Auths[0];
             
             /*  String designKnopki = "BackColor: Control, " +
@@ -357,14 +468,38 @@ namespace WindowsFormsApplication1
                 ((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl.FindForm().Font = fo.Font;
                 ((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl.FindForm().ForeColor = fo.Color;
                 ((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl.FindForm().BackColor = cl.Color;
-                SQLClass.OpenConnection();
                 SQLClass.Delete("DELETE FROM designDiffirent WHERE FormFrom = '" + FormName + "' and type = 'Form'");
-                SQLClass.Insert("INSERT INTO designDiffirent (type, design, FormFrom, Author, Name) VALUES ('Form', " + "'" + Convert.ToString(fo.Font) + "'," + "'" + FormName + "', '', '')");
-                SQLClass.CloseConnection();
+                SQLClass.Insert("INSERT INTO designDiffirent (type, design, FormFrom, Author, Name)" +
+                    " VALUES ('Form', " + "'" + Convert.ToString(fo.Font) + "'," + "'" + FormName + "', '', '')");
             }
-        
-             
-            //Convert.ToString(fo.Font);
+        }
+
+        private void ggToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Panel pb = (Panel)((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl;
+            PanelUniqueForm form = new PanelUniqueForm(pb);
+            form.ShowDialog();
+            pb = form.panel;
+
+            SQLClass.Delete("DELETE FROM designDiffirent WHERE type = 'Panel' AND name = '" + pb.Name + "' AND FormFrom = '" + this.Name +"'");
+            SQLClass.Insert("INSERT INTO designDiffirent (type, design, author, name, FormFrom) VALUES " +
+                "('Panel', " +
+                "'Color = " + pb.BackColor + ", Visible = " + pb.Visible + ", BackgroundImage = " + pb.BackgroundImage + "', "  +
+                "'admin', '" + pb.Name + "', '" + this.Name + "')");
+        }
+
+        private void changeUniqueBtnMenuItem_Click(object sender, EventArgs e)
+        {
+            Button pb = (Button)((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl;
+            ButtonUniqueForm f = new ButtonUniqueForm(pb);
+            f.ShowDialog();
+            pb = f.newButton;
+
+            SQLClass.Delete("DELETE FROM designDiffirent WHERE type = 'Button' AND name = '" + pb.Name + "' AND FormFrom = '" + this.Name + "'");
+            SQLClass.Insert("INSERT INTO designDiffirent (type, design, author, name, FormFrom) VALUES " +
+                "('Button', " +
+                "'Color = " + pb.BackColor + ", Visible = " + pb.Visible + ", BackgroundImage = " + pb.BackgroundImage + ", Text = "+ pb.Text +
+                "', 'admin', '" + pb.Name + "', '" + this.Name + "')");
         }
     }
 }

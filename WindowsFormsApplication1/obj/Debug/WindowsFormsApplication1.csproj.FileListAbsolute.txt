@@ -30,7 +30,6 @@ C:\Users\student.ATIAM\Downloads\Вебинары\1\Design\WindowsFormsApplicati
 C:\Users\student.ATIAM\Downloads\Вебинары\1\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
 C:\Users\student.ATIAM\Downloads\Вебинары\1\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache
 C:\Users\student.ATIAM\Downloads\Вебинары\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.MainForm.resources
-C:\Users\student.ATIAM\Downloads\Вебинары\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.PanelForm.resources
 C:\Users\student.ATIAM\Downloads\Вебинары\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.PicForm.resources
 C:\Users\student.ATIAM\Downloads\Вебинары\Design\WindowsFormsApplication1\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Student\Desktop\OnlineMagazine-master1\23.01\Design-master\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe.config
@@ -50,3 +49,5 @@ C:\Users\Student\Desktop\OnlineMagazine-master1\23.01\Design-master\WindowsForms
 C:\Users\Student\Desktop\OnlineMagazine-master1\23.01\Design-master\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form1.resources
 C:\Users\student.ATIAM\Downloads\Вебинары\Design\WindowsFormsApplication1\bin\Debug\MySql.Data.dll
 C:\Users\student.ATIAM\Downloads\Вебинары\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Nevidimost.resources
+C:\Users\student.ATIAM\Downloads\Вебинары\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.PanelUniqueForm.resources
+C:\Users\student.ATIAM\Downloads\Вебинары\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.PanelDefaultForm.resources
