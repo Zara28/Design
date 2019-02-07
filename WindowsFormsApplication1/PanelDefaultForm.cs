@@ -73,14 +73,14 @@ namespace WindowsFormsApplication1
             MyDialog.ShowDialog();
 
             DesignClass.PANEL_COLOR = MyDialog.Color;
-            this.Close();
+           // this.Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             DesignClass.PANEL_TRANSPARENCY = true;
 
-            this.Close();
+            //this.Close();
         }
 
         private void button3_Click(object sender, EventArgs e)
