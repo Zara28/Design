@@ -83,11 +83,12 @@
             this.sgdfgdgToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(119, 26);
+            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             // 
             // sgdfgdgToolStripMenuItem
             // 
             this.sgdfgdgToolStripMenuItem.Name = "sgdfgdgToolStripMenuItem";
-            this.sgdfgdgToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
+            this.sgdfgdgToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.sgdfgdgToolStripMenuItem.Text = "sgdfgdg";
             // 
             // button2
@@ -108,7 +109,7 @@
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 2;
-            this.button3.Text = "Null";
+            this.button3.Text = "Save";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -308,7 +309,7 @@
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button1);
             this.Name = "MainForm";
-            this.Text = "MainForm";
+            this.Text = "Main";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.contextMenuStrip1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
