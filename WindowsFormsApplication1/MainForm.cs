@@ -30,7 +30,7 @@ namespace WindowsFormsApplication1
             pic(this);
         }
 
-        #region Измение растстояния между картинками, сами картинки, цвета и тд
+        #region Измение расстояния между картинками, сами картинки, цвета и тд
         public static void pic(Control c)
         {
             //Фон формы FIXME!!!
@@ -41,36 +41,7 @@ namespace WindowsFormsApplication1
                 c.BackColor = DesignClass.FORM_COLOR;
                 c.ContextMenuStrip = DesignClass.FORM_MENU;
 
-                List<String> uniqueDesign = SQLClass.Select("SELECT design FROM designDiffirent WHERE FormFrom = '" + c.Name + "'and Type='Form'");
-                String[] words = uniqueDesign[0].Split(new string[] { ":", ",", " = ", "=" }, StringSplitOptions.RemoveEmptyEntries);
-
-                String FontName = "";
-                int FontSize = 0;
-
-                for (int i = 0; i < words.Length; i++)
-                {
-                    if (words[i] == "Color")
-                    {
-                        foreach (String colorName in Enum.GetNames(typeof(KnownColor)))
-                        {
-                            String colorFromDB = words[i + 1];
-                            if (colorFromDB.Trim().StartsWith("Color"))
-                            {
-                                colorFromDB = colorFromDB.Trim().Replace("Color [", "").Replace("]", "");
-                            }
-
-                            if (colorName == colorFromDB.Trim())
-                            {
-
-                                Color knownColor = Color.FromKnownColor((KnownColor)Enum.Parse(typeof(KnownColor), colorName));
-                                c.BackColor = knownColor;
-
-                                //ctr.BackColor = Color.FromArgb(Convert.ToInt32(words[i + 1]));
-
-                            }
-                        }
-                    }
-                }
+                FormUniqueForm.GetFormDesignFromDb(ref c);
 
                 //Дизайн кнопок
                 foreach (Control ctr in c.Controls)
@@ -103,29 +74,22 @@ namespace WindowsFormsApplication1
                             ((Panel)ctr).BackColor = Color.Transparent;
                         }
                     }
-
-                  String str = "Type: Label, " +
-                  "Name: label1, " +
-                  "BackColor: Transparent" +
-                  "ForeColor: ControlText";
-                  List<String> what = SQLClass.Select("SELECT design FROM " + Tables.Default + " WHERE type = 'Button'");
-
-
-
-
-
-                    List<String> uniqueDesign = SQLClass.Select("SELECT design, FormFrom, Name, Type FROM " + Tables.Unique);
                     
+                    List<String> uniqueDesign = SQLClass.Select("SELECT design, FormFrom, Name, Type FROM " + Tables.Unique);
+                    String[] words = uniqueDesign[0].Split(new string[] { ":", ",", " = ", "=" }, StringSplitOptions.RemoveEmptyEntries);
+                    String FontName = "";
+                    int FontSize = 0;
+
                     for (int index = 0; index < uniqueDesign.Count; index += 4)
                     {
                         if (uniqueDesign[index + 1] == ctr.FindForm().Name &&
                             uniqueDesign[index + 2] == ctr.Name &&
                             ctr.GetType().ToString() == "System.Windows.Forms." + uniqueDesign[index + 3])
                         {
-                           words = uniqueDesign[index].Split(new string[] { ":", ",", " = ", "=" }, StringSplitOptions.RemoveEmptyEntries);
+                            words = uniqueDesign[index].Split(new string[] { ":", ",", " = ", "=" }, StringSplitOptions.RemoveEmptyEntries);
 
-                             FontName = "";
-                             FontSize = 0;
+                            FontName = "";
+                            FontSize = 0;
 
                             for (int i = 0; i < words.Length; i++)
                             {
@@ -141,12 +105,8 @@ namespace WindowsFormsApplication1
 
                                         if (colorName == colorFromDB)
                                         {
-
                                             Color knownColor = Color.FromKnownColor((KnownColor)Enum.Parse(typeof(KnownColor), colorName));
                                             ctr.BackColor = knownColor;
-
-                                            //ctr.BackColor = Color.FromArgb(Convert.ToInt32(words[i + 1]));
-
                                         }
                                     }
                                 }
@@ -165,27 +125,14 @@ namespace WindowsFormsApplication1
                                 {
                                     FontSize = Convert.ToInt32(words[i + 1]);
                                 }
-
-                                /*  if (words[i] == "BackgroundImage")
-                                  {
-                                      if (ctr.GetType().ToString() == "System.Windows.Forms.Button")
-                                      {
-                                          DesignClass.BUTTON_BACKGROUND_IMG = words[i + 1];
-                                      }
-                                
-                                  }*/
                             }
 
                             if (FontName != "" && FontSize > 0)
                             {
                                 ctr.Font = new Font(FontName, FontSize);
                             }
-
                         }
-
                     }
-
-
 
                     pic(ctr);
                 }
@@ -199,7 +146,7 @@ namespace WindowsFormsApplication1
         }
 
       
-        private void button5_Click(object sender, EventArgs e)
+        private void buttonDefaultForm_Click(object sender, EventArgs e)
         {
             ButtonDefaultForm form = new ButtonDefaultForm();
             form.ShowDialog();
@@ -222,7 +169,7 @@ namespace WindowsFormsApplication1
 
         private void button6_Click(object sender, EventArgs e)
         {
-            FormDesignForm form = new FormDesignForm();
+            FormDefaultForm form = new FormDefaultForm();
             form.ShowDialog();
 
             pic(this);
@@ -575,21 +522,7 @@ namespace WindowsFormsApplication1
         private void дизайнФормыToolStripMenuItem_Click(object sender, EventArgs e)
         {
             String FormName = ((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl.FindForm().Name;
-            /*
-            FontDialog fo = new FontDialog();
-            fo.ShowColor = true;
-            ColorDialog cl = new ColorDialog();
-
-            if (fo.ShowDialog() == DialogResult.OK & cl.ShowDialog() == DialogResult.OK)
-            {
-                ((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl.FindForm().Font = fo.Font;
-                ((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl.FindForm().ForeColor = fo.Color;
-                ((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl.FindForm().BackColor = cl.Color;
-                SQLClass.Delete("DELETE FROM " + Tables.Unique + " WHERE FormFrom = '" + FormName + "' and type = 'Form'");
-                SQLClass.Insert("INSERT INTO " + Tables.Unique + " (type, design, FormFrom, Author, Name)" +
-                    " VALUES ('Form', " + "'" + Convert.ToString(fo.Font) + "'," + "'" + FormName + "', '', '')");
-            }*/
-            FormThisDesign ftd = new FormThisDesign(FormName);
+            FormUniqueForm ftd = new FormUniqueForm(FormName);
             ftd.ShowDialog();
         }
 
@@ -605,6 +538,7 @@ namespace WindowsFormsApplication1
                 "('Panel', " +
                 "'Color = " + pb.BackColor + ", Visible = " + pb.Visible + ", BackgroundImage = " + pb.BackgroundImage + "', "  +
                 "'admin', '" + pb.Name + "', '" + this.Name + "')");
+            //PanelUniqueForm.UpdatePanelDesignInDb(pb);
         }
 
         private void changeUniqueBtnMenuItem_Click(object sender, EventArgs e)

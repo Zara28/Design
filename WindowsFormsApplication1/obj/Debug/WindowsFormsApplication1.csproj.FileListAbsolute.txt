@@ -61,7 +61,6 @@ C:\Users\Abra\1\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplicatio
 C:\Users\Abra\1\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ButtonDefaultForm.resources
 C:\Users\Abra\1\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.PanelUniqueForm.resources
 C:\Users\Abra\1\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Nevidimost.resources
-C:\Users\Abra\1\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.FormDesignForm.resources
 C:\Users\Abra\1\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.MainForm.resources
 C:\Users\Abra\1\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.PanelDefaultForm.resources
 C:\Users\Abra\1\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.PicForm.resources
@@ -71,3 +70,5 @@ C:\Users\Abra\1\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplicatio
 C:\Users\Abra\1\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.CopyComplete
 C:\Users\Abra\1\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
 C:\Users\Abra\1\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+C:\Users\Abra\1\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.FormUniqueForm.resources
+C:\Users\Abra\1\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.FormDefaultForm.resources

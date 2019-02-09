@@ -21,6 +21,8 @@ namespace WindowsFormsApplication1
         {
             newButton = buttonToEdit;
             InitializeComponent();
+
+            textBox1.Text = newButton.Text;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -33,6 +35,10 @@ namespace WindowsFormsApplication1
         private void button2_Click(object sender, EventArgs e)
         {
             colorDialog1.ShowDialog();
+        }
+
+        private void ButtonUniqueForm_Load(object sender, EventArgs e)
+        {
         }
     }
 }
