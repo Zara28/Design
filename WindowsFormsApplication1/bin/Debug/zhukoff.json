@@ -2,69 +2,107 @@
   {
     "Name": "label1",
     "BackColor": "Transparent",
+    "Enabled": "True",
+    "Visible": "True",
     "Type": "Label",
+    "FontSize": "8,25",
+    "Font": "Microsoft Sans Serif",
     "ForeColor": "ControlText"
   },
   {
     "Name": "button6",
-    "ImageLayout": "Stretch",
+    "Enabled": "True",
+    "Visible": "True",
+    "BackgroundImageLayout": "Stretch",
+    "FontSize": "8,25",
+    "BackColor": "Transparent",
     "Type": "Button",
-    "Color": "ControlText",
+    "ForeColor": "ControlText",
     "Font": "Microsoft Sans Serif"
   },
   {
     "Name": "button5",
-    "ImageLayout": "Stretch",
+    "Enabled": "True",
+    "Visible": "True",
+    "BackgroundImageLayout": "Stretch",
+    "FontSize": "8,25",
+    "BackColor": "Silver",
     "Type": "Button",
-    "Color": "ControlText",
+    "ForeColor": "ControlText",
     "Font": "Microsoft Sans Serif"
   },
   [
     {
       "Name": "label1",
       "BackColor": "Transparent",
+      "Enabled": "True",
+      "Visible": "True",
       "Type": "Label",
+      "FontSize": "8,25",
+      "Font": "Microsoft Sans Serif",
       "ForeColor": "ControlText"
     },
     {
       "Name": "button6",
-      "ImageLayout": "Stretch",
+      "Enabled": "True",
+      "Visible": "True",
+      "BackgroundImageLayout": "Stretch",
+      "FontSize": "8,25",
+      "BackColor": "Transparent",
       "Type": "Button",
-      "Color": "ControlText",
+      "ForeColor": "ControlText",
       "Font": "Microsoft Sans Serif"
     },
     {
       "Name": "button5",
-      "ImageLayout": "Stretch",
+      "Enabled": "True",
+      "Visible": "True",
+      "BackgroundImageLayout": "Stretch",
+      "FontSize": "8,25",
+      "BackColor": "Silver",
       "Type": "Button",
-      "Color": "ControlText",
+      "ForeColor": "ControlText",
       "Font": "Microsoft Sans Serif"
     }
   ],
   {
     "Name": "panel1",
+    "Enabled": "True",
+    "Visible": "True",
     "Type": "panel",
     "Form": "MainForm"
   },
   {
     "Name": "button4",
-    "ImageLayout": "Stretch",
+    "Enabled": "True",
+    "Visible": "True",
+    "BackgroundImageLayout": "Stretch",
+    "FontSize": "8,25",
+    "BackColor": "White",
     "Type": "Button",
-    "Color": "ControlText",
+    "ForeColor": "ControlText",
     "Font": "Microsoft Sans Serif"
   },
   {
     "Name": "button3",
-    "ImageLayout": "Stretch",
+    "Enabled": "True",
+    "Visible": "True",
+    "BackgroundImageLayout": "Stretch",
+    "FontSize": "8,25",
+    "BackColor": "Control",
     "Type": "Button",
-    "Color": "ControlText",
+    "ForeColor": "ControlText",
     "Font": "Microsoft Sans Serif"
   },
   {
     "Name": "button1",
-    "ImageLayout": "Stretch",
+    "Enabled": "True",
+    "Visible": "True",
+    "BackgroundImageLayout": "Stretch",
+    "FontSize": "8,25",
+    "BackColor": "Maroon",
     "Type": "Button",
-    "Color": "ControlText",
+    "ForeColor": "ControlText",
     "Font": "Microsoft Sans Serif"
   }
 ]

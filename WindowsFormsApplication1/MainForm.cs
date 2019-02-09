@@ -23,6 +23,10 @@ namespace WindowsFormsApplication1
         public MainForm()
         {
             InitializeComponent();
+
+            ReadButtonDefault();
+            ReadLabelDefault();
+            ReadPanelDefault();
             pic(this);
         }
 
@@ -74,7 +78,7 @@ namespace WindowsFormsApplication1
                 "Name: label1, " +
                 "BackColor: Transparent" +
                 "ForeColor: ControlText";
-                List<String> what = SQLClass.Select("SELECT design FROM design1 WHERE type = 'Button'");
+                List<String> what = SQLClass.Select("SELECT design FROM " + Tables.Default + " WHERE type = 'Button'");
 
                 
 
@@ -82,7 +86,7 @@ namespace WindowsFormsApplication1
 
 
 
-                List<String> uniqueDesign = SQLClass.Select("SELECT design, FormFrom, Name, Type FROM designDiffirent");
+                List<String> uniqueDesign = SQLClass.Select("SELECT design, FormFrom, Name, Type FROM " + Tables.Unique);
 
                 for (int index = 0; index < uniqueDesign.Count; index += 4)
                 {
@@ -180,7 +184,6 @@ namespace WindowsFormsApplication1
             DesignClass.FORM_MENU = FormContextMenuStrip;
             DesignClass.BUTTON_MENU = ButtonContextMenuStrip;
             DesignClass.PANEL_MENU = PanelContextMenuStrip;
-            pn_chit();
             
             pic(this);
             pictureBox1.Load("http://www.forumdaily.com/wp-content/uploads/2017/03/Depositphotos_31031331_m-2015.jpg");
@@ -340,7 +343,7 @@ namespace WindowsFormsApplication1
         {
             Dictionary<string, JObject> AllTypesData = new Dictionary<string, JObject>();
 
-            //Make a function
+            #region Button
             Dictionary<string, string> ButtonData = new Dictionary<string, string>();
             if (DesignClass.BUTTON_BACKGROUND_IMG_ADRESS != null)
             {
@@ -357,37 +360,40 @@ namespace WindowsFormsApplication1
             {
                 ButtonData.Add("Font", DesignClass.BUTTON_FONT.ToString());
             }
-            
+            #endregion
+
+            #region Panel
             Dictionary<string, string> PanelData = new Dictionary<string, string>();
             if (DesignClass.PANEL_COLOR != null)
             {
                 PanelData.Add("BackColor", DesignClass.PANEL_COLOR.ToString());
             }
-            if(DesignClass.PANEL_TRANSPARENCY != null)
+            if (DesignClass.PANEL_TRANSPARENCY != false)
             {
-                PanelData.Add("Transparency", DesignClass.PANEL_TRANSPARENCY.ToString());
+                PanelData.Add("Transparency", "true");
             }
+            #endregion
 
-
+            #region Label
             Dictionary<string, string> labelData = new Dictionary<string, string>();
             if (DesignClass.LABEL_COLOR != null)
             {
-                PanelData.Add("BackColor", DesignClass.LABEL_COLOR.ToString());
+                labelData.Add("BackColor", DesignClass.LABEL_COLOR.ToString());
             }
             if (DesignClass.LABEL_TEXT_COLOR != null)
             {
-                PanelData.Add("ForeColor", DesignClass.LABEL_TEXT_COLOR.ToString());
+                labelData.Add("ForeColor", DesignClass.LABEL_TEXT_COLOR.ToString());
             }
+            #endregion
 
             AllTypesData.Add("button", JObject.FromObject(ButtonData));
             AllTypesData.Add("label", JObject.FromObject(labelData));
             AllTypesData.Add("panel", JObject.FromObject(PanelData)); 
-
-            
+                        
             foreach (string type in AllTypesData.Keys)
             {
-                SQLClass.Delete("DELETE FROM design1 WHERE type = '" + type + "'");
-                SQLClass.Insert(String.Format("INSERT INTO design1(type, design, author) VALUES ('{0}','{1}','{2}')",
+                SQLClass.Delete("DELETE FROM " + Tables.Default + " WHERE type = '" + type + "'");
+                SQLClass.Insert(String.Format("INSERT INTO " + Tables.Default + "(type, design, author) VALUES ('{0}','{1}','{2}')",
                     type, AllTypesData[type].ToString(), "test"));
             }
 
@@ -417,11 +423,14 @@ namespace WindowsFormsApplication1
             f.ShowDialog();
         }
 
-        public void pn_chit()
+        #region Чтение дефолтного дизайна
+        /// <summary>
+        /// Чтение дизайна для Panel
+        /// </summary>
+        public void ReadPanelDefault()
         {
-            List<String> Auths = SQLClass.Select("SELECT design FROM design1 WHERE type = 'panel'");
+            List<String> Auths = SQLClass.Select("SELECT design FROM " + Tables.Default + " WHERE type = 'panel'");
             String designKnopki = Auths[0];
-
             
             String[] words = designKnopki.Split(new char[] { ':', ',', ' ', '\"' }, StringSplitOptions.RemoveEmptyEntries);
             
@@ -443,18 +452,17 @@ namespace WindowsFormsApplication1
                 {
                     DesignClass.PANEL_TRANSPARENCY = Convert.ToBoolean(words[index + 1]);
                 }
-
-            }
-            pic(this);
-        
+            }        
         }
 
-        public void lb_chit()
+        /// <summary>
+        /// ЧТение дефолтного дизайна для Label
+        /// </summary>
+        public void ReadLabelDefault()
         {
-            List<String> Auths = SQLClass.Select("SELECT design FROM design1 WHERE type = 'label'");
+            List<String> Auths = SQLClass.Select("SELECT design FROM " + Tables.Default + " WHERE type = 'label'");
             String designKnopki = Auths[0];
-
-
+            
             String[] words = designKnopki.Split(new char[] { ':', ',', ' ', '\"' }, StringSplitOptions.RemoveEmptyEntries);
 
             for (int index = 0; index < words.Length; index++)
@@ -482,24 +490,16 @@ namespace WindowsFormsApplication1
                         }
                     }
                 }
-
             }
-            pic(this);
-
         }
-
-
+        
         /// <summary>
-        /// Меняет дизайн всех кнопок на тот который в базе
+        /// Чтение дефолтного дизайна Button
         /// </summary>
-        private void button7_Click(object sender, EventArgs e)
+        private void ReadButtonDefault()
         {
-            List<String> Auths = SQLClass.Select("SELECT design FROM design1 WHERE type = 'Button'");
+            List<String> Auths = SQLClass.Select("SELECT design FROM " + Tables.Default + " WHERE type = 'Button'");
             String designKnopki = Auths[0];
-
-            /*  String designKnopki = "BackColor: Control, " +
-                  "ForeColor: ControlText, " +
-                  "Font: Microsoft Sans Serif";*/
 
             String[] words = designKnopki.Split(new char[] { ':', ',', ' ', '\"' }, StringSplitOptions.RemoveEmptyEntries);
 
@@ -526,9 +526,7 @@ namespace WindowsFormsApplication1
                             Color knownColor = Color.FromKnownColor((KnownColor)Enum.Parse(typeof(KnownColor), colorName));
                             DesignClass.BUTTON_TEXT_COLOR = knownColor;
                         }
-
                     }
-
                 }
 
                 if (words[index] == "Font")
@@ -542,9 +540,8 @@ namespace WindowsFormsApplication1
                     }
                 }
             }
-
-            pic(this);
         }
+        #endregion
 
         private void дизайнФормыToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -559,8 +556,8 @@ namespace WindowsFormsApplication1
                 ((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl.FindForm().Font = fo.Font;
                 ((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl.FindForm().ForeColor = fo.Color;
                 ((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl.FindForm().BackColor = cl.Color;
-                SQLClass.Delete("DELETE FROM designDiffirent WHERE FormFrom = '" + FormName + "' and type = 'Form'");
-                SQLClass.Insert("INSERT INTO designDiffirent (type, design, FormFrom, Author, Name)" +
+                SQLClass.Delete("DELETE FROM " + Tables.Unique + " WHERE FormFrom = '" + FormName + "' and type = 'Form'");
+                SQLClass.Insert("INSERT INTO " + Tables.Unique + " (type, design, FormFrom, Author, Name)" +
                     " VALUES ('Form', " + "'" + Convert.ToString(fo.Font) + "'," + "'" + FormName + "', '', '')");
             }
         }
@@ -572,8 +569,8 @@ namespace WindowsFormsApplication1
             form.ShowDialog();
             pb = form.panel;
 
-            SQLClass.Delete("DELETE FROM designDiffirent WHERE type = 'Panel' AND name = '" + pb.Name + "' AND FormFrom = '" + this.Name +"'");
-            SQLClass.Insert("INSERT INTO designDiffirent (type, design, author, name, FormFrom) VALUES " +
+            SQLClass.Delete("DELETE FROM " + Tables.Unique + " WHERE type = 'Panel' AND name = '" + pb.Name + "' AND FormFrom = '" + this.Name +"'");
+            SQLClass.Insert("INSERT INTO " + Tables.Unique + " (type, design, author, name, FormFrom) VALUES " +
                 "('Panel', " +
                 "'Color = " + pb.BackColor + ", Visible = " + pb.Visible + ", BackgroundImage = " + pb.BackgroundImage + "', "  +
                 "'admin', '" + pb.Name + "', '" + this.Name + "')");
@@ -586,8 +583,8 @@ namespace WindowsFormsApplication1
             f.ShowDialog();
             pb = f.newButton;
 
-            SQLClass.Delete("DELETE FROM designDiffirent WHERE type = 'Button' AND name = '" + pb.Name + "' AND FormFrom = '" + this.Name + "'");
-            SQLClass.Insert("INSERT INTO designDiffirent (type, design, author, name, FormFrom) VALUES " +
+            SQLClass.Delete("DELETE FROM " + Tables.Unique + " WHERE type = 'Button' AND name = '" + pb.Name + "' AND FormFrom = '" + this.Name + "'");
+            SQLClass.Insert("INSERT INTO " + Tables.Unique + " (type, design, author, name, FormFrom) VALUES " +
                 "('Button', " +
                 "'Color = " + pb.BackColor + ", Visible = " + pb.Visible + ", BackgroundImage = " + pb.BackgroundImage + ", Text = "+ pb.Text +
                 "', 'admin', '" + pb.Name + "', '" + this.Name + "')");
