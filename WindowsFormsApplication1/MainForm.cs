@@ -31,7 +31,7 @@ namespace WindowsFormsApplication1
         }
 
         #region Измение растстояния между картинками, сами картинки, цвета и тд
-        public static void pic ( Control c)
+        public static void pic(Control c)
         {
             //Фон формы FIXME!!!
             if (c.GetType().ToString().Contains("WindowsFormsApplication1"))
@@ -40,126 +40,155 @@ namespace WindowsFormsApplication1
                 c.Cursor = DesignClass.FORM_CURSOR;
                 c.BackColor = DesignClass.FORM_COLOR;
                 c.ContextMenuStrip = DesignClass.FORM_MENU;
-            }
 
-            //Дизайн кнопок
-            foreach (Control ctr in c.Controls)
-            {
-                if (ctr.GetType().ToString() == "System.Windows.Forms.Button")
+                List<String> uniqueDesign = SQLClass.Select("SELECT design FROM designDiffirent WHERE FormFrom = '" + c.Name + "'and Type='Form'");
+                String[] words = uniqueDesign[0].Split(new string[] { ":", ",", " = ", "=" }, StringSplitOptions.RemoveEmptyEntries);
+
+                String FontName = "";
+                int FontSize = 0;
+
+                for (int i = 0; i < words.Length; i++)
                 {
-                    ((Button)ctr).BackgroundImage = DesignClass.BUTTON_BACKGROUND_IMG;
-                    ((Button)ctr).BackgroundImageLayout = ImageLayout.Stretch;
-                    ((Button)ctr).ForeColor = DesignClass.BUTTON_TEXT_COLOR;
-                    ((Button)ctr).Font = DesignClass.BUTTON_FONT;
-                    ((Button)ctr).BackColor = DesignClass.BUTTON_COLOR;
-                    ctr.ContextMenuStrip = DesignClass.BUTTON_MENU;
-                }
-                else if (ctr.GetType().ToString() == "System.Windows.Forms.Label")
-                {
-                    ((Label)ctr).BackColor = Color.Transparent;
-                    ((Label)ctr).ForeColor = DesignClass.LABEL_TEXT_COLOR;
-                }
-                else if (ctr.GetType().ToString() == "System.Windows.Forms.PictureBox")
-                {
-                    ctr.ContextMenuStrip = DesignClass.PICTURE_SAVE_MENU;
-                }                
-                else if (ctr.GetType().ToString() == "System.Windows.Forms.Panel")
-                {                    
-                    ((Panel)ctr).BackgroundImage = DesignClass.PANEL_BACKGROUND_IMG;
-                    ((Panel)ctr).BackColor = DesignClass.PANEL_COLOR;
-                    ctr.ContextMenuStrip = DesignClass.PANEL_MENU;
-                    if (DesignClass.PANEL_TRANSPARENCY)
+                    if (words[i] == "Color")
                     {
-                        ((Panel)ctr).BackColor = Color.Transparent;
-                    }          
-                }
-
-                String str = "Type: Label, " +
-                "Name: label1, " +
-                "BackColor: Transparent" +
-                "ForeColor: ControlText";
-                List<String> what = SQLClass.Select("SELECT design FROM " + Tables.Default + " WHERE type = 'Button'");
-
-                
-
-                
-
-
-
-                List<String> uniqueDesign = SQLClass.Select("SELECT design, FormFrom, Name, Type FROM " + Tables.Unique);
-
-                for (int index = 0; index < uniqueDesign.Count; index += 4)
-                {
-                    if (uniqueDesign[index + 1] == ctr.FindForm().Name &&
-                        uniqueDesign[index + 2] == ctr.Name &&
-                        ctr.GetType().ToString() == "System.Windows.Forms." + uniqueDesign[index + 3])
-                    {
-                        String[] words = uniqueDesign[index].Split(new string[] { ":", ",", " = ", "=" }, StringSplitOptions.RemoveEmptyEntries);
-
-                        String FontName = "";
-                        int FontSize = 0;
-
-                        for (int i = 0; i < words.Length; i++)
+                        foreach (String colorName in Enum.GetNames(typeof(KnownColor)))
                         {
-                            if (words[i] == "Color")
+                            String colorFromDB = words[i + 1];
+                            if (colorFromDB.Trim().StartsWith("Color"))
                             {
-                                foreach (String colorName in Enum.GetNames(typeof(KnownColor)))
-                                {
-                                    String colorFromDB = words[i + 1];
-                                    if (colorFromDB.StartsWith("Color"))
-                                    {
-                                        colorFromDB = colorFromDB.Replace("Color [", "").Replace("]", "");
-                                    }
+                                colorFromDB = colorFromDB.Trim().Replace("Color [", "").Replace("]", "");
+                            }
 
-                                    if (colorName == colorFromDB)
+                            if (colorName == colorFromDB.Trim())
+                            {
+
+                                Color knownColor = Color.FromKnownColor((KnownColor)Enum.Parse(typeof(KnownColor), colorName));
+                                c.BackColor = knownColor;
+
+                                //ctr.BackColor = Color.FromArgb(Convert.ToInt32(words[i + 1]));
+
+                            }
+                        }
+                    }
+                }
+
+                //Дизайн кнопок
+                foreach (Control ctr in c.Controls)
+                {
+                    if (ctr.GetType().ToString() == "System.Windows.Forms.Button")
+                    {
+                        ((Button)ctr).BackgroundImage = DesignClass.BUTTON_BACKGROUND_IMG;
+                        ((Button)ctr).BackgroundImageLayout = ImageLayout.Stretch;
+                        ((Button)ctr).ForeColor = DesignClass.BUTTON_TEXT_COLOR;
+                        ((Button)ctr).Font = DesignClass.BUTTON_FONT;
+                        ((Button)ctr).BackColor = DesignClass.BUTTON_COLOR;
+                        ctr.ContextMenuStrip = DesignClass.BUTTON_MENU;
+                    }
+                    else if (ctr.GetType().ToString() == "System.Windows.Forms.Label")
+                    {
+                        ((Label)ctr).BackColor = Color.Transparent;
+                        ((Label)ctr).ForeColor = DesignClass.LABEL_TEXT_COLOR;
+                    }
+                    else if (ctr.GetType().ToString() == "System.Windows.Forms.PictureBox")
+                    {
+                        ctr.ContextMenuStrip = DesignClass.PICTURE_SAVE_MENU;
+                    }
+                    else if (ctr.GetType().ToString() == "System.Windows.Forms.Panel")
+                    {
+                        ((Panel)ctr).BackgroundImage = DesignClass.PANEL_BACKGROUND_IMG;
+                        ((Panel)ctr).BackColor = DesignClass.PANEL_COLOR;
+                        ctr.ContextMenuStrip = DesignClass.PANEL_MENU;
+                        if (DesignClass.PANEL_TRANSPARENCY)
+                        {
+                            ((Panel)ctr).BackColor = Color.Transparent;
+                        }
+                    }
+
+                  String str = "Type: Label, " +
+                  "Name: label1, " +
+                  "BackColor: Transparent" +
+                  "ForeColor: ControlText";
+                  List<String> what = SQLClass.Select("SELECT design FROM " + Tables.Default + " WHERE type = 'Button'");
+
+
+
+
+
+                    List<String> uniqueDesign = SQLClass.Select("SELECT design, FormFrom, Name, Type FROM " + Tables.Unique);
+                    
+                    for (int index = 0; index < uniqueDesign.Count; index += 4)
+                    {
+                        if (uniqueDesign[index + 1] == ctr.FindForm().Name &&
+                            uniqueDesign[index + 2] == ctr.Name &&
+                            ctr.GetType().ToString() == "System.Windows.Forms." + uniqueDesign[index + 3])
+                        {
+                           words = uniqueDesign[index].Split(new string[] { ":", ",", " = ", "=" }, StringSplitOptions.RemoveEmptyEntries);
+
+                             FontName = "";
+                             FontSize = 0;
+
+                            for (int i = 0; i < words.Length; i++)
+                            {
+                                if (words[i] == "Color")
+                                {
+                                    foreach (String colorName in Enum.GetNames(typeof(KnownColor)))
                                     {
-                                        
-                                        Color knownColor = Color.FromKnownColor((KnownColor)Enum.Parse(typeof(KnownColor), colorName));
-                                        ctr.BackColor = knownColor;
-                                       
-                                        //ctr.BackColor = Color.FromArgb(Convert.ToInt32(words[i + 1]));
-                                        
+                                        String colorFromDB = words[i + 1];
+                                        if (colorFromDB.StartsWith("Color"))
+                                        {
+                                            colorFromDB = colorFromDB.Replace("Color [", "").Replace("]", "");
+                                        }
+
+                                        if (colorName == colorFromDB)
+                                        {
+
+                                            Color knownColor = Color.FromKnownColor((KnownColor)Enum.Parse(typeof(KnownColor), colorName));
+                                            ctr.BackColor = knownColor;
+
+                                            //ctr.BackColor = Color.FromArgb(Convert.ToInt32(words[i + 1]));
+
+                                        }
                                     }
                                 }
-                            }
 
-                            if (words[i] == "Visible")
-                            {
-                                ctr.Visible = (words[i + 1] == "True");
-                            }
+                                if (words[i] == "Visible")
+                                {
+                                    ctr.Visible = (words[i + 1] == "True");
+                                }
 
-                            if (words[i] == "FontName")
-                            {
-                                FontName = words[i + 1];
-                            }
+                                if (words[i] == "FontName")
+                                {
+                                    FontName = words[i + 1];
+                                }
 
-                            if (words[i] == "FontSize")
-                            {
-                                FontSize = Convert.ToInt32(words[i + 1]);
-                            }
+                                if (words[i] == "FontSize")
+                                {
+                                    FontSize = Convert.ToInt32(words[i + 1]);
+                                }
 
-                            /*  if (words[i] == "BackgroundImage")
-                              {
-                                  if (ctr.GetType().ToString() == "System.Windows.Forms.Button")
+                                /*  if (words[i] == "BackgroundImage")
                                   {
-                                      DesignClass.BUTTON_BACKGROUND_IMG = words[i + 1];
-                                  }
+                                      if (ctr.GetType().ToString() == "System.Windows.Forms.Button")
+                                      {
+                                          DesignClass.BUTTON_BACKGROUND_IMG = words[i + 1];
+                                      }
                                 
-                              }*/
-                        }
+                                  }*/
+                            }
 
-                        if (FontName != "" && FontSize > 0)
-                        {
-                            ctr.Font = new Font(FontName, FontSize);
+                            if (FontName != "" && FontSize > 0)
+                            {
+                                ctr.Font = new Font(FontName, FontSize);
+                            }
+
                         }
 
                     }
 
+
+
+                    pic(ctr);
                 }
-
-
-               
-                pic(ctr);
             }
         }
         #endregion
@@ -546,7 +575,7 @@ namespace WindowsFormsApplication1
         private void дизайнФормыToolStripMenuItem_Click(object sender, EventArgs e)
         {
             String FormName = ((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl.FindForm().Name;
-
+            /*
             FontDialog fo = new FontDialog();
             fo.ShowColor = true;
             ColorDialog cl = new ColorDialog();
@@ -559,7 +588,9 @@ namespace WindowsFormsApplication1
                 SQLClass.Delete("DELETE FROM " + Tables.Unique + " WHERE FormFrom = '" + FormName + "' and type = 'Form'");
                 SQLClass.Insert("INSERT INTO " + Tables.Unique + " (type, design, FormFrom, Author, Name)" +
                     " VALUES ('Form', " + "'" + Convert.ToString(fo.Font) + "'," + "'" + FormName + "', '', '')");
-            }
+            }*/
+            FormThisDesign ftd = new FormThisDesign(FormName);
+            ftd.ShowDialog();
         }
 
         private void ggToolStripMenuItem_Click(object sender, EventArgs e)
@@ -590,15 +621,9 @@ namespace WindowsFormsApplication1
                 "', 'admin', '" + pb.Name + "', '" + this.Name + "')");
         }
 
-        private void sgdfgdgToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void сохранитьДефолтныйДизайнToolStripMenuItem_Click(object sender, EventArgs e)
         {
             typeSerialize();
-
         }
     }
 }
