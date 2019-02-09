@@ -40,14 +40,15 @@
             this.checkedListBox1.Size = new System.Drawing.Size(247, 249);
             this.checkedListBox1.TabIndex = 0;
             this.checkedListBox1.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBox1_ItemCheck);
+            this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
             // 
-            // Form1
+            // Nevidimost
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(247, 249);
             this.Controls.Add(this.checkedListBox1);
-            this.Name = "Form1";
+            this.Name = "Nevidimost";
             this.Text = "Невидимость";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
