@@ -39,6 +39,7 @@ namespace WindowsFormsApplication1
             ColorDialog MyDialog = new ColorDialog();
             MyDialog.ShowDialog();
 
+            this.ForeColor = MyDialog.Color;
             DesignClass.BUTTON_TEXT_COLOR = MyDialog.Color;
         }
 
@@ -80,15 +81,6 @@ namespace WindowsFormsApplication1
                     MainForm.pic(this);
                 }
             }
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            ColorDialog MyDialog = new ColorDialog();
-            MyDialog.ShowDialog();
-
-            DesignClass.BUTTON_COLOR = MyDialog.Color;
-            MainForm.pic(this);
         }
     }
 }

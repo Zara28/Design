@@ -85,7 +85,6 @@ namespace WindowsFormsApplication1
 
         private void button3_Click(object sender, EventArgs e)
         {
-
             try
             {
                 pictureBox1.Load(textBox2.Text);
@@ -96,7 +95,7 @@ namespace WindowsFormsApplication1
             }
 
             DesignClass.PANEL_BACKGROUND_IMG = pictureBox1.Image;
-
+            DesignClass.PANEL_BACKGROUND_ADDRESS = textBox2.Text;
         }
 
         private void PanelForm_Load(object sender, EventArgs e)

@@ -77,6 +77,10 @@ namespace WindowsFormsApplication1
         /// </summary>
         public static Image PANEL_BACKGROUND_IMG;
         /// <summary>
+        /// Адрес картинки панели
+        /// </summary>
+        public static String PANEL_BACKGROUND_ADDRESS;
+        /// <summary>
         /// Прозрачность панели
         /// </summary>
         public static bool PANEL_TRANSPARENCY;
