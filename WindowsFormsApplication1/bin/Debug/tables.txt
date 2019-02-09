@@ -1,0 +1,2 @@
+Default = design1
+Unique = designDiffirent

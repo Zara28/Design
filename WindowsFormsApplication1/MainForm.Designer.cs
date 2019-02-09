@@ -51,6 +51,9 @@
             this.ggToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ButtonContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.changeUniqueBtnMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.sgdfgdgToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.сохранитьДефолтныйДизайнToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -58,11 +61,13 @@
             this.FormContextMenuStrip.SuspendLayout();
             this.PanelContextMenuStrip.SuspendLayout();
             this.ButtonContextMenuStrip.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
             // 
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button1.ContextMenuStrip = this.contextMenuStrip1;
             this.button1.Location = new System.Drawing.Point(12, 12);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(127, 70);
@@ -179,7 +184,6 @@
             this.button7.TabIndex = 2;
             this.button7.Text = "SQLPanel";
             this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // pictureBox1
             // 
@@ -192,6 +196,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.ContextMenuStrip = this.contextMenuStrip1;
             this.label1.Location = new System.Drawing.Point(145, 58);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(72, 13);
@@ -216,10 +221,10 @@
             // 
             this.FormContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.buttonsVisibilityToolStripMenuItem,
-            this.дизайнФормыToolStripMenuItem});
+            this.дизайнФормыToolStripMenuItem,
+            this.сохранитьДефолтныйДизайнToolStripMenuItem});
             this.FormContextMenuStrip.Name = "visibilityContextMenuStrip";
-            this.FormContextMenuStrip.Size = new System.Drawing.Size(178, 70);
-            this.FormContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.FormContextMenuStrip_Opening);
+            this.FormContextMenuStrip.Size = new System.Drawing.Size(240, 92);
             // 
             // buttonsVisibilityToolStripMenuItem
             // 
@@ -263,10 +268,32 @@
             this.changeUniqueBtnMenuItem.Text = "Изменить кнопку";
             this.changeUniqueBtnMenuItem.Click += new System.EventHandler(this.changeUniqueBtnMenuItem_Click);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sgdfgdgToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(119, 26);
+            // 
+            // sgdfgdgToolStripMenuItem
+            // 
+            this.sgdfgdgToolStripMenuItem.Name = "sgdfgdgToolStripMenuItem";
+            this.sgdfgdgToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.sgdfgdgToolStripMenuItem.Text = "sgdfgdg";
+            this.sgdfgdgToolStripMenuItem.Click += new System.EventHandler(this.sgdfgdgToolStripMenuItem_Click);
+            // 
+            // сохранитьДефолтныйДизайнToolStripMenuItem
+            // 
+            this.сохранитьДефолтныйДизайнToolStripMenuItem.Name = "сохранитьДефолтныйДизайнToolStripMenuItem";
+            this.сохранитьДефолтныйДизайнToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
+            this.сохранитьДефолтныйДизайнToolStripMenuItem.Text = "Сохранить дефолтный дизайн";
+            this.сохранитьДефолтныйДизайнToolStripMenuItem.Click += new System.EventHandler(this.сохранитьДефолтныйДизайнToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(436, 366);
             this.ContextMenuStrip = this.FormContextMenuStrip;
             this.Controls.Add(this.label1);
@@ -287,6 +314,7 @@
             this.FormContextMenuStrip.ResumeLayout(false);
             this.PanelContextMenuStrip.ResumeLayout(false);
             this.ButtonContextMenuStrip.ResumeLayout(false);
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -316,6 +344,9 @@
         private System.Windows.Forms.ContextMenuStrip ButtonContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem changeUniqueBtnMenuItem;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem sgdfgdgToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem сохранитьДефолтныйДизайнToolStripMenuItem;
     }
 }
 
