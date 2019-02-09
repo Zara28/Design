@@ -136,6 +136,7 @@ namespace WindowsFormsApplication1
                 }
 
                 pic(ctr);
+                
             }
         }
         #endregion
@@ -336,10 +337,6 @@ namespace WindowsFormsApplication1
             {
                 ButtonData.Add("Font", DesignClass.BUTTON_FONT.ToString());
             }
-            if (DesignClass.BUTTON_COLOR != null)
-            {
-                ButtonData.Add("Color", DesignClass.BUTTON_COLOR.ToString());
-            }
             #endregion
 
             #region Panel
@@ -347,6 +344,10 @@ namespace WindowsFormsApplication1
             if (DesignClass.PANEL_COLOR != null)
             {
                 PanelData.Add("BackColor", DesignClass.PANEL_COLOR.ToString());
+            }
+            if (DesignClass.PANEL_BACKGROUND_ADDRESS != null)
+            {
+                PanelData.Add("BackGroundImageAddress", DesignClass.PANEL_BACKGROUND_ADDRESS);
             }
             if (DesignClass.PANEL_TRANSPARENCY != false)
             {
@@ -427,11 +428,21 @@ namespace WindowsFormsApplication1
                         }
                     }
                 }
-
+                
                 if (words[index] == "Transparency")
                 {
                     DesignClass.PANEL_TRANSPARENCY = Convert.ToBoolean(words[index + 1]);
                 }
+                if (words[index] == "BackGroundImageAddress")
+                {
+                    DesignClass.PANEL_BACKGROUND_ADDRESS = words[index + 1] + ":" + words[index + 2];
+
+                    PictureBox pb1 = new PictureBox();
+                    pb1.Load(DesignClass.PANEL_BACKGROUND_ADDRESS);
+                    DesignClass.PANEL_BACKGROUND_IMG = pb1.Image;
+                    pb1.Dispose();
+                }
+                
             }        
         }
 
@@ -479,10 +490,6 @@ namespace WindowsFormsApplication1
         private void ReadButtonDefault()
         {
             List<String> Auths = SQLClass.Select("SELECT design FROM " + Tables.Default + " WHERE type = 'Button'");
-            if(Auths.Count == 0)
-            {
-                return;
-            }
             String designKnopki = Auths[0];
 
             String[] words = designKnopki.Split(new char[] { ':', ',', ' ', '\"' }, StringSplitOptions.RemoveEmptyEntries);
@@ -551,22 +558,16 @@ namespace WindowsFormsApplication1
             f.ShowDialog();
             pb = f.newButton;
 
-            if (!f.ReturnToDefault)
-            {
-                ButtonUniqueForm.UpdateButtonDesignInDb(pb); 
-            }
-
-            pic(this);
+            SQLClass.Delete("DELETE FROM " + Tables.Unique + " WHERE type = 'Button' AND name = '" + pb.Name + "' AND FormFrom = '" + this.Name + "'");
+            SQLClass.Insert("INSERT INTO " + Tables.Unique + " (type, design, author, name, FormFrom) VALUES " +
+                "('Button', " +
+                "'Color = " + pb.BackColor + ", Visible = " + pb.Visible + ", BackgroundImage = " + pb.BackgroundImage + ", Text = "+ pb.Text +
+                "', 'admin', '" + pb.Name + "', '" + this.Name + "')");
         }
 
         private void сохранитьДефолтныйДизайнToolStripMenuItem_Click(object sender, EventArgs e)
         {
             typeSerialize();
-        }
-
-        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
-        {
-
         }
     }
 }

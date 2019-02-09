@@ -25,11 +25,7 @@ namespace WindowsFormsApplication1
         public static void GetFormDesignFromDb(ref Control c)
         {
             List<String> uniqueDesign = SQLClass.Select("SELECT design FROM " + Tables.Unique + " WHERE FormFrom = '" + c.Name + "'and Type='Form'");
-            if (uniqueDesign.Count == 0)
-            {
-                return;
-            }
-              String[] words = uniqueDesign[0].Split(new string[] { ":", ",", " = ", "=" }, StringSplitOptions.RemoveEmptyEntries);
+            String[] words = uniqueDesign[0].Split(new string[] { ":", ",", " = ", "=" }, StringSplitOptions.RemoveEmptyEntries);
             
             for (int i = 0; i < words.Length; i++)
             {
