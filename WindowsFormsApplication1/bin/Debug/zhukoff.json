@@ -13,7 +13,7 @@
     "Name": "button6",
     "Enabled": "True",
     "Visible": "True",
-    "BackgroundImageLayout": "Stretch",
+    "BackgroundImageLayout": "Tile",
     "FontSize": "8,25",
     "BackColor": "Transparent",
     "Type": "Button",
@@ -21,12 +21,12 @@
     "Font": "Microsoft Sans Serif"
   },
   {
-    "Name": "button5",
+    "Name": "buttonDefaultForm",
     "Enabled": "True",
     "Visible": "True",
-    "BackgroundImageLayout": "Stretch",
+    "BackgroundImageLayout": "Tile",
     "FontSize": "8,25",
-    "BackColor": "Silver",
+    "BackColor": "Transparent",
     "Type": "Button",
     "ForeColor": "ControlText",
     "Font": "Microsoft Sans Serif"
@@ -46,7 +46,7 @@
       "Name": "button6",
       "Enabled": "True",
       "Visible": "True",
-      "BackgroundImageLayout": "Stretch",
+      "BackgroundImageLayout": "Tile",
       "FontSize": "8,25",
       "BackColor": "Transparent",
       "Type": "Button",
@@ -54,12 +54,12 @@
       "Font": "Microsoft Sans Serif"
     },
     {
-      "Name": "button5",
+      "Name": "buttonDefaultForm",
       "Enabled": "True",
       "Visible": "True",
-      "BackgroundImageLayout": "Stretch",
+      "BackgroundImageLayout": "Tile",
       "FontSize": "8,25",
-      "BackColor": "Silver",
+      "BackColor": "Transparent",
       "Type": "Button",
       "ForeColor": "ControlText",
       "Font": "Microsoft Sans Serif"
@@ -89,7 +89,7 @@
     "Visible": "True",
     "BackgroundImageLayout": "Stretch",
     "FontSize": "8,25",
-    "BackColor": "Control",
+    "BackColor": "Lime",
     "Type": "Button",
     "ForeColor": "ControlText",
     "Font": "Microsoft Sans Serif"
@@ -100,7 +100,7 @@
     "Visible": "True",
     "BackgroundImageLayout": "Stretch",
     "FontSize": "8,25",
-    "BackColor": "Maroon",
+    "BackColor": "Red",
     "Type": "Button",
     "ForeColor": "ControlText",
     "Font": "Microsoft Sans Serif"
