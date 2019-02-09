@@ -25,6 +25,10 @@ namespace WindowsFormsApplication1
         public static void GetFormDesignFromDb(ref Control c)
         {
             List<String> uniqueDesign = SQLClass.Select("SELECT design FROM " + Tables.Unique + " WHERE FormFrom = '" + c.Name + "'and Type='Form'");
+            if (uniqueDesign.Count == 0)
+            {
+                return;
+            }
             String[] words = uniqueDesign[0].Split(new string[] { ":", ",", " = ", "=" }, StringSplitOptions.RemoveEmptyEntries);
             
             for (int i = 0; i < words.Length; i++)
@@ -58,18 +62,25 @@ namespace WindowsFormsApplication1
         {
             fo.ShowColor = true;
             fo.ShowDialog();
+            this.Font = fo.Font;
+            this.ForeColor = fo.Color;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             cl.ShowDialog();
+            this.BackColor = cl.Color;
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            SQLClass.Delete("DELETE FROM designDiffirent WHERE FormFrom = '" + FormName + "' and type = 'Form'");
+            ToTable(this, FormName);
+        }
+        public static void ToTable (Form f, String fName)
+        {
+            SQLClass.Delete("DELETE FROM designDiffirent WHERE FormFrom = '" + fName + "' and type = 'Form'");
             SQLClass.Insert("INSERT INTO designDiffirent (type, design, FormFrom, Author, Name)" +
-                " VALUES ('Form', " + "'Color: " + Convert.ToString(cl.Color) + "'," + "'" + FormName + "', '', '')");
+                " VALUES ('Form', " + "'Color: " + Convert.ToString(f.BackColor) + "'," + "'" + fName + "', '', '')");
         }
     }
 }
