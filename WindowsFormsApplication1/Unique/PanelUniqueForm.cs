@@ -48,28 +48,24 @@ namespace WindowsFormsApplication1
         }
 
       
-        private void button2_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Смена цвета панели конкретной
+        /// </summary>
+        private void buttonColor_Click(object sender, EventArgs e)
         {
             ColorDialog MyDialog = new ColorDialog();
+            MyDialog.Color = panel.BackColor;
             MyDialog.ShowDialog();
-
             panel.BackColor = MyDialog.Color;
-            //this.Close();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             panel.BackColor = Color.Transparent;
-
-            //this.Close();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-
-
-
-
             try
             {
                 pictureBox1.Load(textBox1.Text);
