@@ -24,7 +24,7 @@ namespace WindowsFormsApplication1
         {
             InitializeComponent();
 
-            ReadButtonDefault();
+            ButtonDefaultForm.ReadButtonDefault();
             ReadLabelDefault();
             ReadPanelDefault();
             pic(this);
@@ -168,7 +168,10 @@ namespace WindowsFormsApplication1
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
         }
 
-        private void button6_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Дефолтный дизайн форм открываем
+        /// </summary>
+        private void buttonFormDefaultForm_Click(object sender, EventArgs e)
         {
             FormDefaultForm form = new FormDefaultForm();
             form.ShowDialog();
@@ -337,6 +340,10 @@ namespace WindowsFormsApplication1
             {
                 ButtonData.Add("Font", DesignClass.BUTTON_FONT.ToString());
             }
+            if (DesignClass.BUTTON_COLOR != null)
+            {
+                ButtonData.Add("Color", DesignClass.BUTTON_COLOR.ToString());
+            }
             #endregion
 
             #region Panel
@@ -482,56 +489,8 @@ namespace WindowsFormsApplication1
                     }
                 }
             }
-        }
+        }       
         
-        /// <summary>
-        /// Чтение дефолтного дизайна Button
-        /// </summary>
-        private void ReadButtonDefault()
-        {
-            List<String> Auths = SQLClass.Select("SELECT design FROM " + Tables.Default + " WHERE type = 'Button'");
-            String designKnopki = Auths[0];
-
-            String[] words = designKnopki.Split(new char[] { ':', ',', ' ', '\"' }, StringSplitOptions.RemoveEmptyEntries);
-
-            for (int index = 0; index < words.Length; index++)
-            {
-                if (words[index] == "BackColor")
-                {
-                    foreach (String colorName in Enum.GetNames(typeof(KnownColor)))
-                    {
-                        if (colorName == words[index + 1])
-                        {
-                            Color knownColor = Color.FromKnownColor((KnownColor)Enum.Parse(typeof(KnownColor), colorName));
-                            DesignClass.BUTTON_COLOR = knownColor;
-                        }
-                    }
-                }
-
-                if (words[index] == "ForeColor")
-                {
-                    foreach (String colorName in Enum.GetNames(typeof(KnownColor)))
-                    {
-                        if (colorName == words[index + 1])
-                        {
-                            Color knownColor = Color.FromKnownColor((KnownColor)Enum.Parse(typeof(KnownColor), colorName));
-                            DesignClass.BUTTON_TEXT_COLOR = knownColor;
-                        }
-                    }
-                }
-
-                if (words[index] == "Font")
-                {
-                    foreach (FontFamily item in FontFamily.Families)
-                    {
-                        if (item.ToString() == words[index + 1])
-                        {
-                            DesignClass.BUTTON_FONT = new Font(item, 14);
-                        }
-                    }
-                }
-            }
-        }
         #endregion
 
         private void дизайнФормыToolStripMenuItem_Click(object sender, EventArgs e)
@@ -557,12 +516,12 @@ namespace WindowsFormsApplication1
             ButtonUniqueForm f = new ButtonUniqueForm(pb);
             f.ShowDialog();
             pb = f.newButton;
-
-            SQLClass.Delete("DELETE FROM " + Tables.Unique + " WHERE type = 'Button' AND name = '" + pb.Name + "' AND FormFrom = '" + this.Name + "'");
-            SQLClass.Insert("INSERT INTO " + Tables.Unique + " (type, design, author, name, FormFrom) VALUES " +
-                "('Button', " +
-                "'Color = " + pb.BackColor + ", Visible = " + pb.Visible + ", BackgroundImage = " + pb.BackgroundImage + ", Text = "+ pb.Text +
-                "', 'admin', '" + pb.Name + "', '" + this.Name + "')");
+            if (!f.ReturnToDefault)
+            {
+                ButtonUniqueForm.UpdateButtonDesignInDb(pb);
+            }
+            
+            pic(this);
         }
 
         private void сохранитьДефолтныйДизайнToolStripMenuItem_Click(object sender, EventArgs e)

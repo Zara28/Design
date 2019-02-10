@@ -19,6 +19,58 @@ namespace WindowsFormsApplication1
         {
             InitializeComponent();
         }
+        
+        /// <summary>
+        /// Чтение дефолтного дизайна Button
+        /// </summary>
+        public static void ReadButtonDefault()
+        {
+            List<String> Auths = SQLClass.Select("SELECT design FROM " + Tables.Default + " WHERE type = 'Button'");
+            if (Auths.Count == 0)
+            {
+                return;
+            }
+
+            String[] words = Auths[0].Split(new char[] { ':', ',', ' ', '\"' }, StringSplitOptions.RemoveEmptyEntries);
+
+            for (int index = 0; index < words.Length; index++)
+            {
+                if (words[index] == "BackColor")
+                {
+                    foreach (String colorName in Enum.GetNames(typeof(KnownColor)))
+                    {
+                        if (colorName == words[index + 1])
+                        {
+                            Color knownColor = Color.FromKnownColor((KnownColor)Enum.Parse(typeof(KnownColor), colorName));
+                            DesignClass.BUTTON_COLOR = knownColor;
+                        }
+                    }
+                }
+
+                if (words[index] == "ForeColor")
+                {
+                    foreach (String colorName in Enum.GetNames(typeof(KnownColor)))
+                    {
+                        if (colorName == words[index + 1])
+                        {
+                            Color knownColor = Color.FromKnownColor((KnownColor)Enum.Parse(typeof(KnownColor), colorName));
+                            DesignClass.BUTTON_TEXT_COLOR = knownColor;
+                        }
+                    }
+                }
+
+                if (words[index] == "Font")
+                {
+                    foreach (FontFamily item in FontFamily.Families)
+                    {
+                        if (item.ToString() == words[index + 1])
+                        {
+                            DesignClass.BUTTON_FONT = new Font(item, 14);
+                        }
+                    }
+                }
+            }
+        }
 
         private void Form2_Load(object sender, EventArgs e)
         {
@@ -70,17 +122,28 @@ namespace WindowsFormsApplication1
             DesignClass.BUTTON_BACKGROUND_IMG = pictureBox4.Image;
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void buttonFont_Click(object sender, EventArgs e)
         {
             if (fontDialog1.ShowDialog() != DialogResult.Cancel)
             {   
                 if (fontDialog1.Font.Size > 5 && fontDialog1.Font.Size < 38)
                 {
-
                     DesignClass.BUTTON_FONT = fontDialog1.Font;
                     MainForm.pic(this);
                 }
             }
+        }
+
+        /// <summary>
+        /// Цвет кнопок деолтный
+        /// </summary>
+        private void buttonColor_Click(object sender, EventArgs e)
+        {
+            ColorDialog MyDialog = new ColorDialog();
+            MyDialog.ShowDialog();
+
+            DesignClass.BUTTON_COLOR = MyDialog.Color;
+            MainForm.pic(this);
         }
     }
 }
