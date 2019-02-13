@@ -66,14 +66,19 @@ namespace WindowsFormsApplication1
 
 
 
-
-        private void button1_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Выбор цвета панелей
+        /// </summary>
+        private void colorButton_Click(object sender, EventArgs e)
         {
             ColorDialog MyDialog = new ColorDialog();
+            if (DesignClass.PANEL_COLOR != null)
+            {
+                MyDialog.Color = DesignClass.PANEL_COLOR;
+            }
+                
             MyDialog.ShowDialog();
-
             DesignClass.PANEL_COLOR = MyDialog.Color;
-           // this.Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -83,12 +88,11 @@ namespace WindowsFormsApplication1
             //this.Close();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void imageButton_Click(object sender, EventArgs e)
         {
-
             try
             {
-                pictureBox1.Load(textBox2.Text);
+                pictureBox1.Load(imageTextBox.Text);
             }
             catch (Exception)
             {
@@ -96,7 +100,7 @@ namespace WindowsFormsApplication1
             }
 
             DesignClass.PANEL_BACKGROUND_IMG = pictureBox1.Image;
-
+            DesignClass.PANEL_BACKGROUND_ADDRESS = imageTextBox.Text;
         }
 
         private void PanelForm_Load(object sender, EventArgs e)
@@ -227,7 +231,6 @@ namespace WindowsFormsApplication1
                                     }
                                 }
                             }
-                            
                         }
                         break;  
                     }
@@ -264,29 +267,6 @@ namespace WindowsFormsApplication1
                     }
                 }
             }
-
-
-
-            /////////////////////////////////////////////////////
-
-
-
-            /*
-            foreach (Control ctrl in this.Controls)
-            {
-                if (ctrl.GetType().Name == words[1] && ctrl.Name.ToString() == words[3])
-                {
-                    foreach (String colorName in Enum.GetNames(typeof(KnownColor)))
-                    {
-                        if (colorName == words[5])
-                        {
-                            Color knownColor = Color.FromKnownColor((KnownColor)Enum.Parse(typeof(KnownColor), colorName));//
-                            ctrl.BackColor = knownColor;
-                        }
-                    }
-                }
-            }
-             */
         }
 
         private void button4_Click(object sender, EventArgs e)

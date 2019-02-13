@@ -48,20 +48,20 @@ namespace WindowsFormsApplication1
         }
 
       
-        private void button2_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Смена цвета панели конкретной
+        /// </summary>
+        private void buttonColor_Click(object sender, EventArgs e)
         {
             ColorDialog MyDialog = new ColorDialog();
+            MyDialog.Color = panel.BackColor;
             MyDialog.ShowDialog();
-
             panel.BackColor = MyDialog.Color;
-            //this.Close();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            panel.Visible = false;
-
-            //this.Close();
+            panel.BackColor = Color.Transparent;
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -87,6 +87,18 @@ namespace WindowsFormsApplication1
         private void PanelUniqueForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dd = new OpenFileDialog();
+            dd.Filter = "картинка|*.jpg|картинка|*.png|картинка|*.bmp"; 
+            if (dd.ShowDialog() == DialogResult.OK)
+            {
+                pictureBox1.Image = new Bitmap(dd.FileName);
+                DesignClass.PANEL_BACKGROUND_IMG = new Bitmap(dd.FileName);
+                panel.BackgroundImage = DesignClass.PANEL_BACKGROUND_IMG;
+            }
         }
     }
 }
