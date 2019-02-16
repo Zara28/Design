@@ -1,16 +1,27 @@
 [
   {
+    "Name": "button5",
+    "Enabled": "True",
+    "Visible": "True",
+    "BackgroundImageLayout": "Stretch",
+    "FontSize": "8.25",
+    "BackColor": "Control",
+    "Type": "Button",
+    "ForeColor": "ControlText",
+    "Font": "Microsoft Sans Serif"
+  },
+  {
     "Name": "label1",
     "BackColor": "Transparent",
     "Enabled": "True",
     "Visible": "True",
     "Type": "Label",
-    "FontSize": "8.25",
+    "FontSize": "14",
     "Font": "Microsoft Sans Serif",
-    "ForeColor": "ControlText"
+    "ForeColor": "Blue"
   },
   {
-    "Name": "button6",
+    "Name": "buttonFormDefaultForm",
     "Enabled": "True",
     "Visible": "True",
     "BackgroundImageLayout": "Stretch",
@@ -26,24 +37,35 @@
     "Visible": "True",
     "BackgroundImageLayout": "Stretch",
     "FontSize": "8.25",
-    "BackColor": "Lime",
+    "BackColor": "Aqua",
     "Type": "Button",
     "ForeColor": "ControlText",
     "Font": "Microsoft Sans Serif"
   },
   [
     {
+      "Name": "button5",
+      "Enabled": "True",
+      "Visible": "True",
+      "BackgroundImageLayout": "Stretch",
+      "FontSize": "8.25",
+      "BackColor": "Control",
+      "Type": "Button",
+      "ForeColor": "ControlText",
+      "Font": "Microsoft Sans Serif"
+    },
+    {
       "Name": "label1",
       "BackColor": "Transparent",
       "Enabled": "True",
       "Visible": "True",
       "Type": "Label",
-      "FontSize": "8.25",
+      "FontSize": "14",
       "Font": "Microsoft Sans Serif",
-      "ForeColor": "ControlText"
+      "ForeColor": "Blue"
     },
     {
-      "Name": "button6",
+      "Name": "buttonFormDefaultForm",
       "Enabled": "True",
       "Visible": "True",
       "BackgroundImageLayout": "Stretch",
@@ -59,7 +81,7 @@
       "Visible": "True",
       "BackgroundImageLayout": "Stretch",
       "FontSize": "8.25",
-      "BackColor": "Lime",
+      "BackColor": "Aqua",
       "Type": "Button",
       "ForeColor": "ControlText",
       "Font": "Microsoft Sans Serif"

@@ -60,6 +60,8 @@ namespace WindowsFormsApplication1
                 {
                     ((Label)ctr).BackColor = Color.Transparent;
                     ((Label)ctr).ForeColor = DesignClass.LABEL_TEXT_COLOR;
+                    ((Label)ctr).Font = DesignClass.FONT_OF_LABEL;
+                    ctr.ContextMenuStrip = DesignClass.LABEL_MENU;
                 }
                 else if (ctr.GetType().ToString() == "System.Windows.Forms.PictureBox")
                 {
@@ -94,11 +96,11 @@ namespace WindowsFormsApplication1
 
                         for (int i = 0; i < words.Length; i++)
                         {
-                            if (words[i] == "Color")
+                            if (words[i].Trim() == "Color")
                             {
                                 foreach (String colorName in Enum.GetNames(typeof(KnownColor)))
                                 {
-                                    String colorFromDB = words[i + 1];
+                                    String colorFromDB = words[i + 1].Trim();
                                     if (colorFromDB.StartsWith("Color"))
                                     {
                                         colorFromDB = colorFromDB.Replace("Color [", "").Replace("]", "");
@@ -108,23 +110,42 @@ namespace WindowsFormsApplication1
                                     {
                                         Color knownColor = Color.FromKnownColor((KnownColor)Enum.Parse(typeof(KnownColor), colorName));
                                         ctr.BackColor = knownColor;
+                                        //ctr.ForeColor = knownColor;
                                     }
                                 }
                             }
 
-                            if (words[i] == "Visible")
+                            if (words[i].Trim() == "ForeColor")
+                            {
+                                foreach (String colorName in Enum.GetNames(typeof(KnownColor)))
+                                {
+                                    String colorFromDB = words[i + 1].Trim();
+                                    if (colorFromDB.StartsWith("Color"))
+                                    {
+                                        colorFromDB = colorFromDB.Replace("Color [", "").Replace("]", "");
+                                    }
+
+                                    if (colorName == colorFromDB)
+                                    {
+                                        Color knownColor = Color.FromKnownColor((KnownColor)Enum.Parse(typeof(KnownColor), colorName));
+                                        ctr.ForeColor = knownColor;
+                                    }
+                                }
+                            }
+
+                            if (words[i].Trim() == "Visible")
                             {
                                 ctr.Visible = (words[i + 1] == "True");
                             }
 
-                            if (words[i] == "FontName")
+                            if (words[i].Trim() == "FontName")
                             {
                                 FontName = words[i + 1];
                             }
 
-                            if (words[i] == "FontSize")
+                            if (words[i].Trim() == "FontSize")
                             {
-                                FontSize = Convert.ToInt32(words[i + 1]);
+                                FontSize = (int)(Convert.ToDecimal(words[i + 1]));
                             }
                         }
 
@@ -135,11 +156,11 @@ namespace WindowsFormsApplication1
                     }
                 }
 
-                pic(ctr);
-                
+                pic(ctr);               
+             
             }
+            #endregion
         }
-        #endregion
 
 
         private void button1_Click(object sender, EventArgs e)
@@ -161,6 +182,7 @@ namespace WindowsFormsApplication1
             DesignClass.FORM_MENU = FormContextMenuStrip;
             DesignClass.BUTTON_MENU = ButtonContextMenuStrip;
             DesignClass.PANEL_MENU = PanelContextMenuStrip;
+            DesignClass.LABEL_MENU = contextMenuStripLabel;
             
             pic(this);
             pictureBox1.Load("http://www.forumdaily.com/wp-content/uploads/2017/03/Depositphotos_31031331_m-2015.jpg");
@@ -372,6 +394,10 @@ namespace WindowsFormsApplication1
             {
                 labelData.Add("ForeColor", DesignClass.LABEL_TEXT_COLOR.ToString());
             }
+            if (DesignClass.FONT_OF_LABEL != null)
+            {
+                labelData.Add("Font", DesignClass.FONT_OF_LABEL.ToString());
+            }
             #endregion
 
             AllTypesData.Add("button", JObject.FromObject(ButtonData));
@@ -467,26 +493,50 @@ namespace WindowsFormsApplication1
             {
                 if (words[index] == "BackColor")
                 {
+                    String colorFromDB = words[index + 1].Trim();
+                    if (colorFromDB.StartsWith("Color"))
+                    {
+                        colorFromDB = colorFromDB.Replace("Color [", "").Replace("]", "");
+                    }
+
                     foreach (String colorName in Enum.GetNames(typeof(KnownColor)))
                     {
-                        if (colorName == words[index + 1])
+                        if (colorName == colorFromDB)
                         {
                             Color knownColor = Color.FromKnownColor((KnownColor)Enum.Parse(typeof(KnownColor), colorName));
                             DesignClass.LABEL_COLOR = knownColor;
                         }
                     }
+
+
                 }
 
                 if (words[index] == "ForeColor")
                 {
+                    String colorFromDB = words[index + 1].Trim();
+                    if (colorFromDB.StartsWith("Color"))
+                    {
+                        colorFromDB = colorFromDB.Replace("Color [", "").Replace("]", "");
+                    }
+
                     foreach (String colorName in Enum.GetNames(typeof(KnownColor)))
                     {
-                        if (colorName == words[index + 1])
+                        if (colorName == colorFromDB)
                         {
                             Color knownColor = Color.FromKnownColor((KnownColor)Enum.Parse(typeof(KnownColor), colorName));
                             DesignClass.LABEL_TEXT_COLOR = knownColor;
                         }
                     }
+                }
+
+                if (words[index].Trim() == "FontName")
+                {
+                    DesignClass.NAME_FONT_OF_LABEL = words[index + 1];
+                }
+
+                if (words[index].Trim() == "FontSize")
+                {
+                    DesignClass.SIZE_FONT_OF_LABEL = (int)(Convert.ToDecimal(words[index + 1]));
                 }
             }
         }       
@@ -529,17 +579,49 @@ namespace WindowsFormsApplication1
             typeSerialize();
         }
 
-        /*private void button5_Click(object sender, EventArgs e)
+        private void button5_Click(object sender, EventArgs e)
         {
-            int size;
-            size = Convert.ToInt32(textBox2.Text);
-            this.MaximumSize = new Size (size, size);
+            int size = Convert.ToInt32(textBox2.Text);
+            if (size >= 452)
+            {
+                this.MaximumSize = new Size(size, size);
+            }
+            else MessageBox.Show("Такое значение нельзя, похоронишь форму");
+            
         }
 
         private void MainForm_MaximumSizeChanged(object sender, EventArgs e)
         {
             button5_Click(sender, e);
-            InitializeComponent();
-        }*/
+            pic(this);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            FormLabel form = new FormLabel();
+            form.ShowDialog();
+        }
+
+        private void FormContextMenuStrip_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void contextMenuStripLabel_Opening(object sender, CancelEventArgs e)
+        {
+           
+        }
+
+        private void изменитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Label pb = (Label)((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl;
+            LabelUniqueForm f = new LabelUniqueForm(pb);
+            f.ShowDialog();
+            pb = f.newLabel;
+            LabelUniqueForm.UpdateLabelDesignInDb(pb);
+
+
+            pic(this);
+        }
     }
 }
