@@ -7,17 +7,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Newtonsoft.Json;
 
 namespace WindowsFormsApplication1
 {
+    
     /// <summary>
     /// Смена дизайна конкретной кнопки
     /// </summary>
     public partial class ButtonUniqueForm : Form
     {
+        public static string ColorToJSON(Color col)
+        {
+            return JsonConvert.SerializeObject(new List<int> { col.A, col.R, col.G, col.B }).ToString();
+        }
+
         public Button newButton;
         String FormName;
         String ButtonName;
+
+        /// <summary>
+        /// Вернутся к дефалту, меняется при нажатии кнопки
+        /// </summary>
         public bool ReturnToDefault = false;
 
         public ButtonUniqueForm(Button buttonToEdit)
@@ -41,6 +52,8 @@ namespace WindowsFormsApplication1
               "' AND FormFrom = '" + formName + "'");
         }
 
+        
+
         /// <summary>
         /// Обновление дизайна конкретной кнопки в БД
         /// </summary>
@@ -53,7 +66,7 @@ namespace WindowsFormsApplication1
             SQLClass.Insert("INSERT INTO " + Tables.Unique +
                 " (type, design, author, name, FormFrom) VALUES " +
                 "('Button', " +
-                "'Color = " + pb.BackColor +
+                "'Color = " + ColorToJSON(pb.BackColor) +
                     ", Visible = " + pb.Visible +
                     ", BackgroundImage = " + pb.BackgroundImage +
                     ", Text = " + pb.Text +
