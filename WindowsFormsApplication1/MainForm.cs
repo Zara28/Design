@@ -528,5 +528,18 @@ namespace WindowsFormsApplication1
         {
             typeSerialize();
         }
+
+        /*private void button5_Click(object sender, EventArgs e)
+        {
+            int size;
+            size = Convert.ToInt32(textBox2.Text);
+            this.MaximumSize = new Size (size, size);
+        }
+
+        private void MainForm_MaximumSizeChanged(object sender, EventArgs e)
+        {
+            button5_Click(sender, e);
+            InitializeComponent();
+        }*/
     }
 }
