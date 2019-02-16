@@ -75,6 +75,16 @@ namespace WindowsFormsApplication1
 
         private void ButtonUniqueForm_Load(object sender, EventArgs e)
         {
+            if (FormUniqueForm.ASSA)
+            {
+                this.BackColor = Color.FromArgb(123, 234, 121);
+                this.TransparencyKey = Color.FromArgb(123, 234, 121);
+            }
+            else
+            {
+                this.BackColor = new Color();
+                this.TransparencyKey = new Color();
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
