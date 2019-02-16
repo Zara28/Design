@@ -16,6 +16,7 @@ namespace WindowsFormsApplication1
         /// Форма, с которой работаем
         /// </summary>
         String FormName;
+        public static bool ASSA = true;
 
         public FormUniqueForm(String name)
         {
@@ -106,6 +107,51 @@ namespace WindowsFormsApplication1
         private void minimizeCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             this.MinimizeBox = minimizeCheckBox.Checked;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if(ASSA)
+            {
+                this.BackColor = new Color();
+                this.TransparencyKey = new Color();
+            }
+            else
+            {
+                this.BackColor = Color.FromArgb(123, 234, 121);
+                this.TransparencyKey = Color.FromArgb(123, 234, 121);
+            }
+            ASSA = !ASSA;
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            int width = Convert.ToInt32(textBox1.Text);
+            if (width < 200)
+            {
+                width = 200;
+            }
+            this.MaximumSize = new Size(width, this.Size.Height);
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            int height = Convert.ToInt32(textBox2.Text);
+            if (height < 200)
+            {
+                height = 200;
+            }
+            this.MaximumSize = new Size(this.Size.Width, Height);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if(comboBox1.SelectedIndex == 0)
+            { this.Icon = new Icon("icontexto-inside-reddit.ico"); }
+            if (comboBox1.SelectedIndex == 1)
+            { this.Icon = new Icon("gnome-fs-loading-icon.ico"); }
+            if (comboBox1.SelectedIndex == 2)
+            { this.Icon = new Icon("189032.ico"); }
         }
     }
 }

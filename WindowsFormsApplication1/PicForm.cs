@@ -20,6 +20,16 @@ namespace WindowsFormsApplication1
         private void Form2_Load(object sender, EventArgs e)
         {
             MainForm.pic(this);
+            if (FormUniqueForm.ASSA)
+            {
+                this.BackColor = Color.FromArgb(123, 234, 121);
+                this.TransparencyKey = Color.FromArgb(123, 234, 121);
+            }
+            else
+            {
+                this.BackColor = new Color();
+                this.TransparencyKey = new Color();
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
