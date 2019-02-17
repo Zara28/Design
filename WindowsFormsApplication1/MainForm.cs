@@ -47,7 +47,8 @@ namespace WindowsFormsApplication1
             //Дизайн кнопок
             foreach (Control ctr in c.Controls)
             {
-                if (ctr.GetType().ToString() == "System.Windows.Forms.Button")
+                string ctr_type = ctr.GetType().ToString();
+                if (ctr_type == "System.Windows.Forms.Button")
                 {
                     ((Button)ctr).BackgroundImage = DesignClass.BUTTON_BACKGROUND_IMG;
                     ((Button)ctr).BackgroundImageLayout = ImageLayout.Stretch;
@@ -56,18 +57,16 @@ namespace WindowsFormsApplication1
                     ((Button)ctr).BackColor = DesignClass.BUTTON_COLOR;
                     ctr.ContextMenuStrip = DesignClass.BUTTON_MENU;
                 }
-                else if (ctr.GetType().ToString() == "System.Windows.Forms.Label")
+                else if (ctr_type == "System.Windows.Forms.Label")
                 {
                     ((Label)ctr).BackColor = Color.Transparent;
                     ((Label)ctr).ForeColor = DesignClass.LABEL_TEXT_COLOR;
-                    ((Label)ctr).Font = DesignClass.FONT_OF_LABEL;
-                    ctr.ContextMenuStrip = DesignClass.LABEL_MENU;
                 }
-                else if (ctr.GetType().ToString() == "System.Windows.Forms.PictureBox")
+                else if (ctr_type == "System.Windows.Forms.PictureBox")
                 {
                     ctr.ContextMenuStrip = DesignClass.PICTURE_SAVE_MENU;
                 }
-                else if (ctr.GetType().ToString() == "System.Windows.Forms.Panel")
+                else if (ctr_type == "System.Windows.Forms.Panel")
                 {
                     ((Panel)ctr).BackgroundImage = DesignClass.PANEL_BACKGROUND_IMG;
                     ((Panel)ctr).BackColor = DesignClass.PANEL_COLOR;
@@ -78,89 +77,39 @@ namespace WindowsFormsApplication1
                     }
                 }
                     
-                List<String> uniqueDesign = SQLClass.Select("SELECT design, FormFrom, Name, Type FROM " + Tables.Unique);
-                String[] words = uniqueDesign[0].Split(new string[] { ":", ",", " = ", "=" }, StringSplitOptions.RemoveEmptyEntries);
-                String FontName = "";
+                List<string> uniqueDesign = SQLClass.Select("SELECT design, FormFrom, Name, Type FROM " + Tables.Unique);
+                string words = uniqueDesign[0];
+                string FontName = "";
                 int FontSize = 0;
 
-                for (int index = 0; index < uniqueDesign.Count; index += 4)
+                var json_words = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(words);
+
+                foreach (string key in json_words.Keys)
                 {
-                    if (uniqueDesign[index + 1] == ctr.FindForm().Name &&
-                        uniqueDesign[index + 2] == ctr.Name &&
-                        ctr.GetType().ToString() == "System.Windows.Forms." + uniqueDesign[index + 3])
+                    if (key == "Color")
                     {
-                        words = uniqueDesign[index].Split(new string[] { ":", ",", " = ", "=" }, StringSplitOptions.RemoveEmptyEntries);
-
-                        FontName = "";
-                        FontSize = 0;
-
-                        for (int i = 0; i < words.Length; i++)
-                        {
-                            if (words[i].Trim() == "Color")
-                            {
-                                foreach (String colorName in Enum.GetNames(typeof(KnownColor)))
-                                {
-                                    String colorFromDB = words[i + 1].Trim();
-                                    if (colorFromDB.StartsWith("Color"))
-                                    {
-                                        colorFromDB = colorFromDB.Replace("Color [", "").Replace("]", "");
-                                    }
-
-                                    if (colorName == colorFromDB)
-                                    {
-                                        Color knownColor = Color.FromKnownColor((KnownColor)Enum.Parse(typeof(KnownColor), colorName));
-                                        ctr.BackColor = knownColor;
-                                        //ctr.ForeColor = knownColor;
-                                    }
-                                }
-                            }
-
-                            if (words[i].Trim() == "ForeColor")
-                            {
-                                foreach (String colorName in Enum.GetNames(typeof(KnownColor)))
-                                {
-                                    String colorFromDB = words[i + 1].Trim();
-                                    if (colorFromDB.StartsWith("Color"))
-                                    {
-                                        colorFromDB = colorFromDB.Replace("Color [", "").Replace("]", "");
-                                    }
-
-                                    if (colorName == colorFromDB)
-                                    {
-                                        Color knownColor = Color.FromKnownColor((KnownColor)Enum.Parse(typeof(KnownColor), colorName));
-                                        ctr.ForeColor = knownColor;
-                                    }
-                                }
-                            }
-
-                            if (words[i].Trim() == "Visible")
-                            {
-                                ctr.Visible = (words[i + 1] == "True");
-                            }
-
-                            if (words[i].Trim() == "FontName")
-                            {
-                                FontName = words[i + 1];
-                            }
-
-                            if (words[i].Trim() == "FontSize")
-                            {
-                                FontSize = (int)(Convert.ToDecimal(words[i + 1]));
-                            }
-                        }
-
-                        if (FontName != "" && FontSize > 0)
-                        {
-                            ctr.Font = new Font(FontName, FontSize);
-                        }
+                        ctr.BackColor = Color.FromArgb(json_words["Color"][0], json_words["Color"][1], json_words["Color"][2], json_words["Color"][3]);
+                    }
+                    else if (key == "Visible")
+                    {
+                        ctr.Visible = json_words["Visible"];
+                    }
+                    else if (key == "FontName")
+                    {
+                        FontName = json_words["FontName"];
+                    }
+                    else if (key == "FontSize")
+                    {
+                        FontSize = json_words["FontSize"];
                     }
                 }
+                
 
-                pic(ctr);               
-             
+                pic(ctr);
+                
             }
-            #endregion
         }
+        #endregion
 
 
         private void button1_Click(object sender, EventArgs e)
@@ -182,7 +131,6 @@ namespace WindowsFormsApplication1
             DesignClass.FORM_MENU = FormContextMenuStrip;
             DesignClass.BUTTON_MENU = ButtonContextMenuStrip;
             DesignClass.PANEL_MENU = PanelContextMenuStrip;
-            DesignClass.LABEL_MENU = contextMenuStripLabel;
             
             pic(this);
             pictureBox1.Load("http://www.forumdaily.com/wp-content/uploads/2017/03/Depositphotos_31031331_m-2015.jpg");
@@ -302,9 +250,9 @@ namespace WindowsFormsApplication1
                     button.Add("Visible", ctr.Visible.ToString());
                     button.Add("BackgroundImageLayout", ctr.BackgroundImageLayout.ToString());
                     button.Add("FontSize", ctr.Font.Size.ToString());
-                    button.Add("BackColor", ctr.BackColor.Name);
+                    button.Add("BackColor", ButtonUniqueForm.ColorToJSON(ctr.BackColor));
                     button.Add("Type", "Button");
-                    button.Add("ForeColor", ctr.ForeColor.Name);
+                    button.Add("ForeColor", ButtonUniqueForm.ColorToJSON(ctr.ForeColor));
                     button.Add("Font", ctr.Font.Name);
                     json.Add(JObject.FromObject(button));
                 }
@@ -313,7 +261,7 @@ namespace WindowsFormsApplication1
                     Dictionary<string, string> label = new Dictionary<string, string>();
 
                     label.Add("Name", ctr.Name);
-                    label.Add("BackColor", ((Label)ctr).BackColor.Name);
+                    label.Add("BackColor", ButtonUniqueForm.ColorToJSON(((Label)ctr).BackColor));
                     label.Add("Enabled", ctr.Enabled.ToString());
                     label.Add("Visible", ctr.Visible.ToString());
                     label.Add("Type", "Label");
@@ -372,7 +320,7 @@ namespace WindowsFormsApplication1
             Dictionary<string, string> PanelData = new Dictionary<string, string>();
             if (DesignClass.PANEL_COLOR != null)
             {
-                PanelData.Add("BackColor", DesignClass.PANEL_COLOR.ToString());
+                PanelData.Add("BackColor", ButtonUniqueForm.ColorToJSON(DesignClass.PANEL_COLOR));
             }
             if (DesignClass.PANEL_BACKGROUND_ADDRESS != null)
             {
@@ -388,15 +336,11 @@ namespace WindowsFormsApplication1
             Dictionary<string, string> labelData = new Dictionary<string, string>();
             if (DesignClass.LABEL_COLOR != null)
             {
-                labelData.Add("BackColor", DesignClass.LABEL_COLOR.ToString());
+                labelData.Add("BackColor", ButtonUniqueForm.ColorToJSON(DesignClass.LABEL_COLOR));
             }
             if (DesignClass.LABEL_TEXT_COLOR != null)
             {
-                labelData.Add("ForeColor", DesignClass.LABEL_TEXT_COLOR.ToString());
-            }
-            if (DesignClass.FONT_OF_LABEL != null)
-            {
-                labelData.Add("Font", DesignClass.FONT_OF_LABEL.ToString());
+                labelData.Add("ForeColor", ButtonUniqueForm.ColorToJSON(DesignClass.LABEL_TEXT_COLOR));
             }
             #endregion
 
@@ -422,6 +366,11 @@ namespace WindowsFormsApplication1
         }
 
         #endregion
+
+        private void SaveImageToSQL(Bitmap a)
+        {
+            
+        }
 
         private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -493,50 +442,26 @@ namespace WindowsFormsApplication1
             {
                 if (words[index] == "BackColor")
                 {
-                    String colorFromDB = words[index + 1].Trim();
-                    if (colorFromDB.StartsWith("Color"))
-                    {
-                        colorFromDB = colorFromDB.Replace("Color [", "").Replace("]", "");
-                    }
-
                     foreach (String colorName in Enum.GetNames(typeof(KnownColor)))
                     {
-                        if (colorName == colorFromDB)
+                        if (colorName == words[index + 1])
                         {
                             Color knownColor = Color.FromKnownColor((KnownColor)Enum.Parse(typeof(KnownColor), colorName));
                             DesignClass.LABEL_COLOR = knownColor;
                         }
                     }
-
-
                 }
 
                 if (words[index] == "ForeColor")
                 {
-                    String colorFromDB = words[index + 1].Trim();
-                    if (colorFromDB.StartsWith("Color"))
-                    {
-                        colorFromDB = colorFromDB.Replace("Color [", "").Replace("]", "");
-                    }
-
                     foreach (String colorName in Enum.GetNames(typeof(KnownColor)))
                     {
-                        if (colorName == colorFromDB)
+                        if (colorName == words[index + 1])
                         {
                             Color knownColor = Color.FromKnownColor((KnownColor)Enum.Parse(typeof(KnownColor), colorName));
                             DesignClass.LABEL_TEXT_COLOR = knownColor;
                         }
                     }
-                }
-
-                if (words[index].Trim() == "FontName")
-                {
-                    DesignClass.NAME_FONT_OF_LABEL = words[index + 1];
-                }
-
-                if (words[index].Trim() == "FontSize")
-                {
-                    DesignClass.SIZE_FONT_OF_LABEL = (int)(Convert.ToDecimal(words[index + 1]));
                 }
             }
         }       
@@ -579,49 +504,17 @@ namespace WindowsFormsApplication1
             typeSerialize();
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        /*private void button5_Click(object sender, EventArgs e)
         {
-            int size = Convert.ToInt32(textBox2.Text);
-            if (size >= 452)
-            {
-                this.MaximumSize = new Size(size, size);
-            }
-            else MessageBox.Show("Такое значение нельзя, похоронишь форму");
-            
+            int size;
+            size = Convert.ToInt32(textBox2.Text);
+            this.MaximumSize = new Size (size, size);
         }
 
         private void MainForm_MaximumSizeChanged(object sender, EventArgs e)
         {
             button5_Click(sender, e);
-            pic(this);
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            FormLabel form = new FormLabel();
-            form.ShowDialog();
-        }
-
-        private void FormContextMenuStrip_Opening(object sender, CancelEventArgs e)
-        {
-
-        }
-
-        private void contextMenuStripLabel_Opening(object sender, CancelEventArgs e)
-        {
-           
-        }
-
-        private void изменитьToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Label pb = (Label)((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl;
-            LabelUniqueForm f = new LabelUniqueForm(pb);
-            f.ShowDialog();
-            pb = f.newLabel;
-            LabelUniqueForm.UpdateLabelDesignInDb(pb);
-
-
-            pic(this);
-        }
+            InitializeComponent();
+        }*/
     }
 }
