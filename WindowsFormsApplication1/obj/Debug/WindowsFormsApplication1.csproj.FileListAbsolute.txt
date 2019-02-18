@@ -132,3 +132,5 @@ C:\Users\Student\Desktop\Новая папка (2)\16,02\Design-master\WindowsFo
 C:\Users\Student\Desktop\Новая папка (2)\16,02\Design-master\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache
 C:\Users\Student\Desktop\Новая папка (2)\16,02\Design-master\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.FormLabel.resources
 C:\Users\Student\Desktop\Новая папка (2)\16,02\Design-master\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.LabelUniqueForm.resources
+C:\Users\Abra\1\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.FormDefaultLabel.resources
+C:\Users\Abra\1\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.LabelUniqueForm.resources

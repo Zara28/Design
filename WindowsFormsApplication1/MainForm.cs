@@ -182,7 +182,7 @@ namespace WindowsFormsApplication1
             DesignClass.FORM_MENU = FormContextMenuStrip;
             DesignClass.BUTTON_MENU = ButtonContextMenuStrip;
             DesignClass.PANEL_MENU = PanelContextMenuStrip;
-            DesignClass.LABEL_MENU = contextMenuStripLabel;
+            DesignClass.LABEL_MENU = LabelContextMenuStrip;
             
             pic(this);
             pictureBox1.Load("http://www.forumdaily.com/wp-content/uploads/2017/03/Depositphotos_31031331_m-2015.jpg");
@@ -396,7 +396,8 @@ namespace WindowsFormsApplication1
             }
             if (DesignClass.FONT_OF_LABEL != null)
             {
-                labelData.Add("Font", DesignClass.FONT_OF_LABEL.ToString());
+                labelData.Add("FontSize", DesignClass.FONT_OF_LABEL.Size.ToString());
+                labelData.Add("FontName", DesignClass.FONT_OF_LABEL.Name);
             }
             #endregion
 
@@ -507,8 +508,6 @@ namespace WindowsFormsApplication1
                             DesignClass.LABEL_COLOR = knownColor;
                         }
                     }
-
-
                 }
 
                 if (words[index] == "ForeColor")
@@ -538,6 +537,11 @@ namespace WindowsFormsApplication1
                 {
                     DesignClass.SIZE_FONT_OF_LABEL = (int)(Convert.ToDecimal(words[index + 1]));
                 }
+            }
+
+            if (DesignClass.NAME_FONT_OF_LABEL != null && DesignClass.SIZE_FONT_OF_LABEL != 0)
+            {
+                DesignClass.FONT_OF_LABEL = new Font(DesignClass.NAME_FONT_OF_LABEL, DesignClass.SIZE_FONT_OF_LABEL);
             }
         }       
         
@@ -596,23 +600,13 @@ namespace WindowsFormsApplication1
             pic(this);
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void FormDefaultLabel_Click(object sender, EventArgs e)
         {
-            FormLabel form = new FormLabel();
+            FormDefaultLabel form = new FormDefaultLabel();
             form.ShowDialog();
         }
 
-        private void FormContextMenuStrip_Opening(object sender, CancelEventArgs e)
-        {
-
-        }
-
-        private void contextMenuStripLabel_Opening(object sender, CancelEventArgs e)
-        {
-           
-        }
-
-        private void изменитьToolStripMenuItem_Click(object sender, EventArgs e)
+        private void changeLabelToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Label pb = (Label)((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl;
             LabelUniqueForm f = new LabelUniqueForm(pb);
@@ -620,8 +614,17 @@ namespace WindowsFormsApplication1
             pb = f.newLabel;
             LabelUniqueForm.UpdateLabelDesignInDb(pb);
 
-
             pic(this);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void sgdfgdgToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
