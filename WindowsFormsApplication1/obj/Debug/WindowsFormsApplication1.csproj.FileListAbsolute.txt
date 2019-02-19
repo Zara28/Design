@@ -14,10 +14,8 @@ C:\Users\student.ATIAM\Downloads\Вебинары\Design\WindowsFormsApplication
 C:\Users\student.ATIAM\Downloads\Вебинары\Design\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
 C:\Users\student.ATIAM\Downloads\Вебинары\Design\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
 C:\Users\student.ATIAM\Downloads\Вебинары\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csprojResolveAssemblyReference.cache
-C:\Users\student.ATIAM\Downloads\Вебинары\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ButtonDesignForm.resources
 C:\Users\student.ATIAM\Downloads\Вебинары\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
 C:\Users\student.ATIAM\Downloads\Вебинары\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache
-C:\Users\student.ATIAM\Downloads\Вебинары\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.FormDesignForm.resources
 C:\Users\student.ATIAM\Downloads\Вебинары\1\Design\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe.config
 C:\Users\student.ATIAM\Downloads\Вебинары\1\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
 C:\Users\student.ATIAM\Downloads\Вебинары\1\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
@@ -134,3 +132,9 @@ C:\Users\Student\Desktop\Новая папка (2)\16,02\Design-master\WindowsFo
 C:\Users\Student\Desktop\Новая папка (2)\16,02\Design-master\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.LabelUniqueForm.resources
 C:\Users\Abra\1\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.FormDefaultLabel.resources
 C:\Users\Abra\1\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.LabelUniqueForm.resources
+C:\Users\student.ATIAM\Downloads\Вебинары\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.FormDefaultLabel.resources
+C:\Users\student.ATIAM\Downloads\Вебинары\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.LabelUniqueForm.resources
+C:\Users\student.ATIAM\Downloads\Вебинары\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ButtonUniqueForm.resources
+C:\Users\student.ATIAM\Downloads\Вебинары\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ButtonDefaultForm.resources
+C:\Users\student.ATIAM\Downloads\Вебинары\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.FormUniqueForm.resources
+C:\Users\student.ATIAM\Downloads\Вебинары\Design\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.FormDefaultForm.resources

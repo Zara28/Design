@@ -360,6 +360,9 @@
     <Content Include="Properties\Cursors\wait_r.cur" />
     <Content Include="Properties\Cursors\wait_rl.cur" />
     <Content Include="Properties\Cursors\wait_rm.cur" />
+    <Content Include="Resources\Icons\Атом.ico" />
+    <Content Include="Resources\Icons\Масоны.ico" />
+    <Content Include="Resources\Icons\Рожа.ico" />
     <None Include="Resources\Менять.jpg" />
     <None Include="Resources\Cursors\wait_rm.cur" />
     <None Include="Resources\Cursors\wait_rl.cur" />

@@ -67,16 +67,29 @@ namespace WindowsFormsApplication1
         }
 
         /// <summary>
-        /// СОхранение дизайна формы в БД
+        /// Сохранение дизайна формы в БД
         /// </summary>
-        public static void ToTable(Form f, String fName)
+        public static void UpdateFormDesignInDb(Form f, String fName)
         {
+            String icon = "Masons";
+            if (f.Icon == Properties.Resources.Face)
+            {
+                icon = "Face";
+            }
+            else if (f.Icon == Properties.Resources.Atom)
+            {
+                icon = "Atom";
+            }
+
             SQLClass.Delete("DELETE FROM " + Tables.Unique + 
                 " WHERE FormFrom = '" + fName + "' and type = 'Form'");
             SQLClass.Insert("INSERT INTO " + Tables.Unique + 
                 " (type, design, FormFrom, Author, Name)" +
                 " VALUES ('Form', " +
                     "'Color: " + Convert.ToString(f.BackColor) + "," +
+                    "MaxWidth: " + f.MaximumSize.Width.ToString() + "," +
+                    "MaxHeight: " + f.MaximumSize.Height.ToString() + "," +
+                    "Icon: " + icon + "," +
                     "MinimizeBox: " + Convert.ToBoolean(f.MinimizeBox) + "'," +
                 "'" + fName + "', '', '')");
         }
@@ -101,7 +114,7 @@ namespace WindowsFormsApplication1
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            ToTable(this, FormName);
+            UpdateFormDesignInDb(this, FormName);
         }
 
         private void minimizeCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -124,9 +137,12 @@ namespace WindowsFormsApplication1
             ASSA = !ASSA;
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        /// <summary>
+        /// Смена макс.ширины
+        /// </summary>
+        private void widthTextBox_TextChanged(object sender, EventArgs e)
         {
-            int width = Convert.ToInt32(textBox1.Text);
+            int width = Convert.ToInt32(widthTextBox.Text);
             if (width < 200)
             {
                 width = 200;
@@ -134,24 +150,36 @@ namespace WindowsFormsApplication1
             this.MaximumSize = new Size(width, this.Size.Height);
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
+        /// <summary>
+        /// Смена макс.высоты
+        /// </summary>
+        private void heightTextBox_TextChanged(object sender, EventArgs e)
         {
-            int height = Convert.ToInt32(textBox2.Text);
+            int height = Convert.ToInt32(heightTextBox.Text);
             if (height < 200)
             {
                 height = 200;
             }
-            this.MaximumSize = new Size(this.Size.Width, Height);
+            this.MaximumSize = new Size(this.Size.Width, height);
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Смена иконки
+        /// </summary>
+        private void iconChanged(object sender, EventArgs e)
         {
             if(comboBox1.SelectedIndex == 0)
-            { this.Icon = new Icon("icontexto-inside-reddit.ico"); }
-            if (comboBox1.SelectedIndex == 1)
-            { this.Icon = new Icon("gnome-fs-loading-icon.ico"); }
-            if (comboBox1.SelectedIndex == 2)
-            { this.Icon = new Icon("189032.ico"); }
+            { 
+                this.Icon = Properties.Resources.Face;
+            }
+            else if (comboBox1.SelectedIndex == 1)
+            {
+                this.Icon = Properties.Resources.Atom; 
+            }
+            else if (comboBox1.SelectedIndex == 2)
+            {
+                this.Icon = Properties.Resources.Masons; 
+            }
         }
     }
 }
