@@ -16,7 +16,7 @@ namespace WindowsFormsApplication1
         /// Форма, с которой работаем
         /// </summary>
         String FormName;
-        public static bool ASSA = true;
+        public static bool ASSA = false;
 
         public FormUniqueForm(String name)
         {
@@ -181,5 +181,7 @@ namespace WindowsFormsApplication1
                 this.Icon = Properties.Resources.Masons; 
             }
         }
+
+       
     }
 }

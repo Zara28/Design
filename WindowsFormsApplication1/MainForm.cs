@@ -53,6 +53,7 @@ namespace WindowsFormsApplication1
                     ((Button)ctr).BackgroundImage = DesignClass.BUTTON_BACKGROUND_IMG;
                     ((Button)ctr).BackgroundImageLayout = ImageLayout.Stretch;
                     ((Button)ctr).ForeColor = DesignClass.BUTTON_TEXT_COLOR;
+                    ((Button)ctr).TextAlign = DesignClass.BUTTONIMAGE_ALLINE;
                     ((Button)ctr).Font = DesignClass.BUTTON_FONT;
                     ((Button)ctr).BackColor = DesignClass.BUTTON_COLOR;
                     ctr.ContextMenuStrip = DesignClass.BUTTON_MENU;
@@ -410,6 +411,8 @@ namespace WindowsFormsApplication1
             {
                 ButtonData.Add("Color", ButtonUniqueForm.ColorToJSON(DesignClass.BUTTON_COLOR));//.ToString());
             }
+
+            ButtonData.Add("ImageAlign", DesignClass.BUTTONIMAGE_ALLINE.ToString());//.ToString());
             #endregion
 
             #region Panel
