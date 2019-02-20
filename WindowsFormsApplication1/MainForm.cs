@@ -443,6 +443,17 @@ namespace WindowsFormsApplication1
                 labelData.Add("FontSize", DesignClass.FONT_OF_LABEL.Size.ToString());
                 labelData.Add("FontName", DesignClass.FONT_OF_LABEL.Name);
             }
+            if (!DesignClass.LABEL_AUTO_SIZE)
+            {
+                labelData.Add("TextAlign", DesignClass.LABEL_TEXT_ALIGN.ToString());
+            }
+            else
+            {
+                labelData.Add("TextAlign", "null");
+            }
+                
+
+
             #endregion
 
             AllTypesData.Add("button", JObject.FromObject(ButtonData));
@@ -580,6 +591,43 @@ namespace WindowsFormsApplication1
                 if (words[index].Trim() == "FontSize")
                 {
                     DesignClass.SIZE_FONT_OF_LABEL = (int)(Convert.ToDecimal(words[index + 1]));
+                }
+
+                if (words[index].Trim() == "TextAlign")
+                {
+                     switch (words[index + 1])
+                                {
+                                    case "System.Drawing.ContentAlignment.BottomCenter":
+                                        DesignClass.LABEL_TEXT_ALIGN = System.Drawing.ContentAlignment.BottomCenter;
+                                          break;
+                                    case "System.Drawing.ContentAlignment.BottomLeft":
+                                          DesignClass.LABEL_TEXT_ALIGN = System.Drawing.ContentAlignment.BottomLeft;
+                                          break;
+                                    case "System.Drawing.ContentAlignment.BottomRight":
+                                          DesignClass.LABEL_TEXT_ALIGN = System.Drawing.ContentAlignment.BottomRight;
+                                          break;
+                                    case "System.Drawing.ContentAlignment.MiddleCenter":
+                                          DesignClass.LABEL_TEXT_ALIGN = System.Drawing.ContentAlignment.MiddleCenter;
+                                          break;
+                                    case "System.Drawing.ContentAlignment.MiddleLeft":
+                                          DesignClass.LABEL_TEXT_ALIGN = System.Drawing.ContentAlignment.MiddleLeft;
+                                          break;
+                                    case "System.Drawing.ContentAlignment.MiddleRight":
+                                          DesignClass.LABEL_TEXT_ALIGN = System.Drawing.ContentAlignment.MiddleRight;
+                                          break;
+                                    case "System.Drawing.ContentAlignment.TopCenter":
+                                          DesignClass.LABEL_TEXT_ALIGN = System.Drawing.ContentAlignment.TopCenter;
+                                          break;
+                                    case "System.Drawing.ContentAlignment.TopLeft":
+                                          DesignClass.LABEL_TEXT_ALIGN = System.Drawing.ContentAlignment.TopLeft;
+                                          break;
+                                    case "System.Drawing.ContentAlignment.TopRight":
+                                          DesignClass.LABEL_TEXT_ALIGN = System.Drawing.ContentAlignment.TopRight;
+                                          break;
+                         default:
+                                          DesignClass.LABEL_AUTO_SIZE = true;
+                             break;
+                                  }
                 }
             }
 
