@@ -69,6 +69,26 @@ namespace WindowsFormsApplication1
                         }
                     }
                 }
+
+                if (words[index] == "FlatStyle")
+                {
+                    if (words[index + 1] == "Popup")
+                    {
+                        DesignClass.FLAT_OF_BUTTON = FlatStyle.Popup;
+                    }
+                    else if (words[index + 1] == "System")
+                    {
+                        DesignClass.FLAT_OF_BUTTON = FlatStyle.System;
+                    }
+                    else if (words[index + 1] == "Standard")
+                    {
+                        DesignClass.FLAT_OF_BUTTON = FlatStyle.Popup;
+                    }
+                    else if (words[index + 1] == "Flat")
+                    {
+                        DesignClass.FLAT_OF_BUTTON = FlatStyle.System;
+                    }
+                }
             }
         }
 
@@ -154,6 +174,40 @@ namespace WindowsFormsApplication1
 
             DesignClass.BUTTON_COLOR = MyDialog.Color;
             MainForm.pic(this);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void comboBox1_SelectedValueChanged(object sender, EventArgs e)
+        {  
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (comboBox1.Text)
+            {
+                case "System":
+                    DesignClass.FLAT_OF_BUTTON = FlatStyle.System;
+                break;
+
+                case "Standard":
+                    DesignClass.FLAT_OF_BUTTON = FlatStyle.Standard;
+                break;
+
+                case "Popup":
+                     DesignClass.FLAT_OF_BUTTON = FlatStyle.Popup;
+                break;
+
+                case "Flat":
+                      DesignClass.FLAT_OF_BUTTON = FlatStyle.Flat;
+                break;
+            }
+            MainForm.pic(this);
+               
         }
     }
 }

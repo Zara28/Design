@@ -27,6 +27,7 @@ namespace WindowsFormsApplication1
         /// </summary>
         public static ContextMenuStrip FORM_MENU;
 
+        public static FlatStyle FLAT_OF_BUTTON;
         #endregion
 
         #region Кнопки
@@ -64,6 +65,7 @@ namespace WindowsFormsApplication1
 
         public static Color LABEL_TEXT_COLOR;
         public static Color LABEL_COLOR;
+
 
         #endregion
 

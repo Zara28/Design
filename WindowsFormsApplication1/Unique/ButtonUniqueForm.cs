@@ -54,7 +54,7 @@ namespace WindowsFormsApplication1
         /// <summary>
         /// Обновление дизайна конкретной кнопки в БД
         /// </summary>
-        public static void UpdateButtonDesignInDb(Control pb)
+        public static void UpdateButtonDesignInDb(Button pb)
         {
             SQLClass.Delete("DELETE FROM " + Tables.Unique +
                 " WHERE type = 'Button'" +
@@ -67,6 +67,7 @@ namespace WindowsFormsApplication1
                     ", Visible = " + pb.Visible +
                     ", BackgroundImage = " + pb.BackgroundImage +
                     ", Text = " + pb.Text +
+                    ", FlatStyle = " + pb.FlatStyle +
                 "', 'admin', '" + pb.Name + "', '" + pb.FindForm().Name + "')");
         }
 
@@ -101,6 +102,29 @@ namespace WindowsFormsApplication1
         {
             delete(newButton, FormName, ButtonName);
             ReturnToDefault = true;
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (comboBox1.Text)
+            {
+                case "System":
+                    newButton.FlatStyle = FlatStyle.System;
+                    break;
+
+                case "Standard":
+                    newButton.FlatStyle = FlatStyle.Standard;
+                    break;
+
+                case "Popup":
+                    newButton.FlatStyle = FlatStyle.Popup;
+                    break;
+
+                case "Flat":
+                    newButton.FlatStyle = FlatStyle.Flat;
+                    break;
+            }
+               
         }
 
     }
