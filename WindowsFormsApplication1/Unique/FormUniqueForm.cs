@@ -16,6 +16,7 @@ namespace WindowsFormsApplication1
         /// Форма, с которой работаем
         /// </summary>
         String FormName;
+        public static bool ASSA = true;
 
         public FormUniqueForm(String name)
         {
@@ -66,16 +67,29 @@ namespace WindowsFormsApplication1
         }
 
         /// <summary>
-        /// СОхранение дизайна формы в БД
+        /// Сохранение дизайна формы в БД
         /// </summary>
-        public static void ToTable(Form f, String fName)
+        public static void UpdateFormDesignInDb(Form f, String fName)
         {
+            String icon = "Masons";
+            if (f.Icon == Properties.Resources.Face)
+            {
+                icon = "Face";
+            }
+            else if (f.Icon == Properties.Resources.Atom)
+            {
+                icon = "Atom";
+            }
+
             SQLClass.Delete("DELETE FROM " + Tables.Unique + 
                 " WHERE FormFrom = '" + fName + "' and type = 'Form'");
             SQLClass.Insert("INSERT INTO " + Tables.Unique + 
                 " (type, design, FormFrom, Author, Name)" +
                 " VALUES ('Form', " +
                     "'Color: " + Convert.ToString(f.BackColor) + "," +
+                    "MaxWidth: " + f.MaximumSize.Width.ToString() + "," +
+                    "MaxHeight: " + f.MaximumSize.Height.ToString() + "," +
+                    "Icon: " + icon + "," +
                     "MinimizeBox: " + Convert.ToBoolean(f.MinimizeBox) + "'," +
                 "'" + fName + "', '', '')");
         }
@@ -100,12 +114,72 @@ namespace WindowsFormsApplication1
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            ToTable(this, FormName);
+            UpdateFormDesignInDb(this, FormName);
         }
 
         private void minimizeCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             this.MinimizeBox = minimizeCheckBox.Checked;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if(ASSA)
+            {
+                this.BackColor = new Color();
+                this.TransparencyKey = new Color();
+            }
+            else
+            {
+                this.BackColor = Color.FromArgb(123, 234, 121);
+                this.TransparencyKey = Color.FromArgb(123, 234, 121);
+            }
+            ASSA = !ASSA;
+        }
+
+        /// <summary>
+        /// Смена макс.ширины
+        /// </summary>
+        private void widthTextBox_TextChanged(object sender, EventArgs e)
+        {
+            int width = Convert.ToInt32(widthTextBox.Text);
+            if (width < 200)
+            {
+                width = 200;
+            }
+            this.MaximumSize = new Size(width, this.Size.Height);
+        }
+
+        /// <summary>
+        /// Смена макс.высоты
+        /// </summary>
+        private void heightTextBox_TextChanged(object sender, EventArgs e)
+        {
+            int height = Convert.ToInt32(heightTextBox.Text);
+            if (height < 200)
+            {
+                height = 200;
+            }
+            this.MaximumSize = new Size(this.Size.Width, height);
+        }
+
+        /// <summary>
+        /// Смена иконки
+        /// </summary>
+        private void iconChanged(object sender, EventArgs e)
+        {
+            if(comboBox1.SelectedIndex == 0)
+            { 
+                this.Icon = Properties.Resources.Face;
+            }
+            else if (comboBox1.SelectedIndex == 1)
+            {
+                this.Icon = Properties.Resources.Atom; 
+            }
+            else if (comboBox1.SelectedIndex == 2)
+            {
+                this.Icon = Properties.Resources.Masons; 
+            }
         }
     }
 }

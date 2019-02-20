@@ -30,12 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             this.button1 = new System.Windows.Forms.Button();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.sgdfgdgToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.buttonLabelDefaultForm = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.buttonFormDefaultForm = new System.Windows.Forms.Button();
             this.buttonDefaultForm = new System.Windows.Forms.Button();
@@ -54,7 +53,10 @@
             this.ggToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ButtonContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.changeUniqueBtnMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.contextMenuStrip1.SuspendLayout();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.button5 = new System.Windows.Forms.Button();
+            this.LabelContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.changeLabelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -62,12 +64,12 @@
             this.FormContextMenuStrip.SuspendLayout();
             this.PanelContextMenuStrip.SuspendLayout();
             this.ButtonContextMenuStrip.SuspendLayout();
+            this.LabelContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
             // 
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button1.ContextMenuStrip = this.contextMenuStrip1;
             this.button1.Location = new System.Drawing.Point(16, 15);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
@@ -76,20 +78,6 @@
             this.button1.Text = "Кнопка";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.sgdfgdgToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(135, 28);
-            // 
-            // sgdfgdgToolStripMenuItem
-            // 
-            this.sgdfgdgToolStripMenuItem.Name = "sgdfgdgToolStripMenuItem";
-            this.sgdfgdgToolStripMenuItem.Size = new System.Drawing.Size(134, 24);
-            this.sgdfgdgToolStripMenuItem.Text = "sgdfgdg";
             // 
             // button2
             // 
@@ -123,9 +111,11 @@
             this.button4.TabIndex = 3;
             this.button4.Text = "Null";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.buttonLabelDefaultForm);
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.buttonFormDefaultForm);
             this.panel1.Controls.Add(this.buttonDefaultForm);
@@ -134,6 +124,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(267, 335);
             this.panel1.TabIndex = 4;
+            // 
+            // buttonLabelDefaultForm
+            // 
+            this.buttonLabelDefaultForm.Location = new System.Drawing.Point(28, 277);
+            this.buttonLabelDefaultForm.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonLabelDefaultForm.Name = "buttonLabelDefaultForm";
+            this.buttonLabelDefaultForm.Size = new System.Drawing.Size(209, 54);
+            this.buttonLabelDefaultForm.TabIndex = 10;
+            this.buttonLabelDefaultForm.Text = "Дизайн меток";
+            this.buttonLabelDefaultForm.UseVisualStyleBackColor = true;
+            this.buttonLabelDefaultForm.Click += new System.EventHandler(this.FormDefaultLabel_Click);
             // 
             // textBox1
             // 
@@ -146,7 +147,7 @@
             // 
             // buttonFormDefaultForm
             // 
-            this.buttonFormDefaultForm.Location = new System.Drawing.Point(28, 205);
+            this.buttonFormDefaultForm.Location = new System.Drawing.Point(28, 206);
             this.buttonFormDefaultForm.Margin = new System.Windows.Forms.Padding(4);
             this.buttonFormDefaultForm.Name = "buttonFormDefaultForm";
             this.buttonFormDefaultForm.Size = new System.Drawing.Size(209, 58);
@@ -219,7 +220,6 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.ContextMenuStrip = this.contextMenuStrip1;
             this.label1.Location = new System.Drawing.Point(193, 71);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
@@ -303,6 +303,40 @@
             this.changeUniqueBtnMenuItem.Text = "Изменить кнопку";
             this.changeUniqueBtnMenuItem.Click += new System.EventHandler(this.changeUniqueBtnMenuItem_Click);
             // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(436, 15);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(132, 22);
+            this.textBox2.TabIndex = 8;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(469, 47);
+            this.button5.Margin = new System.Windows.Forms.Padding(4);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(100, 28);
+            this.button5.TabIndex = 9;
+            this.button5.Text = "button5";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // LabelContextMenuStrip
+            // 
+            this.LabelContextMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.LabelContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.changeLabelToolStripMenuItem});
+            this.LabelContextMenuStrip.Name = "LabelContextMenuStrip";
+            this.LabelContextMenuStrip.Size = new System.Drawing.Size(148, 28);
+            // 
+            // changeLabelToolStripMenuItem
+            // 
+            this.changeLabelToolStripMenuItem.Name = "changeLabelToolStripMenuItem";
+            this.changeLabelToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
+            this.changeLabelToolStripMenuItem.Text = "Изменить";
+            this.changeLabelToolStripMenuItem.Click += new System.EventHandler(this.changeLabelToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -310,6 +344,8 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(581, 450);
             this.ContextMenuStrip = this.FormContextMenuStrip;
+            this.Controls.Add(this.button5);
+            this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.tableLayoutPanel1);
@@ -321,7 +357,6 @@
             this.Name = "MainForm";
             this.Text = "Main";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.contextMenuStrip1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -330,6 +365,7 @@
             this.FormContextMenuStrip.ResumeLayout(false);
             this.PanelContextMenuStrip.ResumeLayout(false);
             this.ButtonContextMenuStrip.ResumeLayout(false);
+            this.LabelContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -359,9 +395,12 @@
         private System.Windows.Forms.ContextMenuStrip ButtonContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem changeUniqueBtnMenuItem;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem sgdfgdgToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem сохранитьДефолтныйДизайнToolStripMenuItem;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.ContextMenuStrip LabelContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem changeLabelToolStripMenuItem;
+        private System.Windows.Forms.Button buttonLabelDefaultForm;
     }
 }
 

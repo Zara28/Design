@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Newtonsoft.Json;
 
 namespace WindowsFormsApplication1
 {
@@ -18,6 +19,10 @@ namespace WindowsFormsApplication1
         public Button newButton;
         String FormName;
         String ButtonName;
+        
+        /// <summary>
+        /// Вернутся к дефалту, меняется при нажатии кнопки
+        /// </summary>
         public bool ReturnToDefault = false;
 
         public ButtonUniqueForm(Button buttonToEdit)
@@ -28,6 +33,11 @@ namespace WindowsFormsApplication1
             InitializeComponent();
 
             textBox1.Text = newButton.Text;
+        }
+
+        public static string ColorToJSON(Color col)
+        {
+            return JsonConvert.SerializeObject(new List<int> { col.A, col.R, col.G, col.B }).ToString();
         }
 
         /// <summary>
@@ -53,7 +63,7 @@ namespace WindowsFormsApplication1
             SQLClass.Insert("INSERT INTO " + Tables.Unique +
                 " (type, design, author, name, FormFrom) VALUES " +
                 "('Button', " +
-                "'Color = " + pb.BackColor +
+                "'Color = " + ColorToJSON(pb.BackColor) + 
                     ", Visible = " + pb.Visible +
                     ", BackgroundImage = " + pb.BackgroundImage +
                     ", Text = " + pb.Text +
@@ -75,6 +85,16 @@ namespace WindowsFormsApplication1
 
         private void ButtonUniqueForm_Load(object sender, EventArgs e)
         {
+            if (FormUniqueForm.ASSA)
+            {
+                this.BackColor = Color.FromArgb(123, 234, 121);
+                this.TransparencyKey = Color.FromArgb(123, 234, 121);
+            }
+            else
+            {
+                this.BackColor = new Color();
+                this.TransparencyKey = new Color();
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)

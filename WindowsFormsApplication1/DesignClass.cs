@@ -98,5 +98,13 @@ namespace WindowsFormsApplication1
         /// </summary>
         public static int PictureSaveIndex = 0;
         #endregion
+
+        #region Label
+        public static string NAME_FONT_OF_LABEL;
+        public static int SIZE_FONT_OF_LABEL;
+
+        public static Font FONT_OF_LABEL;
+        public static ContextMenuStrip LABEL_MENU;
+        #endregion
     }
 }
