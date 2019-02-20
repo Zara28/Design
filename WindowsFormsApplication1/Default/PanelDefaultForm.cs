@@ -146,9 +146,11 @@ namespace WindowsFormsApplication1
             {
                 qwerty[i].Get_T_N();
             }
-            
+
 
             //String[] s3 = s2[0].Split(new string[] { "},{", "{", "}"}, StringSplitOptions.RemoveEmptyEntries); 
+            
+            #region Загрузка цвета в форму (куча странного кода)
             foreach (Control ctr in this.Controls)
             {
                 for (int i = 0; i < qwerty.Length; i++)
@@ -236,6 +238,8 @@ namespace WindowsFormsApplication1
                     }
                 }
             }
+            #endregion
+
             // label1.BackColor = ; 
             //textBox5.Text = s[0]; 
 
@@ -266,16 +270,6 @@ namespace WindowsFormsApplication1
                         }
                     }
                 }
-            }
-            if (FormUniqueForm.ASSA)
-            {
-                this.BackColor = Color.FromArgb(123, 234, 121);
-                this.TransparencyKey = Color.FromArgb(123, 234, 121);
-            }
-            else
-            {
-                this.BackColor = new Color();
-                this.TransparencyKey = new Color();
             }
         }
 

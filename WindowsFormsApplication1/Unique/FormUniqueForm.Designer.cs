@@ -37,7 +37,6 @@
             this.fo = new System.Windows.Forms.FontDialog();
             this.cl = new System.Windows.Forms.ColorDialog();
             this.minimizeCheckBox = new System.Windows.Forms.CheckBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.widthTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.heightTextBox = new System.Windows.Forms.TextBox();
@@ -94,16 +93,6 @@
             this.minimizeCheckBox.Text = "Кнопку \"скрыть\" показать";
             this.minimizeCheckBox.UseVisualStyleBackColor = true;
             this.minimizeCheckBox.CheckedChanged += new System.EventHandler(this.minimizeCheckBox_CheckedChanged);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(12, 89);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(162, 37);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Прозрачность";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // widthTextBox
             // 
@@ -170,11 +159,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::WindowsFormsApplication1.Properties.Resources.Menyat;
-            this.ClientSize = new System.Drawing.Size(418, 307);
+            this.ClientSize = new System.Drawing.Size(418, 306);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.minimizeCheckBox);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.buttonColor);
@@ -200,7 +188,6 @@
         private System.Windows.Forms.FontDialog fo;
         private System.Windows.Forms.ColorDialog cl;
         private System.Windows.Forms.CheckBox minimizeCheckBox;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox widthTextBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox heightTextBox;
