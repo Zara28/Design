@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -69,12 +69,67 @@ namespace WindowsFormsApplication1
                         }
                     }
                 }
+
+                if (words[index] == "FlatStyle")
+                {
+                    if (words[index + 1] == "Popup")
+                    {
+                        DesignClass.FLAT_OF_BUTTON = FlatStyle.Popup;
+                    }
+                    else if (words[index + 1] == "System")
+                    {
+                        DesignClass.FLAT_OF_BUTTON = FlatStyle.System;
+                    }
+                    else if (words[index + 1] == "Standard")
+                    {
+                        DesignClass.FLAT_OF_BUTTON = FlatStyle.Popup;
+                    }
+                    else if (words[index + 1] == "Flat")
+                    {
+                        DesignClass.FLAT_OF_BUTTON = FlatStyle.System;
+                    }
+                }
             }
         }
 
         private void Form2_Load(object sender, EventArgs e)
         {
             MainForm.pic(this);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ColorDialog MyDialog = new ColorDialog();
+            MyDialog.ShowDialog();
+
+            this.ForeColor = MyDialog.Color;
+            DesignClass.BUTTON_TEXT_COLOR = MyDialog.Color;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            PicForm form = new PicForm();
+            form.ShowDialog();
+
+            Size pic1Size = new Size(pictureBox1.Size.Width, 0);
+            Size pic2Size = new Size(pictureBox2.Size.Width, 0);
+            Size s1 = new System.Drawing.Size(DesignClass.LENGTH, 0);
+            pictureBox2.Location = pictureBox1.Location + pic1Size + s1;
+            pictureBox3.Location = pictureBox2.Location + pic2Size + s1;
+            MainForm.pic(this);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                pictureBox4.Load(textBox1.Text);
+            }
+            catch (Exception)
+            {
+                this.BackColor = new Color();
+                this.TransparencyKey = new Color();
+            }
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -144,6 +199,40 @@ namespace WindowsFormsApplication1
 
             DesignClass.BUTTON_COLOR = MyDialog.Color;
             MainForm.pic(this);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void comboBox1_SelectedValueChanged(object sender, EventArgs e)
+        {  
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (comboBox1.Text)
+            {
+                case "System":
+                    DesignClass.FLAT_OF_BUTTON = FlatStyle.System;
+                break;
+
+                case "Standard":
+                    DesignClass.FLAT_OF_BUTTON = FlatStyle.Standard;
+                break;
+
+                case "Popup":
+                     DesignClass.FLAT_OF_BUTTON = FlatStyle.Popup;
+                break;
+
+                case "Flat":
+                      DesignClass.FLAT_OF_BUTTON = FlatStyle.Flat;
+                break;
+            }
+            MainForm.pic(this);
+               
         }
     }
 }

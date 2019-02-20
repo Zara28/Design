@@ -51,6 +51,7 @@ namespace WindowsFormsApplication1
                 string ctr_type = ctr.GetType().ToString();
                 if (ctr_type == "System.Windows.Forms.Button")
                 {
+                    ((Button)ctr).FlatStyle = DesignClass.FLAT_OF_BUTTON;
                     ((Button)ctr).BackgroundImage = DesignClass.BUTTON_BACKGROUND_IMG;
                     ((Button)ctr).BackgroundImageLayout = ImageLayout.Stretch;
                     ((Button)ctr).ForeColor = DesignClass.BUTTON_TEXT_COLOR;
@@ -202,12 +203,32 @@ namespace WindowsFormsApplication1
                                 FontSize = (int)(Convert.ToDecimal(words[i + 1]));
                             }
                             #endregion
+                            if (words[i].Trim() == "FlatStyle")
+                            {
+                                if (words[i + 1] == "Popup")
+                                {
+                                   ((Button)ctr).FlatStyle = FlatStyle.Popup;
+                                }
+                                else if (words[i + 1] == "System")
+                                {
+                                    ((Button)ctr).FlatStyle = FlatStyle.System;
+                                }
+                                else if (words[i + 1] == "Standard")
+                                {
+                                    ((Button)ctr).FlatStyle = FlatStyle.Standard;
+                                }
+                                else if (words[i + 1] == "Flat")
+                                {
+                                    ((Button)ctr).FlatStyle = FlatStyle.Flat;
+                                }
+                            }
                         }
 
                         if (FontName != "" && FontSize > 0)
                         {
                             ctr.Font = new Font(FontName, FontSize);
                         }
+
                     }
                 }
 
@@ -348,6 +369,7 @@ namespace WindowsFormsApplication1
                     button.Add("Type", "Button");
                     button.Add("ForeColor", ButtonUniqueForm.ColorToJSON(ctr.ForeColor));//ctr.ForeColor.Name);
                     button.Add("Font", ctr.Font.Name);
+                    button.Add("FlatStyle", Convert.ToString(DesignClass.FLAT_OF_BUTTON));
                     json.Add(JObject.FromObject(button));
                 }
                 else if (ctr.GetType().ToString() == "System.Windows.Forms.Label")
@@ -408,6 +430,8 @@ namespace WindowsFormsApplication1
             {
                 ButtonData.Add("Color", ButtonUniqueForm.ColorToJSON(DesignClass.BUTTON_COLOR));//.ToString());
             }
+                ButtonData.Add("FlatStyle", Convert.ToString(DesignClass.FLAT_OF_BUTTON));//.ToString());
+            
             #endregion
 
             #region Panel

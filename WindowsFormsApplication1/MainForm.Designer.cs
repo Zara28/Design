@@ -106,8 +106,9 @@
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(127, 23);
             this.button4.TabIndex = 3;
-            this.button4.Text = "Null";
+            this.button4.Text = "label";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // panel1
             // 
@@ -174,6 +175,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(163, 114);
             this.tableLayoutPanel1.TabIndex = 5;
+            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
             // button9
             // 
@@ -281,7 +283,7 @@
             this.ButtonContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.changeUniqueBtnMenuItem});
             this.ButtonContextMenuStrip.Name = "ButtonContextMenuStrip";
-            this.ButtonContextMenuStrip.Size = new System.Drawing.Size(171, 48);
+            this.ButtonContextMenuStrip.Size = new System.Drawing.Size(171, 26);
             // 
             // changeUniqueBtnMenuItem
             // 
