@@ -16,7 +16,9 @@ namespace WindowsFormsApplication1
         /// Фоновая картинка формы
         /// </summary>
         public static Image FORM_BACKGROUND_IMG;
-        public static int nomer_konfig_image;
+
+        //public static int nomer_konfig_image;
+
         public static Color FORM_COLOR;
         /// <summary>
         /// Курсор
@@ -48,11 +50,11 @@ namespace WindowsFormsApplication1
         public static Font BUTTON_FONT;
         public static String BUTTON_BACKGROUND_IMG_ADRESS;
       
-        public string buttonn = "BUTTON" + "@@" + BUTTON_TEXT_COLOR.R + "!!!"
-                                                 + BUTTON_TEXT_COLOR.G + "!!!"
-                                                 + BUTTON_TEXT_COLOR.B + 
-                                                 "$$$" +
-                                                 BUTTON_BACKGROUND_IMG_ADRESS;
+        //public string buttonn = "BUTTON" + "@@" + BUTTON_TEXT_COLOR.R + "!!!"
+        //                                         + BUTTON_TEXT_COLOR.G + "!!!"
+        //                                         + BUTTON_TEXT_COLOR.B + 
+        //                                         "$$$" +
+        //                                         BUTTON_BACKGROUND_IMG_ADRESS;
 
         #endregion
 

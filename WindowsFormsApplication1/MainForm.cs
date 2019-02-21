@@ -47,6 +47,7 @@ namespace WindowsFormsApplication1
             //Дизайн кнопок
             foreach (Control ctr in c.Controls)
             {
+                #region DesignClass дефалт
                 string ctr_type = ctr.GetType().ToString();
                 if (ctr_type == "System.Windows.Forms.Button")
                 {
@@ -79,7 +80,8 @@ namespace WindowsFormsApplication1
                         ((Panel)ctr).BackColor = Color.Transparent;
                     }
                 }
-                    
+                #endregion
+
                 List<String> uniqueDesign = SQLClass.Select("SELECT design, FormFrom, Name, Type FROM " + Tables.Unique);
                 String[] words = uniqueDesign[0].Split(new string[] { ":", ",", " = ", "=" }, StringSplitOptions.RemoveEmptyEntries);
                 String FontName = "";
@@ -117,10 +119,12 @@ namespace WindowsFormsApplication1
                                 FontSize = json_words["FontSize"];
                             }
                         }*/
-                        
 
+
+                        
                         for (int i = 0; i < words.Length; i++)
                         {
+                            #region Задаём цвет
                             if (words[i].Trim() == "Color")
                             {
                                 try
@@ -177,21 +181,28 @@ namespace WindowsFormsApplication1
                                     }
                                 }
                             }
+                            #endregion
 
+                            #region Задаём видимость
                             if (words[i].Trim() == "Visible")
                             {
                                 ctr.Visible = (words[i + 1] == "True");
                             }
+                            #endregion
 
+                            #region Задаём шрифт
                             if (words[i].Trim() == "FontName")
                             {
                                 FontName = words[i + 1];
                             }
+                            #endregion
 
+                            #region Задаём размер шрифта
                             if (words[i].Trim() == "FontSize")
                             {
                                 FontSize = (int)(Convert.ToDecimal(words[i + 1]));
                             }
+                            #endregion
                             if (words[i].Trim() == "FlatStyle")
                             {
                                 if (words[i + 1] == "Popup")
@@ -221,11 +232,10 @@ namespace WindowsFormsApplication1
                     }
                 }
 
-                pic(ctr);               
-             
+                pic(ctr);
             }
-            #endregion
         }
+        #endregion
 
 
         private void button1_Click(object sender, EventArgs e)
@@ -273,19 +283,7 @@ namespace WindowsFormsApplication1
             pic(this);
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         #region JSON сохранение
-
-
 
         /// <summary>
         /// Превращает картику в байты
@@ -683,16 +681,6 @@ namespace WindowsFormsApplication1
             LabelUniqueForm.UpdateLabelDesignInDb(pb);
 
             pic(this);
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void sgdfgdgToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
