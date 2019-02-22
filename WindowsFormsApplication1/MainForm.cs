@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -29,7 +29,6 @@ namespace WindowsFormsApplication1
             ReadPanelDefault();
             pic(this);
         }
-
         #region Измение расстояния между картинками, сами картинки, цвета и тд
         public static void pic(Control c)
         {
@@ -55,6 +54,7 @@ namespace WindowsFormsApplication1
                     ((Button)ctr).BackgroundImage = DesignClass.BUTTON_BACKGROUND_IMG;
                     ((Button)ctr).BackgroundImageLayout = ImageLayout.Stretch;
                     ((Button)ctr).ForeColor = DesignClass.BUTTON_TEXT_COLOR;
+                    ((Button)ctr).TextAlign = DesignClass.BUTTONIMAGE_ALLINE;
                     ((Button)ctr).Font = DesignClass.BUTTON_FONT;
                     ((Button)ctr).BackColor = DesignClass.BUTTON_COLOR;
                     ctr.ContextMenuStrip = DesignClass.BUTTON_MENU;
@@ -112,7 +112,6 @@ namespace WindowsFormsApplication1
                                 }
                                 catch (Exception)
                                 {
-
                                     foreach (String colorName in Enum.GetNames(typeof(KnownColor)))
                                     {
                                         String colorFromDB = words[i + 1].Trim();
@@ -215,11 +214,9 @@ namespace WindowsFormsApplication1
         }
         #endregion
 
-
         private void button1_Click(object sender, EventArgs e)
         {
         }
-
       
         private void buttonDefaultForm_Click(object sender, EventArgs e)
         {
@@ -261,6 +258,16 @@ namespace WindowsFormsApplication1
             pic(this);
         }
 
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+        
         #region JSON сохранение
 
         /// <summary>
@@ -408,7 +415,9 @@ namespace WindowsFormsApplication1
             {
                 ButtonData.Add("Color", ButtonUniqueForm.ColorToJSON(DesignClass.BUTTON_COLOR));//.ToString());
             }
-                ButtonData.Add("FlatStyle", Convert.ToString(DesignClass.FLAT_OF_BUTTON));//.ToString());
+
+            ButtonData.Add("ImageAlign", DesignClass.BUTTONIMAGE_ALLINE.ToString());//.ToString());
+            ButtonData.Add("FlatStyle", Convert.ToString(DesignClass.FLAT_OF_BUTTON));//.ToString());
             
             #endregion
 
@@ -458,7 +467,6 @@ namespace WindowsFormsApplication1
 
             return AllTypesData;
         }
-
 
         private void button3_Click(object sender, EventArgs e)
         {
@@ -634,8 +642,7 @@ namespace WindowsFormsApplication1
             {
                 this.MaximumSize = new Size(size, size);
             }
-            else MessageBox.Show("Такое значение нельзя, похоронишь форму");
-            
+            else MessageBox.Show("Такое значение нельзя, похоронишь форму");           
         }
 
         private void MainForm_MaximumSizeChanged(object sender, EventArgs e)
@@ -659,6 +666,16 @@ namespace WindowsFormsApplication1
             LabelUniqueForm.UpdateLabelDesignInDb(pb);
 
             pic(this);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void sgdfgdgToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

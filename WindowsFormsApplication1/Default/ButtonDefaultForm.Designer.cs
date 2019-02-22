@@ -43,6 +43,7 @@
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
             this.buttonColor = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.comboBoxPicAlign = new System.Windows.Forms.ComboBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -194,6 +195,25 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(327, 81);
             this.tableLayoutPanel1.TabIndex = 12;
             // 
+            // comboBoxPicAlign
+            // 
+            this.comboBoxPicAlign.FormattingEnabled = true;
+            this.comboBoxPicAlign.Items.AddRange(new object[] {
+            "Лево-верх",
+            "Лево-центр",
+            "Лево-низ",
+            "Середина-верх",
+            "Середина-центр",
+            "Середина-низ",
+            "Право-верх",
+            "Право-центр",
+            "Право-низ"});
+            this.comboBoxPicAlign.Location = new System.Drawing.Point(12, 265);
+            this.comboBoxPicAlign.Name = "comboBoxPicAlign";
+            this.comboBoxPicAlign.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxPicAlign.TabIndex = 13;
+            this.comboBoxPicAlign.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
@@ -226,7 +246,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(327, 381);
+            this.ClientSize = new System.Drawing.Size(327, 410);
+            this.Controls.Add(this.comboBoxPicAlign);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.tableLayoutPanel1);
@@ -267,6 +288,7 @@
         private System.Windows.Forms.FontDialog fontDialog1;
         private System.Windows.Forms.Button buttonColor;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.ComboBox comboBoxPicAlign;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.TextBox textBox2;
     }

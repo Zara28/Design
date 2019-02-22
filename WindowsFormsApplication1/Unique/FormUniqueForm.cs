@@ -20,7 +20,7 @@ namespace WindowsFormsApplication1
         /// <summary>
         /// Прозрачность Жукова которая делает все кнопки дырявыми
         /// </summary>
-        //public static bool ASSA = true;
+        public static bool ASSA = false;
 
         public FormUniqueForm(String name)
         {
@@ -174,5 +174,7 @@ namespace WindowsFormsApplication1
                 this.Icon = Properties.Resources.Masons; 
             }
         }
+
+       
     }
 }

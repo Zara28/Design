@@ -89,12 +89,63 @@ namespace WindowsFormsApplication1
                         DesignClass.FLAT_OF_BUTTON = FlatStyle.System;
                     }
                 }
+                
+                if (words[index].Trim() == "ImageAlign")
+                {
+                    //DesignClass.BUTTONIMAGE_ALLINE = (ContentAlignment)(words[index + 1]);
+                    if (words[index + 1] == "TopLeft")
+                    {
+                        DesignClass.BUTTONIMAGE_ALLINE = ContentAlignment.TopLeft;
+                    }
+                    else if (words[index + 1] == "TopCenter")
+                    {
+                        DesignClass.BUTTONIMAGE_ALLINE = ContentAlignment.TopCenter;
+                    }
+                    else if (words[index + 1] == "TopRight")
+                    {
+                        DesignClass.BUTTONIMAGE_ALLINE = ContentAlignment.TopRight;
+                    }
+                    else if (words[index + 1] == "MiddleLeft")
+                    {
+                        DesignClass.BUTTONIMAGE_ALLINE = ContentAlignment.MiddleLeft;
+                    }
+                    else if (words[index + 1] == "MiddleCenter")
+                    {
+                        DesignClass.BUTTONIMAGE_ALLINE = ContentAlignment.MiddleCenter;
+                    }
+                    else if (words[index + 1] == "MiddleRight")
+                    {
+                        DesignClass.BUTTONIMAGE_ALLINE = ContentAlignment.MiddleRight;
+                    }
+                    else if (words[index + 1] == "BottomLeft")
+                    {
+                        DesignClass.BUTTONIMAGE_ALLINE = ContentAlignment.BottomLeft;
+                    }
+                    else if (words[index + 1] == "BottomCenter")
+                    {
+                        DesignClass.BUTTONIMAGE_ALLINE = ContentAlignment.BottomCenter;
+                    }
+                    else if (words[index + 1] == "BottomRight")
+                    {
+                        DesignClass.BUTTONIMAGE_ALLINE = ContentAlignment.BottomRight;
+                    }
+                }                
             }
         }
 
         private void Form2_Load(object sender, EventArgs e)
         {
             MainForm.pic(this);
+            if (FormUniqueForm.ASSA)
+            {
+                this.BackColor = Color.FromArgb(123, 234, 121);
+                this.TransparencyKey = Color.FromArgb(123, 234, 121);
+            }
+            else
+            {
+                this.BackColor = new Color();
+                this.TransparencyKey = new Color();
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -135,6 +186,7 @@ namespace WindowsFormsApplication1
             DesignClass.BUTTON_BACKGROUND_IMG = pictureBox4.Image;
         }
 
+
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             DesignClass.BUTTON_BACKGROUND_IMG = ((PictureBox)sender).BackgroundImage;
@@ -143,7 +195,8 @@ namespace WindowsFormsApplication1
           
             MainForm.pic(this);
         }
-        
+
+
         private void buttonFont_Click(object sender, EventArgs e)
         {
             if (fontDialog1.ShowDialog() != DialogResult.Cancel)
@@ -162,9 +215,54 @@ namespace WindowsFormsApplication1
         private void buttonColor_Click(object sender, EventArgs e)
         {
             ColorDialog MyDialog = new ColorDialog();
+            MyDialog.Color = DesignClass.BUTTON_COLOR;
             MyDialog.ShowDialog();
 
             DesignClass.BUTTON_COLOR = MyDialog.Color;
+            MainForm.pic(this);
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+            if(comboBoxPicAlign.SelectedIndex == 0)
+            {
+                DesignClass.BUTTONIMAGE_ALLINE = System.Drawing.ContentAlignment.TopLeft;
+            }
+            else if (comboBoxPicAlign.SelectedIndex == 1)
+            {
+                DesignClass.BUTTONIMAGE_ALLINE = System.Drawing.ContentAlignment.TopCenter;
+            }
+            else if (comboBoxPicAlign.SelectedIndex == 2)
+            {
+                DesignClass.BUTTONIMAGE_ALLINE = System.Drawing.ContentAlignment.TopRight;
+            }
+            else if (comboBoxPicAlign.SelectedIndex == 3)
+            {
+                DesignClass.BUTTONIMAGE_ALLINE = System.Drawing.ContentAlignment.MiddleLeft;
+            }
+            else if (comboBoxPicAlign.SelectedIndex == 4)
+            {
+                DesignClass.BUTTONIMAGE_ALLINE = System.Drawing.ContentAlignment.MiddleCenter;
+            }
+            else if (comboBoxPicAlign.SelectedIndex == 5)
+            {
+                DesignClass.BUTTONIMAGE_ALLINE = System.Drawing.ContentAlignment.MiddleRight;
+            }
+            else if (comboBoxPicAlign.SelectedIndex == 6)
+            {
+                DesignClass.BUTTONIMAGE_ALLINE = System.Drawing.ContentAlignment.BottomLeft;
+            }
+            else if (comboBoxPicAlign.SelectedIndex == 7)
+            {
+                DesignClass.BUTTONIMAGE_ALLINE = System.Drawing.ContentAlignment.BottomCenter;
+            }
+            else if (comboBoxPicAlign.SelectedIndex == 8)
+            {
+                DesignClass.BUTTONIMAGE_ALLINE = System.Drawing.ContentAlignment.BottomRight;
+            }
+
+
             MainForm.pic(this);
         }
 
