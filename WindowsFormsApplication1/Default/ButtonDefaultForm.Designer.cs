@@ -44,6 +44,8 @@
             this.buttonColor = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.comboBoxPicAlign = new System.Windows.Forms.ComboBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -89,9 +91,9 @@
             this.pictureBox3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.BackgroundImage")));
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox3.Location = new System.Drawing.Point(224, 30);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(12, 12, 12, 12);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(12);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Padding = new System.Windows.Forms.Padding(12, 12, 12, 12);
+            this.pictureBox3.Padding = new System.Windows.Forms.Padding(12);
             this.pictureBox3.Size = new System.Drawing.Size(100, 50);
             this.pictureBox3.TabIndex = 3;
             this.pictureBox3.TabStop = false;
@@ -143,7 +145,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(13, 224);
+            this.button3.Location = new System.Drawing.Point(13, 223);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(302, 34);
             this.button3.TabIndex = 9;
@@ -166,7 +168,7 @@
             // 
             this.buttonColor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonColor.Location = new System.Drawing.Point(2, 2);
-            this.buttonColor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonColor.Margin = new System.Windows.Forms.Padding(2);
             this.buttonColor.Name = "buttonColor";
             this.buttonColor.Size = new System.Drawing.Size(159, 36);
             this.buttonColor.TabIndex = 11;
@@ -184,8 +186,8 @@
             this.tableLayoutPanel1.Controls.Add(this.button1, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.button2, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 329);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 300);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -212,12 +214,42 @@
             this.comboBoxPicAlign.TabIndex = 13;
             this.comboBoxPicAlign.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Standard",
+            "System",
+            "Flat",
+            "Popup"});
+            this.comboBox1.Location = new System.Drawing.Point(16, 268);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(145, 21);
+            this.comboBox1.TabIndex = 14;
+            this.comboBox1.Text = "FlatStyle";
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.comboBox1.SelectedValueChanged += new System.EventHandler(this.comboBox1_SelectedValueChanged);
+            // 
+            // textBox2
+            // 
+            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox2.Enabled = false;
+            this.textBox2.Location = new System.Drawing.Point(166, 264);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(147, 46);
+            this.textBox2.TabIndex = 15;
+            this.textBox2.Text = "Если хочешь сохранить уникальный дизайн, не выбирай первые две!";
+            // 
             // ButtonDefaultForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(327, 410);
             this.Controls.Add(this.comboBoxPicAlign);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.pictureBox4);
@@ -257,5 +289,7 @@
         private System.Windows.Forms.Button buttonColor;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.ComboBox comboBoxPicAlign;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.TextBox textBox2;
     }
 }

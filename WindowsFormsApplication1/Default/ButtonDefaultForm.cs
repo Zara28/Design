@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -70,6 +70,26 @@ namespace WindowsFormsApplication1
                     }
                 }
 
+                if (words[index] == "FlatStyle")
+                {
+                    if (words[index + 1] == "Popup")
+                    {
+                        DesignClass.FLAT_OF_BUTTON = FlatStyle.Popup;
+                    }
+                    else if (words[index + 1] == "System")
+                    {
+                        DesignClass.FLAT_OF_BUTTON = FlatStyle.System;
+                    }
+                    else if (words[index + 1] == "Standard")
+                    {
+                        DesignClass.FLAT_OF_BUTTON = FlatStyle.Popup;
+                    }
+                    else if (words[index + 1] == "Flat")
+                    {
+                        DesignClass.FLAT_OF_BUTTON = FlatStyle.System;
+                    }
+                }
+                
                 if (words[index].Trim() == "ImageAlign")
                 {
                     //DesignClass.BUTTONIMAGE_ALLINE = (ContentAlignment)(words[index + 1]);
@@ -128,15 +148,6 @@ namespace WindowsFormsApplication1
             }
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            DesignClass.BUTTON_BACKGROUND_IMG = ((PictureBox)sender).BackgroundImage;
-            this.Close();
-           // DesignClass.BUTTON_BACKGROUND_IMG_ADRESS = ((PictureBox)sender).Tag.ToString();
-          
-            MainForm.pic(this);
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             ColorDialog MyDialog = new ColorDialog();
@@ -167,11 +178,24 @@ namespace WindowsFormsApplication1
             }
             catch (Exception)
             {
+                this.BackColor = new Color();
+                this.TransparencyKey = new Color();
                 pictureBox4.Image = pictureBox1.Image;
             }
 
             DesignClass.BUTTON_BACKGROUND_IMG = pictureBox4.Image;
         }
+
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            DesignClass.BUTTON_BACKGROUND_IMG = ((PictureBox)sender).BackgroundImage;
+            this.Close();
+           // DesignClass.BUTTON_BACKGROUND_IMG_ADRESS = ((PictureBox)sender).Tag.ToString();
+          
+            MainForm.pic(this);
+        }
+
 
         private void buttonFont_Click(object sender, EventArgs e)
         {
@@ -240,6 +264,40 @@ namespace WindowsFormsApplication1
 
 
             MainForm.pic(this);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void comboBox1_SelectedValueChanged(object sender, EventArgs e)
+        {  
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (comboBox1.Text)
+            {
+                case "System":
+                    DesignClass.FLAT_OF_BUTTON = FlatStyle.System;
+                break;
+
+                case "Standard":
+                    DesignClass.FLAT_OF_BUTTON = FlatStyle.Standard;
+                break;
+
+                case "Popup":
+                     DesignClass.FLAT_OF_BUTTON = FlatStyle.Popup;
+                break;
+
+                case "Flat":
+                      DesignClass.FLAT_OF_BUTTON = FlatStyle.Flat;
+                break;
+            }
+            MainForm.pic(this);
+               
         }
     }
 }

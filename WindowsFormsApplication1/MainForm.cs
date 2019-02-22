@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -29,7 +29,6 @@ namespace WindowsFormsApplication1
             ReadPanelDefault();
             pic(this);
         }
-
         #region Измение расстояния между картинками, сами картинки, цвета и тд
         public static void pic(Control c)
         {
@@ -47,9 +46,11 @@ namespace WindowsFormsApplication1
             //Дизайн кнопок
             foreach (Control ctr in c.Controls)
             {
+                #region DesignClass дефалт
                 string ctr_type = ctr.GetType().ToString();
                 if (ctr_type == "System.Windows.Forms.Button")
                 {
+                    ((Button)ctr).FlatStyle = DesignClass.FLAT_OF_BUTTON;
                     ((Button)ctr).BackgroundImage = DesignClass.BUTTON_BACKGROUND_IMG;
                     ((Button)ctr).BackgroundImageLayout = ImageLayout.Stretch;
                     ((Button)ctr).ForeColor = DesignClass.BUTTON_TEXT_COLOR;
@@ -79,7 +80,8 @@ namespace WindowsFormsApplication1
                         ((Panel)ctr).BackColor = Color.Transparent;
                     }
                 }
-                    
+                #endregion
+
                 List<String> uniqueDesign = SQLClass.Select("SELECT design, FormFrom, Name, Type FROM " + Tables.Unique);
                 String[] words = uniqueDesign[0].Split(new string[] { ":", ",", " = ", "=" }, StringSplitOptions.RemoveEmptyEntries);
                 String FontName = "";
@@ -95,32 +97,10 @@ namespace WindowsFormsApplication1
 
                         FontName = "";
                         FontSize = 0;
-
-                        /*var json_words = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(uniqueDesign[index]);
-
-                        foreach (string key in json_words.Keys)
-                        {
-                            if (key == "Color")
-                            {
-                                ctr.BackColor = Color.FromArgb(json_words["Color"][0], json_words["Color"][1], json_words["Color"][2], json_words["Color"][3]);
-                            }
-                            else if (key == "Visible")
-                            {
-                                ctr.Visible = json_words["Visible"];
-                            }
-                            else if (key == "FontName")
-                            {
-                                FontName = json_words["FontName"];
-                            }
-                            else if (key == "FontSize")
-                            {
-                                FontSize = json_words["FontSize"];
-                            }
-                        }*/
                         
-
                         for (int i = 0; i < words.Length; i++)
                         {
+                            #region Задаём цвет
                             if (words[i].Trim() == "Color")
                             {
                                 try
@@ -132,7 +112,6 @@ namespace WindowsFormsApplication1
                                 }
                                 catch (Exception)
                                 {
-
                                     foreach (String colorName in Enum.GetNames(typeof(KnownColor)))
                                     {
                                         String colorFromDB = words[i + 1].Trim();
@@ -177,21 +156,50 @@ namespace WindowsFormsApplication1
                                     }
                                 }
                             }
+                            #endregion
 
+                            #region Задаём видимость
                             if (words[i].Trim() == "Visible")
                             {
                                 ctr.Visible = (words[i + 1] == "True");
                             }
+                            #endregion
 
+                            #region Задаём шрифт
                             if (words[i].Trim() == "FontName")
                             {
                                 FontName = words[i + 1];
                             }
+                            #endregion
 
+                            #region Задаём размер шрифта
                             if (words[i].Trim() == "FontSize")
                             {
                                 FontSize = (int)(Convert.ToDecimal(words[i + 1]));
                             }
+                            #endregion
+
+                            #region Задаем стиль кнопки
+                            if (words[i].Trim() == "FlatStyle")
+                            {
+                                if (words[i + 1] == "Popup")
+                                {
+                                   ((Button)ctr).FlatStyle = FlatStyle.Popup;
+                                }
+                                else if (words[i + 1] == "System")
+                                {
+                                    ((Button)ctr).FlatStyle = FlatStyle.System;
+                                }
+                                else if (words[i + 1] == "Standard")
+                                {
+                                    ((Button)ctr).FlatStyle = FlatStyle.Standard;
+                                }
+                                else if (words[i + 1] == "Flat")
+                                {
+                                    ((Button)ctr).FlatStyle = FlatStyle.Flat;
+                                }
+                            }
+                            #endregion
                         }
 
                         if (FontName != "" && FontSize > 0)
@@ -201,17 +209,14 @@ namespace WindowsFormsApplication1
                     }
                 }
 
-                pic(ctr);               
-             
+                pic(ctr);
             }
-            #endregion
         }
-
+        #endregion
 
         private void button1_Click(object sender, EventArgs e)
         {
         }
-
       
         private void buttonDefaultForm_Click(object sender, EventArgs e)
         {
@@ -262,10 +267,8 @@ namespace WindowsFormsApplication1
         {
 
         }
-
+        
         #region JSON сохранение
-
-
 
         /// <summary>
         /// Превращает картику в байты
@@ -351,6 +354,7 @@ namespace WindowsFormsApplication1
                     button.Add("Type", "Button");
                     button.Add("ForeColor", ButtonUniqueForm.ColorToJSON(ctr.ForeColor));//ctr.ForeColor.Name);
                     button.Add("Font", ctr.Font.Name);
+                    button.Add("FlatStyle", Convert.ToString(DesignClass.FLAT_OF_BUTTON));
                     json.Add(JObject.FromObject(button));
                 }
                 else if (ctr.GetType().ToString() == "System.Windows.Forms.Label")
@@ -413,6 +417,8 @@ namespace WindowsFormsApplication1
             }
 
             ButtonData.Add("ImageAlign", DesignClass.BUTTONIMAGE_ALLINE.ToString());//.ToString());
+            ButtonData.Add("FlatStyle", Convert.ToString(DesignClass.FLAT_OF_BUTTON));//.ToString());
+            
             #endregion
 
             #region Panel
@@ -461,7 +467,6 @@ namespace WindowsFormsApplication1
 
             return AllTypesData;
         }
-
 
         private void button3_Click(object sender, EventArgs e)
         {
@@ -637,8 +642,7 @@ namespace WindowsFormsApplication1
             {
                 this.MaximumSize = new Size(size, size);
             }
-            else MessageBox.Show("Такое значение нельзя, похоронишь форму");
-            
+            else MessageBox.Show("Такое значение нельзя, похоронишь форму");           
         }
 
         private void MainForm_MaximumSizeChanged(object sender, EventArgs e)
