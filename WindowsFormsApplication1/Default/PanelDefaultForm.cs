@@ -255,7 +255,7 @@ namespace WindowsFormsApplication1
             String t = "", n = "";
             //.Get_T_N(words, ref n, ref t);
 
-            MessageBox.Show("type = " + t + " name = " + n);
+            //MessageBox.Show("type = " + t + " name = " + n);
 
             foreach (Control ctrl in this.Controls)
             {

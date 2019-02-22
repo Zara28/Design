@@ -49,13 +49,6 @@ namespace WindowsFormsApplication1
         public static Color BUTTON_COLOR;
         public static Font BUTTON_FONT;
         public static String BUTTON_BACKGROUND_IMG_ADRESS;
-      
-        //public string buttonn = "BUTTON" + "@@" + BUTTON_TEXT_COLOR.R + "!!!"
-        //                                         + BUTTON_TEXT_COLOR.G + "!!!"
-        //                                         + BUTTON_TEXT_COLOR.B + 
-        //                                         "$$$" +
-        //                                         BUTTON_BACKGROUND_IMG_ADRESS;
-
         #endregion
 
         #region etc

@@ -97,30 +97,6 @@ namespace WindowsFormsApplication1
 
                         FontName = "";
                         FontSize = 0;
-
-                        /*var json_words = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(uniqueDesign[index]);
-
-                        foreach (string key in json_words.Keys)
-                        {
-                            if (key == "Color")
-                            {
-                                ctr.BackColor = Color.FromArgb(json_words["Color"][0], json_words["Color"][1], json_words["Color"][2], json_words["Color"][3]);
-                            }
-                            else if (key == "Visible")
-                            {
-                                ctr.Visible = json_words["Visible"];
-                            }
-                            else if (key == "FontName")
-                            {
-                                FontName = json_words["FontName"];
-                            }
-                            else if (key == "FontSize")
-                            {
-                                FontSize = json_words["FontSize"];
-                            }
-                        }*/
-
-
                         
                         for (int i = 0; i < words.Length; i++)
                         {
@@ -203,6 +179,8 @@ namespace WindowsFormsApplication1
                                 FontSize = (int)(Convert.ToDecimal(words[i + 1]));
                             }
                             #endregion
+
+                            #region Задаем стиль кнопки
                             if (words[i].Trim() == "FlatStyle")
                             {
                                 if (words[i + 1] == "Popup")
@@ -222,13 +200,13 @@ namespace WindowsFormsApplication1
                                     ((Button)ctr).FlatStyle = FlatStyle.Flat;
                                 }
                             }
+                            #endregion
                         }
 
                         if (FontName != "" && FontSize > 0)
                         {
                             ctr.Font = new Font(FontName, FontSize);
                         }
-
                     }
                 }
 
