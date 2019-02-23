@@ -78,6 +78,146 @@ namespace WindowsFormsApplication1
                 "', 'admin', '" + pb.Name + "', '" + pb.FindForm().Name + "')");
         }
 
+        /// <summary>
+        /// Получение уникального дизайна кнопки из базы данных
+        /// </summary>
+        /// <param name="name">Имя кнопки</param>
+        /// <param name="words">Массив слов (что-то связанное с JSON)</param>
+        /// <returns>
+        /// Новая кнопка со свойствами уникальной кнопки с названием <paramref name="name"/> из базы
+        /// Её НЕЛЬЗЯ использовать как <code>ctr = GetUniqueDesignFromDB(...)</code>
+        /// Нужно по отдельности задавать её свойства вашей кнопке.
+        /// </returns>
+        public static Button GetUniqueDesignFromDB(string name)
+        {
+            Button temp = new Button();
+            string temp_design = "";
+            try
+            {
+                temp_design = SQLClass.Select(string.Format("SELECT design FROM `{1}` WHERE `name`='{0}'", name, Tables.Unique))[0];
+            } catch (ArgumentOutOfRangeException)
+            {
+                return new Button();
+            }
+            string[] words = temp_design.Split(new string[] { ":", ",", " = ", "=", "[", "]" }, StringSplitOptions.RemoveEmptyEntries);
+
+            var FontName = "";
+            var FontSize = 0;
+
+            #region Код декодировки temp_design
+            for (int i = 0; i < words.Length; i++)
+            {
+                #region Задаём цвет
+                if (words[i].Trim() == "Color")
+                {
+                    try
+                    {
+                        temp.BackColor = Color.FromArgb(
+                            Convert.ToInt32(words[i + 1]),
+                            Convert.ToInt32(words[i + 2]),
+                            Convert.ToInt32(words[i + 3]), Convert.ToInt32(words[i + 4]));
+                    }
+                    catch (Exception)
+                    {
+                        foreach (String colorName in Enum.GetNames(typeof(KnownColor)))
+                        {
+                            String colorFromDB = words[i + 1].Trim();
+                            if (colorFromDB.StartsWith("Color"))
+                            {
+                                colorFromDB = colorFromDB.Replace("Color [", "").Replace("]", "");
+                            }
+                    
+                            if (colorName == colorFromDB)
+                            {
+                                Color knownColor = Color.FromKnownColor((KnownColor) Enum.Parse(typeof(KnownColor), colorName));
+                                temp.BackColor = knownColor;
+                            }
+                        }
+                    }
+                }
+
+                if (words[i].Trim() == "ForeColor")
+                {
+                    try
+                    {
+                        temp.ForeColor = Color.FromArgb(
+                            Convert.ToInt32(words[i + 1]),
+                            Convert.ToInt32(words[i + 2]),
+                            Convert.ToInt32(words[i + 3]), Convert.ToInt32(words[i + 4]));
+                    }
+                    catch (Exception)
+                    {
+                        foreach (String colorName in Enum.GetNames(typeof(KnownColor)))
+                        {
+                            String colorFromDB = words[i + 1].Trim();
+                            if (colorFromDB.StartsWith("Color"))
+                            {
+                                colorFromDB = colorFromDB.Replace("Color [", "").Replace("]", "");
+                            }
+
+                            if (colorName == colorFromDB)
+                            {
+                                Color knownColor = Color.FromKnownColor((KnownColor) Enum.Parse(typeof(KnownColor), colorName));
+                                temp.ForeColor = knownColor;
+                            }
+                        }
+                    }
+                }
+                #endregion
+
+                #region Задаём видимость
+                if (words[i].Trim() == "Visible")
+                {
+                    temp.Visible = (words[i + 1] == "True");
+                }
+                #endregion
+
+                #region Задаём шрифт
+                if (words[i].Trim() == "FontName")
+                {
+                    FontName = words[i + 1];
+                }
+                #endregion
+
+                #region Задаём размер шрифта
+                if (words[i].Trim() == "FontSize")
+                {
+                    FontSize = (int) (Convert.ToDecimal(words[i + 1]));
+                }
+                #endregion
+
+                #region Задаем стиль кнопки
+                if (words[i].Trim() == "FlatStyle")
+                {
+                    if (words[i + 1] == "Popup")
+                    {
+                        ((Button) temp).FlatStyle = FlatStyle.Popup;
+                    }
+                    else if (words[i + 1] == "System")
+                    {
+                        ((Button) temp).FlatStyle = FlatStyle.System;
+                    }
+                    else if (words[i + 1] == "Standard")
+                    {
+                        ((Button) temp).FlatStyle = FlatStyle.Standard;
+                    }
+                    else if (words[i + 1] == "Flat")
+                    {
+                        ((Button) temp).FlatStyle = FlatStyle.Flat;
+                    }
+                }
+                #endregion
+            }
+
+            if (FontName != "" && FontSize > 0)
+            {
+                temp.Font = new Font(FontName, FontSize);
+            }
+            #endregion
+
+            return temp;
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             newButton.Text = textBox1.Text;
