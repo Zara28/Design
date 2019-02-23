@@ -223,8 +223,7 @@ namespace WindowsFormsApplication1
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
+        {            
             if(comboBoxPicAlign.SelectedIndex == 0)
             {
                 DesignClass.BUTTONIMAGE_ALLINE = System.Drawing.ContentAlignment.TopLeft;
@@ -271,30 +270,25 @@ namespace WindowsFormsApplication1
 
         }
 
-
-        private void comboBox1_SelectedValueChanged(object sender, EventArgs e)
-        {  
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void flatStyleComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (comboBox1.Text)
+            switch (flatStyleComboBox.Text)
             {
                 case "System":
                     DesignClass.FLAT_OF_BUTTON = FlatStyle.System;
-                break;
+                    break;
 
                 case "Standard":
                     DesignClass.FLAT_OF_BUTTON = FlatStyle.Standard;
-                break;
+                    break;
 
                 case "Popup":
                      DesignClass.FLAT_OF_BUTTON = FlatStyle.Popup;
-                break;
+                    break;
 
                 case "Flat":
                       DesignClass.FLAT_OF_BUTTON = FlatStyle.Flat;
-                break;
+                    break;
             }
             MainForm.pic(this);
                
