@@ -56,7 +56,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(259, 29);
+            this.button2.Location = new System.Drawing.Point(262, 29);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 1;
@@ -66,9 +66,9 @@
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(117, 13);
+            this.label1.Location = new System.Drawing.Point(94, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(136, 78);
+            this.label1.Size = new System.Drawing.Size(162, 78);
             this.label1.TabIndex = 2;
             this.label1.Text = "Example";
             // 
@@ -168,7 +168,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(346, 188);
+            this.ClientSize = new System.Drawing.Size(342, 188);
             this.Controls.Add(this.button11);
             this.Controls.Add(this.button10);
             this.Controls.Add(this.button9);
@@ -182,7 +182,9 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormDefaultLabel";
+            this.ShowInTaskbar = false;
             this.Text = "Design of label";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormDefaultLabel_FormClosing);
             this.Load += new System.EventHandler(this.FormLabel_Load);

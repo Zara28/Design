@@ -64,6 +64,14 @@ namespace WindowsFormsApplication1
                     ((Label)ctr).BackColor = Color.Transparent;
                     ((Label)ctr).ForeColor = DesignClass.LABEL_TEXT_COLOR;
                     ((Label)ctr).Font = DesignClass.FONT_OF_LABEL;
+                    if(!DesignClass.LABEL_AUTO_SIZE)
+                    {
+                        ((Label)ctr).TextAlign = DesignClass.LABEL_TEXT_ALIGN;
+                    }
+                    else
+                    {
+                        ((Label)ctr).AutoSize = true;
+                    }
                     ctr.ContextMenuStrip = DesignClass.LABEL_MENU;
                 }
                 else if (ctr_type == "System.Windows.Forms.PictureBox")
@@ -600,33 +608,34 @@ namespace WindowsFormsApplication1
                 }
                 if (words[index].Trim() == "TextAlign")
                 {
+                    DesignClass.LABEL_AUTO_SIZE = false;
                     switch (words[index + 1])
                     {
-                        case "System.Drawing.ContentAlignment.BottomCenter":
+                        case "BottomCenter":
                             DesignClass.LABEL_TEXT_ALIGN = System.Drawing.ContentAlignment.BottomCenter;
                             break;
-                        case "System.Drawing.ContentAlignment.BottomLeft":
+                        case "BottomLeft":
                             DesignClass.LABEL_TEXT_ALIGN = System.Drawing.ContentAlignment.BottomLeft;
                             break;
-                        case "System.Drawing.ContentAlignment.BottomRight":
+                        case "BottomRight":
                             DesignClass.LABEL_TEXT_ALIGN = System.Drawing.ContentAlignment.BottomRight;
                             break;
-                        case "System.Drawing.ContentAlignment.MiddleCenter":
+                        case "MiddleCenter":
                             DesignClass.LABEL_TEXT_ALIGN = System.Drawing.ContentAlignment.MiddleCenter;
                             break;
-                        case "System.Drawing.ContentAlignment.MiddleLeft":
+                        case "MiddleLeft":
                             DesignClass.LABEL_TEXT_ALIGN = System.Drawing.ContentAlignment.MiddleLeft;
                             break;
-                        case "System.Drawing.ContentAlignment.MiddleRight":
+                        case "MiddleRight":
                             DesignClass.LABEL_TEXT_ALIGN = System.Drawing.ContentAlignment.MiddleRight;
                             break;
-                        case "System.Drawing.ContentAlignment.TopCenter":
+                        case "TopCenter":
                             DesignClass.LABEL_TEXT_ALIGN = System.Drawing.ContentAlignment.TopCenter;
                             break;
-                        case "System.Drawing.ContentAlignment.TopLeft":
+                        case "TopLeft":
                             DesignClass.LABEL_TEXT_ALIGN = System.Drawing.ContentAlignment.TopLeft;
                             break;
-                        case "System.Drawing.ContentAlignment.TopRight":
+                        case "TopRight":
                             DesignClass.LABEL_TEXT_ALIGN = System.Drawing.ContentAlignment.TopRight;
                             break;
                         default:

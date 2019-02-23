@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -41,7 +41,8 @@ namespace WindowsFormsApplication1
 
         private void FormLabel_Load(object sender, EventArgs e)
         {
-
+            MainForm.pic(this);
+            checkBox1.Checked = DesignClass.LABEL_AUTO_SIZE;
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -56,6 +57,7 @@ namespace WindowsFormsApplication1
             button9.Visible = !checkBox1.Checked;
             button10.Visible = !checkBox1.Checked;
             button11.Visible = !checkBox1.Checked;
+            DesignClass.LABEL_AUTO_SIZE = checkBox1.Checked;
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -114,7 +116,6 @@ namespace WindowsFormsApplication1
 
         private void FormDefaultLabel_FormClosing(object sender, FormClosingEventArgs e)
         {
-
             MainForm.typeSerialize();
         }
 
