@@ -101,7 +101,7 @@ namespace WindowsFormsApplication1
         public static string NAME_FONT_OF_LABEL;
         public static int SIZE_FONT_OF_LABEL;
         public static bool LABEL_AUTO_SIZE = true;
-        public static ContentAlignment LABEL_TEXT_ALIGN = System.Drawing.ContentAlignment.MiddleCenter;
+        public static ContentAlignment LABEL_TEXT_ALIGN;// = System.Drawing.ContentAlignment.MiddleCenter;
         public static Font FONT_OF_LABEL;
         public static ContextMenuStrip LABEL_MENU;
         #endregion
