@@ -40,16 +40,6 @@ namespace WindowsFormsApplication1
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            if (FormUniqueForm.ASSA)
-            {
-                this.BackColor = Color.FromArgb(123, 234, 121);
-                this.TransparencyKey = Color.FromArgb(123, 234, 121);
-            }
-            else
-            {
-                this.BackColor = new Color();
-                this.TransparencyKey = new Color();
-            }
         }
 
         private void invisibility(Control CR, int Index)

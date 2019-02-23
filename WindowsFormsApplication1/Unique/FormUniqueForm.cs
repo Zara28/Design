@@ -16,7 +16,11 @@ namespace WindowsFormsApplication1
         /// Форма, с которой работаем
         /// </summary>
         String FormName;
-        public static bool ASSA = true;
+
+        /// <summary>
+        /// Прозрачность Жукова которая делает все кнопки дырявыми
+        /// </summary>
+        public static bool ASSA = false;
 
         public FormUniqueForm(String name)
         {
@@ -124,17 +128,6 @@ namespace WindowsFormsApplication1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if(ASSA)
-            {
-                this.BackColor = new Color();
-                this.TransparencyKey = new Color();
-            }
-            else
-            {
-                this.BackColor = Color.FromArgb(123, 234, 121);
-                this.TransparencyKey = Color.FromArgb(123, 234, 121);
-            }
-            ASSA = !ASSA;
         }
 
         /// <summary>
@@ -181,5 +174,7 @@ namespace WindowsFormsApplication1
                 this.Icon = Properties.Resources.Masons; 
             }
         }
+
+       
     }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -27,14 +27,20 @@ namespace WindowsFormsApplication1
 
         public ButtonUniqueForm(Button buttonToEdit)
         {
+            InitializeComponent();
+
             ButtonName = buttonToEdit.Name;
             FormName = buttonToEdit.FindForm().Name;
             newButton = buttonToEdit;
-            InitializeComponent();
-
+            colorDialog1.Color = buttonToEdit.BackColor;
             textBox1.Text = newButton.Text;
         }
 
+        /// <summary>
+        /// Преобразует цвет в формате Color в JSON строку
+        /// </summary>
+        /// <param name="col">Цвет</param>
+        /// <returns>JSON строка цвета</returns>
         public static string ColorToJSON(Color col)
         {
             return JsonConvert.SerializeObject(new List<int> { col.A, col.R, col.G, col.B }).ToString();
@@ -43,7 +49,7 @@ namespace WindowsFormsApplication1
         /// <summary>
         /// Удаление дизайна конкретной кнопки из БД (возврат в дефолтное состояние)
         /// </summary>
-        public static void delete(Control pb, String formName, String buttonName)
+        public static void DeleteUniqueButton(Control pb, String formName, String buttonName)
         {
             SQLClass.Delete("DELETE FROM " + Tables.Unique +
               " WHERE type = 'Button'" +
@@ -54,7 +60,7 @@ namespace WindowsFormsApplication1
         /// <summary>
         /// Обновление дизайна конкретной кнопки в БД
         /// </summary>
-        public static void UpdateButtonDesignInDb(Control pb)
+        public static void UpdateButtonDesignInDb(Button pb)
         {
             SQLClass.Delete("DELETE FROM " + Tables.Unique +
                 " WHERE type = 'Button'" +
@@ -67,6 +73,8 @@ namespace WindowsFormsApplication1
                     ", Visible = " + pb.Visible +
                     ", BackgroundImage = " + pb.BackgroundImage +
                     ", Text = " + pb.Text +
+                    ", Dock = " + pb.Dock.ToString() +
+                    ", FlatStyle = " + pb.FlatStyle +
                 "', 'admin', '" + pb.Name + "', '" + pb.FindForm().Name + "')");
         }
 
@@ -76,8 +84,12 @@ namespace WindowsFormsApplication1
             Close();
         }
 
+        /// <summary>
+        /// Показываем Color Dialog
+        /// </summary>
         private void button2_Click(object sender, EventArgs e)
         {
+            colorDialog1.SolidColorOnly = false;
             colorDialog1.ShowDialog();
             newButton.BackColor = colorDialog1.Color;
             ReturnToDefault = false;
@@ -85,23 +97,39 @@ namespace WindowsFormsApplication1
 
         private void ButtonUniqueForm_Load(object sender, EventArgs e)
         {
-            if (FormUniqueForm.ASSA)
-            {
-                this.BackColor = Color.FromArgb(123, 234, 121);
-                this.TransparencyKey = Color.FromArgb(123, 234, 121);
-            }
-            else
-            {
-                this.BackColor = new Color();
-                this.TransparencyKey = new Color();
-            }
+
         }
 
+        /// <summary>
+        /// Кнопка "Возврат к дизайну по умолчанию"
+        /// </summary>
         private void button3_Click(object sender, EventArgs e)
         {
-            delete(newButton, FormName, ButtonName);
+            DeleteUniqueButton(newButton, FormName, ButtonName);
             ReturnToDefault = true;
         }
 
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (comboBox1.Text)
+            {
+                case "System":
+                    newButton.FlatStyle = FlatStyle.System;
+                    break;
+
+                case "Standard":
+                    newButton.FlatStyle = FlatStyle.Standard;
+                    break;
+
+                case "Popup":
+                    newButton.FlatStyle = FlatStyle.Popup;
+                    break;
+
+                case "Flat":
+                    newButton.FlatStyle = FlatStyle.Flat;
+                    break;
+            }
+               
+        }
     }
 }
