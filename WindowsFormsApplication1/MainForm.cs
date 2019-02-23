@@ -731,5 +731,10 @@ namespace WindowsFormsApplication1
         {
 
         }
+
+        private void LabelContextMenuStrip_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
     }
 }

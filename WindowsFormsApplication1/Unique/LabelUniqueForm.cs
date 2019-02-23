@@ -39,7 +39,7 @@ namespace WindowsFormsApplication1
             SQLClass.Insert("INSERT INTO " + Tables.Unique +
                 " (type, design, author, name, FormFrom) VALUES " +
                 "('Label', " +
-                "'ForeColor = " + pb.ForeColor +
+                "'ForeColor = " + ButtonUniqueForm.ColorToJSON(pb.ForeColor) +
                     ", FontName = " + pb.Font.Name +
                     ", FontSize = " + pb.Font.Size + 
                     ", Text = " + pb.Text +

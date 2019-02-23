@@ -70,6 +70,14 @@ namespace WindowsFormsApplication1
                     }
                 }
 
+                if (words[index].Trim() == "BackgroundImage")
+                {
+                    DesignClass.BUTTON_BACKGROUND_IMG_ADRESS = words[index + 1] + ":" + words[index + 2];
+                    PictureBox pb = new PictureBox();
+                    pb.Load(DesignClass.BUTTON_BACKGROUND_IMG_ADRESS);
+                    DesignClass.BUTTON_BACKGROUND_IMG = pb.Image;
+                }
+
                 if (words[index] == "FlatStyle")
                 {
                     if (words[index + 1] == "Popup")
@@ -89,7 +97,8 @@ namespace WindowsFormsApplication1
                         DesignClass.FLAT_OF_BUTTON = FlatStyle.System;
                     }
                 }
-                
+
+                #region ImageAlign
                 if (words[index].Trim() == "ImageAlign")
                 {
                     //DesignClass.BUTTONIMAGE_ALLINE = (ContentAlignment)(words[index + 1]);
@@ -129,13 +138,16 @@ namespace WindowsFormsApplication1
                     {
                         DesignClass.BUTTONIMAGE_ALLINE = ContentAlignment.BottomRight;
                     }
-                }                
+                }
+                #endregion           
             }
         }
 
         private void Form2_Load(object sender, EventArgs e)
         {
             MainForm.pic(this);
+            flatStyleComboBox.Text = (DesignClass.FLAT_OF_BUTTON).ToString();
+            comboBoxPicAlign.Text = (DesignClass.BUTTONIMAGE_ALLINE).ToString();
             if (FormUniqueForm.ASSA)
             {
                 this.BackColor = Color.FromArgb(123, 234, 121);
@@ -174,16 +186,17 @@ namespace WindowsFormsApplication1
         {
             try
             {
+                DesignClass.BUTTON_BACKGROUND_IMG_ADRESS = textBox1.Text;
                 pictureBox4.Load(textBox1.Text);
             }
             catch (Exception)
             {
-                this.BackColor = new Color();
-                this.TransparencyKey = new Color();
+                DesignClass.BUTTON_BACKGROUND_IMG_ADRESS = null;
                 pictureBox4.Image = pictureBox1.Image;
             }
 
             DesignClass.BUTTON_BACKGROUND_IMG = pictureBox4.Image;
+            MainForm.pic(this);
         }
 
 
@@ -223,7 +236,8 @@ namespace WindowsFormsApplication1
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {            
+        {           
+ 
             if(comboBoxPicAlign.SelectedIndex == 0)
             {
                 DesignClass.BUTTONIMAGE_ALLINE = System.Drawing.ContentAlignment.TopLeft;
@@ -292,6 +306,11 @@ namespace WindowsFormsApplication1
             }
             MainForm.pic(this);
                
+        }
+
+        private void ButtonDefaultForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            MainForm.typeSerialize();
         }
     }
 }
