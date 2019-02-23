@@ -108,6 +108,7 @@
             this.button4.TabIndex = 3;
             this.button4.Text = "label";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // panel1
             // 
@@ -163,7 +164,7 @@
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.button9, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.button9, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.button7, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.button2, 0, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 249);
@@ -171,7 +172,6 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(163, 114);
             this.tableLayoutPanel1.TabIndex = 5;
             // 
@@ -251,7 +251,7 @@
             this.дизайнФормыToolStripMenuItem.Name = "дизайнФормыToolStripMenuItem";
             this.дизайнФормыToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
             this.дизайнФормыToolStripMenuItem.Text = "Дизайн формы";
-            this.дизайнФормыToolStripMenuItem.Click += new System.EventHandler(this.дизайнФормыToolStripMenuItem_Click);
+            this.дизайнФормыToolStripMenuItem.Click += new System.EventHandler(this.дизайнФормыToolStripMenuItem_Click);          
             // 
             // сохранитьДефолтныйДизайнToolStripMenuItem
             // 
@@ -352,7 +352,6 @@
             this.LabelContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion
