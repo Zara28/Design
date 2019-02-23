@@ -112,5 +112,11 @@ namespace WindowsFormsApplication1
             label1.TextAlign = DesignClass.LABEL_TEXT_ALIGN;
         }
 
+        private void FormDefaultLabel_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+            MainForm.typeSerialize();
+        }
+
     }
 }

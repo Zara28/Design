@@ -80,7 +80,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(160, 3);
+            this.button2.Location = new System.Drawing.Point(184, 289);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(97, 23);
             this.button2.TabIndex = 4;
@@ -92,9 +92,12 @@
             // 
             this.CursorComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CursorComboBox.FormattingEnabled = true;
-            this.CursorComboBox.Location = new System.Drawing.Point(65, 203);
+            this.CursorComboBox.Items.AddRange(new object[] {
+            "Крестик",
+            "Кружок"});
+            this.CursorComboBox.Location = new System.Drawing.Point(95, 200);
             this.CursorComboBox.Name = "CursorComboBox";
-            this.CursorComboBox.Size = new System.Drawing.Size(121, 21);
+            this.CursorComboBox.Size = new System.Drawing.Size(162, 21);
             this.CursorComboBox.TabIndex = 5;
             this.CursorComboBox.SelectedIndexChanged += new System.EventHandler(this.CursorComboBox_SelectedIndexChanged);
             // 
@@ -123,7 +126,7 @@
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(51, 23);
             this.button6.TabIndex = 18;
-            this.button6.Text = "button6";
+            this.button6.Text = "None";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button7_Click);
             // 
@@ -133,7 +136,7 @@
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(57, 23);
             this.button5.TabIndex = 17;
-            this.button5.Text = "button5";
+            this.button5.Text = "Center";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button7_Click);
             // 
@@ -143,31 +146,31 @@
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(57, 23);
             this.button4.TabIndex = 16;
-            this.button4.Text = "button4";
+            this.button4.Text = "Stretch";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button7_Click);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(55, 230);
+            this.button3.Location = new System.Drawing.Point(47, 230);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(34, 23);
+            this.button3.Size = new System.Drawing.Size(42, 23);
             this.button3.TabIndex = 15;
-            this.button3.Text = "button3";
+            this.button3.Text = "Zoom";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button7_Click);
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(12, 230);
+            this.button7.Location = new System.Drawing.Point(9, 230);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(37, 23);
             this.button7.TabIndex = 14;
-            this.button7.Text = "button7";
+            this.button7.Text = "Tile";
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
-            // FormDesignForm
+            // FormDefaultForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -185,8 +188,9 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label1);
-            this.Name = "FormDesignForm";
+            this.Name = "FormDefaultForm";
             this.Text = "Дизайн формы";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormDefaultForm_FormClosing);
             this.Load += new System.EventHandler(this.FormDesignForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

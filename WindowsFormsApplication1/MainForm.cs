@@ -390,7 +390,7 @@ namespace WindowsFormsApplication1
         /// Сохранение дефолтного дизайна в базу
         /// </summary>
         /// <returns></returns>
-        public Dictionary<string, JObject> typeSerialize()
+        public static Dictionary<string, JObject> typeSerialize()
         {
             Dictionary<string, JObject> AllTypesData = new Dictionary<string, JObject>();
 
@@ -401,7 +401,7 @@ namespace WindowsFormsApplication1
                 ButtonData.Add("BackgroundImage", DesignClass.BUTTON_BACKGROUND_IMG_ADRESS.ToString());
             }
 
-            ButtonData.Add("BackgroundImageLayout", button1.BackgroundImageLayout.ToString());
+            //ButtonData.Add("BackgroundImageLayout", button1.BackgroundImageLayout.ToString());
 
             if (DesignClass.BUTTON_TEXT_COLOR != null)
             {
@@ -719,6 +719,11 @@ namespace WindowsFormsApplication1
         }
 
         private void sgdfgdgToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LabelContextMenuStrip_Opening(object sender, CancelEventArgs e)
         {
 
         }

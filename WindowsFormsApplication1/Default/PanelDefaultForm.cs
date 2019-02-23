@@ -283,5 +283,11 @@ namespace WindowsFormsApplication1
             panel3.Location = panel2.Location + Size2 + s1;
             this.Size = new System.Drawing.Size(panel3.Location.X + panel3.Size.Width, this.Size.Height);
         }
+
+        private void PanelDefaultForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+            MainForm.typeSerialize();
+        }
     }
 }

@@ -47,7 +47,7 @@ namespace WindowsFormsApplication1
             {
                 if (words[i] == "MinimizeBox")
                 {
-                    ((Form)c).MinimizeBox = (words[i + 1] == "True");
+                    ((Form)c).MinimizeBox = (words[i + 1].Trim() == "True");
                 }
 
                 if (words[i] == "Color")
@@ -123,7 +123,7 @@ namespace WindowsFormsApplication1
 
         private void minimizeCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            this.MinimizeBox = minimizeCheckBox.Checked;
+            //this.MinimizeBox = minimizeCheckBox.Checked;
         }
 
         private void button1_Click(object sender, EventArgs e)

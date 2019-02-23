@@ -37,7 +37,14 @@ namespace WindowsFormsApplication1
         private void FormDesignForm_Load(object sender, EventArgs e)
         {
             MainForm.pic(this);
-            CursorComboBox.Items.AddRange(cury);
+            //CursorComboBox.Items.AddRange(cury);
+            CursorComboBox.Items.Clear();
+            CursorComboBox.Items.Add("Крестик");
+            CursorComboBox.Items.Add("Знак вопроса");
+            CursorComboBox.Items.Add("Знак стоп");
+            CursorComboBox.Items.Add("Стрелки с точкой");
+            CursorComboBox.Items.Add("Стрелки расширения окна по диагонали");
+            CursorComboBox.Items.Add("Стрелки расширения по ширине");
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -52,9 +59,9 @@ namespace WindowsFormsApplication1
         private void CursorComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {            
           
-            DesignClass.FORM_CURSOR = (Cursor)CursorComboBox.SelectedItem;
+           // DesignClass.FORM_CURSOR = (Cursor)CursorComboBox.SelectedItem;
              
-          /*  if (CursorComboBox.SelectedIndex == 0)
+            if (CursorComboBox.SelectedIndex == 0)
             {
                 DesignClass.FORM_CURSOR = Cursors.Cross;
             }
@@ -81,7 +88,7 @@ namespace WindowsFormsApplication1
             else if (CursorComboBox.SelectedIndex == 6)
             {
                 DesignClass.FORM_CURSOR = Cursors.WaitCursor;
-            }*/
+            }
 
             MainForm.pic(this);
         }
@@ -119,5 +126,19 @@ namespace WindowsFormsApplication1
             DesignClass.FORM_COLOR = MyDialog.Color;
             this.BackColor = DesignClass.FORM_COLOR;
         }
+
+        private void FormDefaultForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+         
+            MainForm.typeSerialize();
+       
+        }
+
+        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            CursorComboBox_SelectedIndexChanged( sender, e);
+        }
+
+     
     }
 }

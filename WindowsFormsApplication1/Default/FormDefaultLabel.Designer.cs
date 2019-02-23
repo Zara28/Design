@@ -184,6 +184,7 @@
             this.Controls.Add(this.button1);
             this.Name = "FormDefaultLabel";
             this.Text = "Design of label";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormDefaultLabel_FormClosing);
             this.Load += new System.EventHandler(this.FormLabel_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
